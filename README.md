@@ -73,8 +73,8 @@ The repository is organized into separate directories for the **frontend** and *
 │   ├── API.md                # API documentation for frontend-backend interaction
 └── README.md             # Main project readme  
 
-
- Contribution Guidelines
+```
+### Contribution Guidelines
 
 We welcome contributions from the community! Here’s how you can contribute:
 
@@ -82,14 +82,14 @@ We welcome contributions from the community! Here’s how you can contribute:
 2. Ensure your code follows our style guidelines and is well-documented(for easy development, every decision you make should be written in the README.md file, for FE & BE).
 
 
---> **A MUST READ FOR EVERYONE**
+ **A MUST READ FOR EVERYONE**
 
----> ** checkout the README.md file on the FE folder for the backend guys**
----> ** checkout the README.md file on the BE folder for the backend guys**
+ checkout the README.md file on the FE folder for the frontend guys
+ checkout the README.md file on the BE folder for the backend guys
 
----
 
-General Code Guidelines
+
+### General Code Guidelines
 
 1. **Commit Messages**: Use [better-commits](https://github.com/Everduin94/better-commits) for structured commit messages.
 2. **Issues**: For every feature or bug fix, create an issue and reference it in your commit.
