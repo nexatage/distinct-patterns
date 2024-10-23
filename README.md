@@ -74,6 +74,8 @@ The repository is organized into separate directories for the **frontend** and *
 └── README.md             # Main project readme  
 
 ```
+
+
 ### Contribution Guidelines
 
 We welcome contributions from the community! Here’s how you can contribute:
