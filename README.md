@@ -1,19 +1,35 @@
 # Distinct Patterns Ecommerce Application
 
-Welcome to the **Fashion Store Ecommerce Application**! 🎉 This repository holds everything you need to build the complete ecommerce platform, from browsing products to managing shopping carts and processing orders. We’re using **React** for the frontend and **Deno** for the backend, along with MongoDB as the database. The project is structured for scalability and ease of development, with both the frontend and backend clearly separated.
+Welcome to the **Fashion Store Ecommerce Application**! 
+
+
+🎉 This repository holds everything you need to build the complete ecommerce platform, from browsing products to managing shopping carts and processing orders.
+
+
+
+ We’re using **React** for the frontend and **Sanity** for the backend dashboard, along with MongoDB as the database. 
+ 
+ 
+ The project is structured for scalability and ease of development, with both the frontend and backend clearly separated.
 
 ---
 
 ## Project Overview
 
-This project aims to build a fully functioning ecommerce platform with features such as product listings, shopping cart management, user authentication, and order processing. We are starting with an MVP (Minimum Viable Product) that will lay the foundation of the platform, and future versions will expand with more advanced features.
+This project aims to build a fully functioning ecommerce platform with features such as product listings, shopping cart management, user authentication, and order processing. 
+
+
+We are starting with an MVP (Minimum Viable Product) that will lay the foundation of the platform, and future versions will expand with more advanced features.
 
 ### Tech Stack:
 
 - **Frontend**: React (with Context API for state management)
-- **Backend**: Deno (with MongoDB for data storage)
-- **Database**: MongoDB (for storing product, user, and order data)
-- **Deployment**: Vercel for frontend, and Heroku/DigitalOcean for backend (MVP)
+
+- **Backend**: Sanity (with MongoDB for data storage)
+
+- **Database**: Sanity (for storing product, user, and order data)
+
+- **Deployment**: Vercel for frontend
 
 ---
 
@@ -23,38 +39,63 @@ The initial release will focus on the following core features to get the basic e
 
 ### Frontend (FE)
 - **Product Listing**: Display fashion items with details like price, description, and image.
+
 - **Cart Management**: Allow users to add products to a shopping cart, update quantities, and remove items.
+
 - **User Authentication**: Enable user signup and login.
+
 - **Checkout & Order Placement**: Let users proceed to checkout and place orders.
+
 - **Responsive Design**: Ensure the app works seamlessly across devices (mobile, tablet, desktop).
 
 ### Backend (BE)
 - **Product Management**: Implement CRUD operations for products (Create, Read, Update, Delete).
+
 - **User Authentication**: Secure user registration, login, and JWT token-based authentication.
+
 - **Cart API**: Create API endpoints to add, update, and remove items in the user’s cart.
+
 - **Order Management**: Track orders placed by users and their statuses.
+
 - **Error Handling & Security**: Implement error handling and security measures like rate-limiting and JWT protection for APIs.
 
 ---
 
 ## Project Structure
 
-The repository is organized into separate directories for the **frontend** and **backend**, making it easy to maintain and develop each part independently.
+The repository is organized into separate repositories for the **frontend** and **backend**, making it easy to maintain and develop each part independently.
+
+
+## Link to the backend repo at
+ https://github.com/abdulrahmansoyooye/distinct-patterns-backend.git
+
+
 
 ```bash
 /project-root
+/backend
 │
-├── /backend                  # Deno backend code
-│   ├── /src
-│   │   ├── /controllers      # API route controllers
-│   │   ├── /models           # MongoDB schemas for products, users, orders
-│   │   ├── /middlewares      # JWT authentication, request validation, etc.
-│   │   ├── /routes           # Define API routes (products, users, orders)
-│   │   ├── /config.ts        # Environment variables and configurations
+├── /schemas                   # Defines Sanity schemas for content types
+│   ├── product.js             # Product schema
+│   ├── user.js                # User schema
+│   ├── order.js               # Order schema
+│   └── index.js               # Main schema file to export all schemas
+│
+├── /config                    # Configuration files
+│   └── sanity.config.js       # Sanity project configuration
+│
+├── /data-fetching             # Utility functions for data fetching
+│   ├── client.js              # Sanity client setup
+│   ├── productFetch.js        # Functions to fetch products
+│   ├── userFetch.js           # Functions to fetch users
+│   └── orderFetch.js          # Functions to fetch orders
+│
+├── /utils                     # Helper functions
+│   └── utils.js               # Shared utility functions
+│
+├── sanity.json                # Sanity project configuration file
+└── README.md                  # Backend README documentation
 
-│   ├── deno.json             # Deno dependencies manifest
-│   └── README.md             # Backend-specific documentation
-│
 ├── /frontend                 # React frontend code
 │   ├── /public               # Static assets (images, favicon, etc.)
 │   ├── /src
@@ -83,11 +124,6 @@ We welcome contributions from the community! Here’s how you can contribute:
 1. **Fork the repository** and create a new branch for your feature or bug fix.
 2. Ensure your code follows our style guidelines and is well-documented(for easy development, every decision you make should be written in the README.md file, for FE & BE).
 
-
- **A MUST READ FOR EVERYONE**
-
- checkout the README.md file on the FE folder for the frontend guys
- checkout the README.md file on the BE folder for the backend guys
 
 
 
