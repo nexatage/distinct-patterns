@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 
 const Navbar = () => {
   // Create a state to monitor the width of the page and ensure that it does not re-render multiple times.
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 960);
+  const [isMobile, setIsMobile] = useState();
   const [isOpen, setIsOpen] = useState(false);
 
   // Toggle the hamburger state
@@ -60,7 +60,7 @@ const Navbar = () => {
       {!isMobile ? (
         // for the desktop navBars, create a flex box of three items: one for the logo, two for the nav-links, third for the authentication bar
         // For the navbar bar should be a row
-        <ul className="desktop-nav">
+        <ul className="desktop-nav ">
           <div className="logo-box">
             {/* Import the logo normally */}
             <Image src="/assets/logo.png" alt="logo" width={200} height={20} />

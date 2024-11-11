@@ -1,8 +1,8 @@
 "use client";
-import Navbar from "./components/Navbar";
+import Navbar from "../components/Navbar.js";
 export default function Page() {
   return (
-    <div>
+    <div className="">
       <h1>Hey there. Welcome to the home page</h1>
     </div>
   );
