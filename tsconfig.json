@@ -3,10 +3,8 @@
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "paths": {
-      "@components/*": ["components/*"],
-      "@styles/*": ["styles/*"],
-      "@utils/*": ["utils/*"]
-      // Add more aliases as needed
+      "@/*": ["./*"]
+      
     },
     "allowJs": true,
     "skipLibCheck": true,

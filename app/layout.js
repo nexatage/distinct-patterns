@@ -1,5 +1,4 @@
 import "../styles/globals.css";
-import { Metadata } from "next";
 
 import Navbar from "../components/Navbar.js";
 import { Poppins } from "next/font/google";
