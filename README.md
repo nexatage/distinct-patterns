@@ -47,7 +47,7 @@ The initial release will focus on the following core features to get the basic e
 - **Checkout & Order Placement**: Let users proceed to checkout and place orders.
 
 - **Responsive Design**: Ensure the app works seamlessly across devices (mobile, tablet, desktop).
-
+1.Navbar
 ### Backend (BE)
 - **Product Management**: Implement CRUD operations for products (Create, Read, Update, Delete).
 
