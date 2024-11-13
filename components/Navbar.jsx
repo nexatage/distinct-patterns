@@ -56,140 +56,163 @@ const Navbar = () => {
   }, [isMobile]); // Dependency on `isMobile` to track threshold crossing
 
   return (
-    <nav>
-      {!isMobile ? (
-        // for the desktop navBars, create a flex box of three items: one for the logo, two for the nav-links, third for the authentication bar
-        // For the navbar bar should be a row
-        <ul className="desktop-nav ">
-          <div className="logo-box">
-            {/* Import the logo normally */}
-            <Image src="/assets/logo.png" alt="logo" width={200} height={20} />
-          </div>
-          {/* the nav-links should also be a row. */}
-          <ul className="nav-links">
-            <li className="nav-list">
-              <Link
-                href="/"
-                // monitor the active link and change the color when the link is active
-                className={isActive("/") ? "activeNav nav-link" : ""}
-              >
-                Home
-              </Link>
-            </li>
-            <li className="nav-list">
-              <Link
-                href="/about"
-                className={isActive("/about") ? "activeNav nav-link" : ""}
-              >
-                About
-              </Link>
-            </li>
-            <li className="nav-list">
-              <Link
-                href="/products"
-                className={isActive("/products") ? "activeNav nav-link" : ""}
-              >
-                Products
-              </Link>
-            </li>
-            <li className="nav-list">
-              <Link
-                href="/blog"
-                className={isActive("/blog") ? "activeNav nav-link" : ""}
-              >
-                Blog
-              </Link>
-            </li>
-          </ul>
-          {/* Zubayr should create a component to take care of the authentication buttons */}
-          <Auth />
-        </ul>
-      ) : (
-        <ul className="mobile-nav">
-          {/* For the mobile navBars, create a flex box of two items: The logo and an hamburger icon */}
-          <div className="logo-box">
-            {/* Import the logo normally */}
-            <Image
-              className="log"
-              src="/assets/logo.png"
-              alt="logo"
-              width={200}
-              height={20}
-            />
-          </div>
-          {/* Zubayr should edit the addToCart page and put it here */}
-          <div className="ham-cart">
-            <p>Cart</p>
-            <div
-              className="hamburger"
-              onClick={toggleMenu}
-              style={{ cursor: "pointer" }}
-            >
-              <motion.div
-                className="bar"
-                animate={{
-                  rotate: isOpen ? 45 : 0, // Rotate top line to 45 degrees when open
-                  y: isOpen ? 10 : 0, // Move the top line down
-                }}
-                transition={{ type: "spring", stiffness: 300 }}
-              />
-
-              <motion.div
-                className="bar"
-                animate={{
-                  rotate: isOpen ? -45 : 0, // Rotate bottom line to -45 degrees when open
-                  y: isOpen ? -10 : 0, // Move bottom line up
-                }}
-                transition={{ type: "spring", stiffness: 300 }}
+    <div>
+      <nav>
+        {!isMobile ? (
+          // for the desktop navBars, create a flex box of three items: one for the logo, two for the nav-links, third for the authentication bar
+          // For the navbar bar should be a row
+          <ul className="desktop-nav ">
+            <div className="logo-box">
+              {/* Import the logo normally */}
+              <Image
+                src="/assets/logo.png"
+                alt="logo"
+                width={200}
+                height={20}
               />
             </div>
-          </div>
-          {isOpen ? (
-            <ul className="mob-nav-links">
-              <li className="mob-nav-list">
+            {/* the nav-links should also be a row. */}
+            <ul className="nav-links">
+              <li onClick={closeMenu} className="nav-list">
                 <Link
                   href="/"
                   // monitor the active link and change the color when the link is active
-                  className={isActive("/") ? "activeMobNav mob-nav-link" : ""}
+                  className={isActive("/") ? "activeNav nav-link" : ""}
                 >
                   Home
                 </Link>
               </li>
-              <li className="mob-nav-list">
+              <li onClick={closeMenu} className="nav-list">
                 <Link
                   href="/about"
-                  className={
-                    isActive("/about") ? "activeMobNav mob-nav-link" : ""
-                  }
+                  className={isActive("/about") ? "activeNav nav-link" : ""}
                 >
                   About
                 </Link>
               </li>
-              <li className="mob-nav-list">
+              <li onClick={closeMenu} className="nav-list">
                 <Link
                   href="/products"
-                  className={
-                    isActive("/products") ? "activeMobNav mob-nav-link" : ""
-                  }
+                  className={isActive("/products") ? "activeNav nav-link" : ""}
                 >
                   Products
                 </Link>
               </li>
-              <li className="mob-nav-list">
+              <li onClick={closeMenu} className="nav-list">
                 <Link
                   href="/blog"
-                  className={
-                    isActive("/blog") ? "activeMobNav mob-nav-link" : ""
-                  }
+                  className={isActive("/blog") ? "activeNav nav-link" : ""}
                 >
                   Blog
                 </Link>
               </li>
             </ul>
-          ) : null}
+            {/* Zubayr should create a component to take care of the authentication buttons */}
+            <Auth />
+          </ul>
+        ) : (
+          <ul className="mobile-nav">
+            {/* For the mobile navBars, create a flex box of two items: The logo and an hamburger icon */}
+            <div className="logo-box">
+              {/* Import the logo normally */}
+              <Image
+                className="log"
+                src="/assets/logo.png"
+                alt="logo"
+                width={200}
+                height={20}
+              />
+            </div>
+            {/* Zubayr should edit the addToCart page and put it here */}
+            <div className="ham-cart">
+              <p>Cart</p>
+              <div
+                className="hamburger"
+                onClick={toggleMenu}
+                style={{ cursor: "pointer" }}
+              >
+                <motion.div
+                  className="bar"
+                  animate={{
+                    rotate: isOpen ? 45 : 0, // Rotate top line to 45 degrees when open
+                    y: isOpen ? 10 : 0, // Move the top line down
+                  }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                />
+
+                <motion.div
+                  className="bar"
+                  animate={{
+                    rotate: isOpen ? -45 : 0, // Rotate bottom line to -45 degrees when open
+                    y: isOpen ? -10 : 0, // Move bottom line up
+                  }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                />
+              </div>
+            </div>
+          </ul>
+        )}
+      </nav>
+      {isOpen ? (
+        <ul className={`mob-nav-links ${isOpen ? "isOpen" : ""}`}>
+          <li className="mob-nav-list">
+            <Link
+              href="/"
+              className={
+                isActive("/") ? "activeMobNav mob-nav-link" : "mob-nav-link"
+              }
+            >
+              Home
+            </Link>
+          </li>
+          <li className="mob-nav-list">
+            <Link
+              href="/about"
+              className={
+                isActive("/about")
+                  ? "activeMobNav mob-nav-link"
+                  : "mob-nav-link"
+              }
+            >
+              About
+            </Link>
+          </li>
+          <li className="mob-nav-list">
+            <Link
+              href="/products"
+              className={
+                isActive("/products")
+                  ? "activeMobNav mob-nav-link"
+                  : "mob-nav-link"
+              }
+            >
+              Products
+            </Link>
+          </li>
+          <li className="mob-nav-list">
+            <Link
+              href="/blog"
+              className={
+                isActive("/blog") ? "activeMobNav mob-nav-link" : "mob-nav-link"
+              }
+            >
+              Blog
+            </Link>
+          </li>
+          <li className="mob-nav-list">
+            <Link
+              href="/blog"
+              className={
+                isActive("/blog") ? "activeMobNav mob-nav-link" : "mob-nav-link"
+              }
+            >
+              {/* Zubayr fucntionalizes this part */}
+              Sign up
+            </Link>
+          </li>
         </ul>
-      )}
-    </nav>
+      ) : null}
+    </div>
   );
 };
 

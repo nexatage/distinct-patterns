@@ -2,7 +2,7 @@ import React from "react";
 const page = () => {
   return (
     <div>
-      <p>Navbar</p>
+      <p>Hey there. Welcome to the cart page</p>
       div
     </div>
   );
