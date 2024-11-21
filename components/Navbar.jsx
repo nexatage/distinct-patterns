@@ -4,6 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { useCart } from "../context/StateContext.js";
+
 import { motion } from "framer-motion";
 import Auth from "./auth.js";
 const navigation = [
@@ -37,16 +39,17 @@ const Navbar = () => {
   const closeMenu = () => setIsOpen(false);
 
   const isActive = (path) => pathname === path;
+  const { totalcartQuantity } = useCart();
 
   return (
-    <header className="sticky top-0 z-50 bg-white ">
+    <header className="sticky top-0 z-50 bg-white  mb-[2rem] p-[1rem]">
       <nav className="container mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="logo-box">
           <Image
             src="/assets/logo.png"
             alt="logo"
-            width={150}
+            width={130}
             height={30}
             className="w-auto h-auto"
           />
@@ -77,7 +80,21 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         <div className="flex items-center gap-4 md:hidden">
-          <div className="text-gray-700">Cart</div>
+          <div className="relative">
+            {" "}
+            <Image
+              src="/assets/shopping-cart.png"
+              alt="logo"
+              width={18}
+              height={18}
+              className="w-auto h-auto"
+            />
+            {totalcartQuantity > 0 && (
+              <span className="absolute -top-2 -right-2 bg-[#eaeaea] text-[#000] text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                {totalcartQuantity}
+              </span>
+            )}
+          </div>
           <div
             className="hamburger cursor-pointer"
             onClick={toggleMenu}

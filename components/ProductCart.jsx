@@ -1,10 +1,10 @@
 "use client";
-import React, { useState, useEffect, useMemo } from "react";
-import Image from "next/image";
+import React, { useMemo } from "react";
+
 import { useCart } from "../context/StateContext.js";
-import { urlFor } from "../sanity/sanityImage.js";
+// import { urlFor } from "../sanity/sanityImage.js";
 const ProductCart = ({ product }) => {
-  const { addToCart, removeFromCart, checkIfProductExists ,cartQuantity} = useCart();
+  const { addToCart, removeFromCart, checkIfProductExists } = useCart();
 
   // Memoized value for whether the product exists in the cart
   const showAddCart = useMemo(() => {
@@ -19,7 +19,6 @@ const ProductCart = ({ product }) => {
       removeFromCart(product);
     }
   };
-  console.log(cartQuantity)
   return (
     <div key={product._id}>
       <div className="relative">
