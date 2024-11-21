@@ -22,6 +22,17 @@ body {
   gap: 10px;
 }
 
+/* Mobile Navigation Styles */
+.mob-nav-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-100%); /* Hidden initially */
+  transition: transform 0.5s ease-in-out;
+  z-index: 1000; /* Ensure it overlays other elements */
+}
+
 .hamburger {
   background-color: #e2e2e2;
   box-shadow: 0 0 0.5px 0.5px #e3e3e3 inset;

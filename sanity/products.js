@@ -8,13 +8,13 @@ export async function getProducts() {
     description,
     price,
     variations,
-    instock,
+    inStock,
     "category": category->{
       _id,
       title,
       description
     },
-    "imageUrl": image.asset->url
+    imageUrl
   }`;
 
   return await sanityClient.fetch(query);

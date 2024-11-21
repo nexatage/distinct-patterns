@@ -79,8 +79,8 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Navigation */}
-        <div className="flex items-center gap-4 md:hidden">
-          <div className="relative">
+        <div className="flex items-center gap-4 ">
+          <a href="/cart" className="relative">
             {" "}
             <Image
               src="/assets/shopping-cart.png"
@@ -89,14 +89,14 @@ const Navbar = () => {
               height={18}
               className="w-auto h-auto"
             />
-            {totalcartQuantity > 0 && (
+            {
               <span className="absolute -top-2 -right-2 bg-[#eaeaea] text-[#000] text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                 {totalcartQuantity}
               </span>
-            )}
-          </div>
+            }
+          </a>
           <div
-            className="hamburger cursor-pointer"
+            className="hamburger cursor-pointer md:hidden"
             onClick={toggleMenu}
             aria-label="Toggle navigation menu"
           >
