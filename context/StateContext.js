@@ -39,13 +39,13 @@ export const StateContext = ({ children }) => {
   }, [cartItems]);
 
   // Check if a product exists in the cart
-  const checkIfProductExists = (id) => {
-    return cartItems.some((item) => item.id === id);
+  const checkIfProductExists = (_id) => {
+    return cartItems.some((item) => item._id === _id);
   };
 
   // Add product to cart
   const addToCart = (product) => {
-    if (checkIfProductExists(product.id)) {
+    if (checkIfProductExists(product._id)) {
       console.log("Item already in cart");
       return;
     }
@@ -54,7 +54,7 @@ export const StateContext = ({ children }) => {
 
   // Remove product from cart
   const removeFromCart = (product) => {
-    setCartItems(cartItems.filter((item) => item.id !== product.id));
+    setCartItems(cartItems.filter((item) => item._id !== product._id));
   };
 
   // Set quantity
