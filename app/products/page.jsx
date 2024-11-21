@@ -1,44 +1,7 @@
 import React from "react";
 import ProductCart from "../../components/ProductCart.jsx";
 import { getProducts } from "../../sanity/products.js";
-// const products = [
-//   {
-//     id: 1,
-//     name: "Zip Tote Basket",
-//     color: "White and black",
-//     imageSrc:
-//       "https://tailwindui.com/plus/img/ecommerce-images/product-page-03-related-product-01.jpg",
 
-//     price: 140,
-//   },
-//   {
-//     id: 2,
-//     name: "Zip Tote Basket",
-//     color: "White and black",
-//     imageSrc:
-//       "https://tailwindui.com/plus/img/ecommerce-images/product-page-03-related-product-01.jpg",
-
-//     price: 140,
-//   },
-//   {
-//     id: 3,
-//     name: "Zip Tote Basket",
-//     color: "White and black",
-//     imageSrc:
-//       "https://tailwindui.com/plus/img/ecommerce-images/product-page-03-related-product-01.jpg",
-
-//     price: 140,
-//   },
-//   {
-//     id: 4,
-//     name: "Zip Tote Basket",
-//     color: "White and black",
-//     imageSrc:
-//       "https://tailwindui.com/plus/img/ecommerce-images/product-page-03-related-product-01.jpg",
-
-//     price: 140,
-//   },
-// ];
 const page = async () => {
   const products = await getProducts();
   return (

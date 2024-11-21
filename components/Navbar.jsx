@@ -77,7 +77,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         <div className="flex items-center gap-4 md:hidden">
-          <p className="text-gray-700">Cart</p>
+          <div className="text-gray-700">Cart</div>
           <div
             className="hamburger cursor-pointer"
             onClick={toggleMenu}

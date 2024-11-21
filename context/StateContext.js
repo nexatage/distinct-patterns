@@ -38,6 +38,9 @@ export const StateContext = ({ children }) => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   }, [cartItems]);
 
+  const cartQuantity = useMemo(() => {
+    return cartItems.reduce((total, _, index) => total + index, 1);
+  }, [cartItems]);
   // Check if a product exists in the cart
   const checkIfProductExists = (_id) => {
     return cartItems.some((item) => item._id === _id);
@@ -72,6 +75,7 @@ export const StateContext = ({ children }) => {
     removeFromCart,
     setQuantity,
     checkIfProductExists,
+    cartQuantity,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
