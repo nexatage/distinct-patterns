@@ -47,7 +47,7 @@ const ProductCart = ({ product }) => {
           </p>
         </div>
       </div>
-      <div className=" mt-6">
+      <div className="mt-6">
         <div
           onClick={() => handleCartAction(product)}
           className="relative flex items-center  justify-center rounded-md border border-transparent bg-gray-100 px-8 py-2 text-sm font-medium text-gray-900 hover:bg-gray-200 cursor-pointer"

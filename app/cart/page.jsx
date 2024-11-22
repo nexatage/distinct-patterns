@@ -9,12 +9,13 @@ import {
 import { useCart } from "../../context/StateContext.js";
 
 export default function Page() {
-  const { cartItems, removeFromCart, checkIfProductExists, totalPrice } =
-    useCart();
-
-  const showAddcart = useMemo(() => {
-    return !checkIfProductExists(cartItems._id);
-  }, [cartItems._id, checkIfProductExists]);
+  const { cartItems, removeFromCart, totalPrice, setQuantity } = useCart();
+  const increaseQty = (item) => {
+    setQuantity(item._id, item.quantity + 1);
+  };
+  const decreaseQty = (item) => {
+    setQuantity(item._id, item.quantity - 1);
+  };
 
   return (
     <div className="bg-white">
@@ -22,7 +23,7 @@ export default function Page() {
         <h1 className="text-3xl  tracking-tight text-gray-900 sm:text-4xl">
           Check your cart and checkout
         </h1>
-        <form className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
+        <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
           <section aria-labelledby="cart-heading" className="lg:col-span-7">
             <h2 id="cart-heading" className="sr-only">
               Items in your shopping cart
@@ -32,101 +33,113 @@ export default function Page() {
               role="list"
               className="divide-y divide-gray-200 border-b border-t border-gray-200"
             >
-              {cartItems.map((item, itemIdx) => (
-                <li key={item._id} className="flex py-6 sm:py-10">
-                  <div className="shrink-0">
-                    <img
-                      alt={item.slug}
-                      src={
-                        "https://images.unsplash.com/photo-1667851873721-7e319b4f8633?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cm9zZXN8ZW58MHx8MHx8fDA%3D"
-                      }
-                      className="size-24 rounded-md object-cover sm:size-48"
-                    />
-                  </div>
-
-                  <div className="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
-                    <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
-                      <div>
-                        <div className="flex justify-between">
-                          <h3 className="text-sm">
-                            <a
-                              href={item.slug}
-                              className="font-medium text-gray-700 hover:text-gray-800"
-                            >
-                              {item.name}
-                            </a>
-                          </h3>
-                        </div>
-                        <div className="mt-1 flex text-sm">
-                          <p className="text-gray-500">
-                            {item.variations.color}
-                          </p>
-                          {item.size ? (
-                            <p className="ml-4 border-l border-gray-200 pl-4 text-gray-500">
-                              {item.size}
-                            </p>
-                          ) : null}
-                        </div>
-                        <p className="mt-1 text-sm font-medium text-gray-900">
-                          ₦ {item.price}
-                        </p>
-                      </div>
-
-                      <div className="mt-4 sm:mt-0 sm:pr-9">
-                        <label
-                          htmlFor={`quantity-${itemIdx}`}
-                          className="sr-only"
-                        >
-                          Quantity, {item.name}
-                        </label>
-                        <select
-                          id={`quantity-${itemIdx}`}
-                          name={`quantity-${itemIdx}`}
-                          className="max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base/5 font-medium text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
-                        >
-                          <option value={1}>1</option>
-                          <option value={2}>2</option>
-                          <option value={3}>3</option>
-                          <option value={4}>4</option>
-                          <option value={5}>5</option>
-                          <option value={6}>6</option>
-                          <option value={7}>7</option>
-                          <option value={8}>8</option>
-                        </select>
-
-                        <div
-                          className="absolute right-0 top-0"
-                          onClick={() => removeFromCart(item)}
-                        >
-                          <button
-                            type="button"
-                            className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500"
-                          >
-                            <span className="sr-only">Remove</span>
-                            <XMarkIcon aria-hidden="true" className="size-5" />
-                          </button>
-                        </div>
-                      </div>
+              {cartItems.length > 0 ? (
+                cartItems.map((item, itemIdx) => (
+                  <li key={item._id} className="flex py-6 sm:py-10">
+                    <div className="shrink-0">
+                      <img
+                        alt={item.slug}
+                        src={
+                          "https://images.unsplash.com/photo-1667851873721-7e319b4f8633?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cm9zZXN8ZW58MHx8MHx8fDA%3D"
+                        }
+                        className="size-24 rounded-md object-cover sm:size-48"
+                      />
                     </div>
 
-                    <p className="mt-4 flex space-x-2 text-sm text-gray-700">
-                      {item.inStock ? (
-                        <CheckIcon
-                          aria-hidden="true"
-                          className="size-5 shrink-0 text-green-500"
-                        />
-                      ) : (
-                        <ClockIcon
-                          aria-hidden="true"
-                          className="size-5 shrink-0 text-gray-300"
-                        />
-                      )}
+                    <div className="ml-4 flex flex-1 flex-col justify-between sm:ml-6">
+                      <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+                        <div>
+                          <div className="flex justify-between">
+                            <h3 className="text-sm">
+                              <a
+                                href={item.slug}
+                                className="font-medium text-gray-700 hover:text-gray-800"
+                              >
+                                {item.name}
+                              </a>
+                            </h3>
+                          </div>
+                          <div className="mt-1 flex text-sm">
+                            <p className="text-gray-500">
+                              {item.variations.color}
+                            </p>
 
-                      <span>{item.inStock ? "In stock" : `Out of Stock`}</span>
-                    </p>
-                  </div>
-                </li>
-              ))}
+                            <p className="ml-4 border-l border-gray-200 pl-4 text-gray-500">
+                              {item.variations.quantity}
+                            </p>
+                          </div>
+                          <p className="mt-1 text-sm font-medium text-gray-900">
+                            ₦ {item.price}
+                          </p>
+                        </div>
+
+                        <div className="mt-4 sm:mt-0 sm:pr-9">
+                          <label
+                            htmlFor={`quantity-${itemIdx}`}
+                            className="sr-only"
+                          >
+                            Quantity, {item.name}
+                          </label>
+                          <div className="flex items-center space-x-2">
+                            <button
+                              className="bg-gray-300 px-2 rounded cursor-pointer"
+                              onClick={() => decreaseQty(item)}
+                              disabled={item.quantity <= 1}
+                            >
+                              -
+                            </button>
+                            <span>{item.quantity}</span>
+                            <button
+                              className="bg-gray-300 px-2 rounded cursor-pointer"
+                              onClick={() => increaseQty(item)}
+                              disabled={item.quantity >= item.availablequantity}
+                            >
+                              +
+                            </button>
+                          </div>
+                          <div
+                            className="absolute right-0 top-0"
+                            onClick={() => removeFromCart(item)}
+                          >
+                            <button
+                              type="button"
+                              className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500"
+                            >
+                              <span className="sr-only">Remove</span>
+                              <XMarkIcon
+                                aria-hidden="true"
+                                className="size-5"
+                              />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <p className="mt-4 flex space-x-2 text-sm text-gray-700">
+                        {item.inStock ? (
+                          <CheckIcon
+                            aria-hidden="true"
+                            className="size-5 shrink-0 text-green-500"
+                          />
+                        ) : (
+                          <ClockIcon
+                            aria-hidden="true"
+                            className="size-5 shrink-0 text-gray-300"
+                          />
+                        )}
+
+                        <span>
+                          {item.inStock ? "In stock" : `Out of Stock`}
+                        </span>
+                      </p>
+                    </div>
+                  </li>
+                ))
+              ) : (
+                <div className="  my-4 text-center">
+                  Nothing is here, your cart is empty
+                </div>
+              )}
             </ul>
             <div className=" underline my-4 text-center">
               <a href="/products"> Continue Shopping</a>
@@ -201,7 +214,7 @@ export default function Page() {
               </button>
             </div>
           </section>
-        </form>
+        </div>
       </div>
     </div>
   );

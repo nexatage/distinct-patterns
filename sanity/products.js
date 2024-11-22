@@ -9,6 +9,7 @@ export async function getProducts() {
     price,
     variations,
     inStock,
+    availablequantity,
     "category": category->{
       _id,
       title,

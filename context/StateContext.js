@@ -11,7 +11,6 @@ const Context = createContext();
 
 export const StateContext = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-  const [qty, setQty] = useState(1);
 
   // Initialize cart from localStorage on mount
   useEffect(() => {
@@ -61,8 +60,12 @@ export const StateContext = ({ children }) => {
   };
 
   // Set quantity
-  const setQuantity = (newQty) => {
-    setQty(newQty);
+  const setQuantity = (id, newQty) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item._id == id ? { ...item, quantity: +newQty } : item
+      )
+    );
   };
 
   // Context value
@@ -70,7 +73,6 @@ export const StateContext = ({ children }) => {
     cartItems,
     totalPrice,
     totalQuantities,
-    qty,
     addToCart,
     removeFromCart,
     setQuantity,
