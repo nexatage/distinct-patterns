@@ -77,7 +77,7 @@ const Navbar = () => {
         <div className="hidden md:block">
           <Auth />
         </div>
-
+ 
         {/* Mobile Navigation */}
         <div className="flex items-center gap-4 ">
           <a href="/cart" className="relative">
@@ -119,7 +119,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-
+code here
       {/* Mobile Dropdown Menu */}
       {isOpen && (
         <ul className="fixed top-0 left-0 w-full h-full bg-white  flex flex-col justify-center items-center space-y-8 text-white text-xl md:hidden">
@@ -134,7 +134,7 @@ const Navbar = () => {
                 } hover:text-[#000] text-[#000] transition`}
               >
                 {name}
-              </Link>
+              </Link>   
             </li>
           ))}
         </ul>
