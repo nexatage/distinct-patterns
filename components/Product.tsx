@@ -71,6 +71,38 @@ export default function Allproducts() {
       image: icon,
       colors: ["orange", "green", "blue"],
     },
+    {
+      id: 9,
+      name: "Ceremonial Robe",
+      price: "$179.99",
+      rating: 4.7,
+      image: icon,
+      colors: ["orange", "green", "blue"],
+    },
+    {
+      id: 10,
+      name: "Ceremonial Robe",
+      price: "$179.99",
+      rating: 4.7,
+      image: icon,
+      colors: ["orange", "green", "blue"],
+    },
+    {
+      id: 11,
+      name: "Ceremonial Robe",
+      price: "$179.99",
+      rating: 4.7,
+      image: icon,
+      colors: ["orange", "green", "blue"],
+    },
+    {
+      id: 12,
+      name: "Ceremonial Robe",
+      price: "$179.99",
+      rating: 4.7,
+      image: icon,
+      colors: ["orange", "green", "blue"],
+    },
     // Add more products as needed
   ]
 
