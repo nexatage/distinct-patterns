@@ -4,21 +4,7 @@ import React, { useMemo } from "react";
 import { useCart } from "../context/StateContext.js";
 // import { urlFor } from "../sanity/sanityImage.js";
 const ProductCart = ({ product }) => {
-  const { addToCart, removeFromCart, checkIfProductExists } = useCart();
-
-  // Memoized value for whether the product exists in the cart
-  const showAddCart = useMemo(() => {
-    return !checkIfProductExists(product._id);
-  }, [product._id, checkIfProductExists]);
-
-  // Handle adding/removing product
-  const handleCartAction = () => {
-    if (showAddCart) {
-      addToCart(product);
-    } else {
-      removeFromCart(product);
-    }
-  };
+ 
   return (
     <div key={product._id}>
       <div className="relative">

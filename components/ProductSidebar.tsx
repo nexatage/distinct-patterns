@@ -25,7 +25,7 @@ const colors = [
   { name: 'Light Blue', hex: '#0EA5E9' }
 ]
 
-export default function ProductFilterSidebar() {
+export default function ProductFilterSidebar({products}) {
   const [selectedCategories, setSelectedCategories] = React.useState<string[]>([])
   const [selectedColors, setSelectedColors] = React.useState<string[]>([])
   const [selectedType, setSelectedType] = React.useState<string | null>(null)

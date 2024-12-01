@@ -119,7 +119,6 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-code here
       {/* Mobile Dropdown Menu */}
       {isOpen && (
         <ul className="fixed top-0 left-0 w-full h-full bg-white  flex flex-col justify-center items-center space-y-8 text-white text-xl md:hidden">

@@ -9,13 +9,14 @@ export async function getProducts() {
     price,
     variations,
     inStock,
+    rating,
     availablequantity,
-    "category": category->{
+    "categories": category->{
       _id,
       title,
       description
     },
-    imageUrl
+    image
   }`;
 
   return await sanityClient.fetch(query);

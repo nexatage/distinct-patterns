@@ -7,7 +7,8 @@ import {
   XMarkIcon,
 } from "@heroicons/react/20/solid";
 import { useCart } from "../../context/StateContext.js";
-
+import Image from "next/image";
+import { urlFor } from "@/sanity/sanityImage";
 export default function Page() {
   const { cartItems, removeFromCart, totalPrice, setQuantity } = useCart();
   const increaseQty = (item) => {
@@ -37,12 +38,12 @@ export default function Page() {
                 cartItems.map((item, itemIdx) => (
                   <li key={item._id} className="flex py-6 sm:py-10">
                     <div className="shrink-0">
-                      <img
-                        alt={item.slug}
-                        src={
-                          "https://images.unsplash.com/photo-1667851873721-7e319b4f8633?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cm9zZXN8ZW58MHx8MHx8fDA%3D"
-                        }
-                        className="size-24 rounded-md object-cover sm:size-48"
+                      <Image
+                        width={150}
+                        height={150}
+                        src={urlFor(item.image).quality(100).url()}
+                        alt={item.name}
+                        className="h-[300px] w-full object-cover"
                       />
                     </div>
 
