@@ -6,6 +6,7 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/sanityImage";
 import { useCart } from "@/context/StateContext";
+import Link from "next/link";
 const ProductCard = ({ product }) => {
   const { addToCart, removeFromCart, checkIfProductExists } = useCart();
 
@@ -37,9 +38,12 @@ const ProductCard = ({ product }) => {
         </CardContent>
         <CardFooter className="flex flex-col items-start gap-2 p-4">
           <div className="flex w-full items-center justify-between">
-            <h3 className="font-semibold">{product.name}</h3>
-            <span className="text-sm">{product.price}</span>
+            <Link href={`/products/${product.slug}`}>
+              <h3 className="font-semibold">{product.name}</h3>
+            </Link>
+            <span className="text-sm"> ${product.price}</span>
           </div>
+
           <div className="flex w-full items-center justify-between">
             <div className="flex items-center">
               {[...Array(5)].map((_, i) => (
@@ -54,7 +58,7 @@ const ProductCard = ({ product }) => {
               ))}
             </div>
             <div className="gap-1 flex">
-              {product.variations.map(({ color }) => (
+              {product.variations.map(( {color} ) => (
                 <div
                   key={color}
                   className="h-4 w-4 rounded-full border"
