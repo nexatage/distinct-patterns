@@ -6,7 +6,7 @@ import Image from "next/image";
 export const SimilarProducts = ({
   category,
 }: {
-  category: {};
+  category:   { title?: string } 
 }) => {
   const [similarProducts, setSimilarProducts] = useState([]);
 
