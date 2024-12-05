@@ -25,7 +25,7 @@ const ProductCard = ({ product }) => {
     }
   };
   const averageRating = calculateAverageRating(product.ratings);
-
+  console.log(+averageRating)
   return (
     <div>
       <Card key={product.id} className="overflow-hidden border-none">
@@ -52,7 +52,7 @@ const ProductCard = ({ product }) => {
                 <Star
                   key={i}
                   className={`h-4 w-4 ${
-                    i < Math.floor(averageRating)
+                    i < Math.floor(+averageRating)
                       ? "fill-yellow-400 text-yellow-400"
                       : "fill-muted text-muted-foreground"
                   }`}
