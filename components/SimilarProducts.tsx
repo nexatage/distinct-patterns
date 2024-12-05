@@ -6,13 +6,13 @@ import Image from "next/image";
 export const SimilarProducts = ({
   category,
 }: {
-  category: { title: string };
+  category: {};
 }) => {
   const [similarProducts, setSimilarProducts] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const data = await getProductsByCategory(category);
+      const data = await getProductsByCategory(category.title);
 
       setSimilarProducts(data);
     })();

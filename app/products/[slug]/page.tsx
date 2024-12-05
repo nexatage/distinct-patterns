@@ -8,8 +8,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { urlFor } from "@/sanity/sanityImage";
 import icon from "@/public/Image.svg";
-
-import ProductCard from "@/components/cards/ProductCard";
 import { useParams } from "next/navigation";
 import { getEachProducts } from "@/sanity/products";
 import { useCart } from "@/context/StateContext";
@@ -51,8 +49,8 @@ interface Product {
   price: number;
   quantity: number;
   availablequantity: number;
-  variations: [];
-  category: { title: string };
+  variations: { color: string }[];
+  category: {};
   inStock: boolean;
   availableQuantity: number;
   images: { asset: { url: string } }[];
@@ -66,16 +64,8 @@ const ProductPage = () => {
   const [error, setError] = useState<string | null>(null);
   const { slug } = useParams();
 
-  const { cartItems, checkIfProductExists } = useCart();
-  useEffect(() => {
-    if (product?.variations?.length > 0) {
-      // Assuming each variation object has a `color` property
-      const firstColor = product?.variations[0]?.color;
-      if (firstColor) {
-        setSelectedColor(firstColor);
-      }
-    }
-  }, [product]);
+  const { cartItems } = useCart();
+
   // Helper function to find a product in the cart
   const getProductInCart = (productId: string | undefined) => {
     return cartItems.find((item) => item._id === productId) || null;
@@ -92,7 +82,7 @@ const ProductPage = () => {
         const finalProduct = productFromCart || fetchedProduct;
 
         setProduct(finalProduct);
-
+        setSelectedColor(finalProduct?.variations[0]?.color);
         // Set the main image if available
         if (finalProduct?.images?.length > 0) {
           setMainImage(urlFor(finalProduct.images[0].asset.url).url());
@@ -104,6 +94,7 @@ const ProductPage = () => {
 
     fetchAndSetProduct();
   }, [slug, cartItems]);
+  console.log(selectedColor);
   if (error) return <p>Error: {error}</p>;
   if (!product) return <p>Loading...</p>;
 
@@ -125,7 +116,7 @@ const ProductPage = () => {
         />
       </div>
       <ProductTab />
-      <SimilarProducts category={product.category.title} />
+      <SimilarProducts category={product.category} />
     </div>
   );
 };
