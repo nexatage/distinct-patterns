@@ -7,7 +7,8 @@ import {
   XMarkIcon,
 } from "@heroicons/react/20/solid";
 import Image from "next/image";
-import Link from "next/Link";
+import Link from "next/link";
+
 import { useCart } from "@/context/StateContext";
 
 import { urlFor } from "@/sanity/sanityImage";

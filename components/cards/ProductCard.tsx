@@ -7,7 +7,6 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/sanityImage";
 import { useCart } from "@/context/StateContext";
 import { calculateAverageRating } from "@/lib/utils";
-import Link from "next/link";
 const ProductCard = ({ product }) => {
   const { addToCart, removeFromCart, checkIfProductExists } = useCart();
 
