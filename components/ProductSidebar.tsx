@@ -1,81 +1,72 @@
-'use client'
+"use client";
 
-import * as React from 'react'
-import { Filter } from 'lucide-react'
+import * as React from "react";
+import { Filter } from "lucide-react";
 
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { useQueryState } from "nuqs";
+import { useRouter } from "next/navigation";
+export default function ProductFilterSidebar({ allCategories, allColors }) {
+  const router = useRouter();
 
-const categories = [
-  'Sneakers',
-  'T-Shirt',
-  'Shirt',
-  'Pant',
-  'Sports',
-  'Short Pant'
-]
+  const [selectedType, setSelectedType] = React.useState<string | null>(null);
+  const [isOpen, setIsOpen] = React.useState(false);
 
-const colors = [
-  { name: 'Blue', hex: '#3B82F6' },
-  { name: 'Red', hex: '#EF4444' },
-  { name: 'Pink', hex: '#EC4899' },
-  { name: 'Green', hex: '#10B981' },
-  { name: 'Orange', hex: '#F97316' },
-  { name: 'Light Blue', hex: '#0EA5E9' }
-]
-
-export default function ProductFilterSidebar({products}) {
-  const [selectedCategories, setSelectedCategories] = React.useState<string[]>([])
-  const [selectedColors, setSelectedColors] = React.useState<string[]>([])
-  const [selectedType, setSelectedType] = React.useState<string | null>(null)
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [categoryquery, setCategoryQuery] = useQueryState("category", {
+    defaultValue: "",
+  });
+  const [colorquery, setColorQuery] = useQueryState("color", {
+    defaultValue: "",
+  });
 
   const toggleCategory = (category: string) => {
-    setSelectedCategories(prev =>
-      prev.includes(category)
-        ? prev.filter(c => c !== category)
-        : [...prev, category]
-    )
-  }
+    setCategoryQuery(category);
+  };
 
   const toggleColor = (color: string) => {
-    setSelectedColors(prev =>
-      prev.includes(color)
-        ? prev.filter(c => c !== color)
-        : [...prev, color]
-    )
-  }
+    setColorQuery(color);
+  };
 
   const FilterContent = React.forwardRef<HTMLDivElement>((props, ref) => (
     <div ref={ref} className="space-y-10" {...props}>
       <div>
         <h3 className="text-base font-semibold mb-4">Filter by category</h3>
         <div className="flex gap-3 mb-7">
-          <Button 
-            variant={selectedType === 'Ready Made' ? 'default' : 'outline'} 
+          <Button
+            variant={selectedType === "All Products" ? "default" : "outline"}
             size="sm"
-            onClick={() => setSelectedType('Ready Made')}
+            onClick={() => router.push("/products")}
           >
-            Ready Made
+            All Products
           </Button>
-          <Button 
-            variant={selectedType === 'Fabric' ? 'default' : 'outline'} 
+          <Button
+            variant={selectedType === "Out of Stock" ? "default" : "outline"}
             size="sm"
-            onClick={() => setSelectedType('Fabric')}
+            onClick={() => router.push("/products")}
           >
-            Fabric
+            Out of Stock
           </Button>
         </div>
         <div className="space-y-5">
-          {categories.map(category => (
+          {allCategories.map((category) => (
             <div key={category} className="flex items-center">
               <Checkbox
                 id={category}
-                checked={selectedCategories.includes(category)}
+                checked={categoryquery === category}
                 onCheckedChange={() => toggleCategory(category)}
               />
-              <label htmlFor={category} className="ml-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+              <label
+                htmlFor={category}
+                className="ml-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
                 {category}
               </label>
             </div>
@@ -85,23 +76,23 @@ export default function ProductFilterSidebar({products}) {
       <div>
         <h3 className="text-base font-semibold mb-4">Choose Color</h3>
         <div className="flex flex-wrap gap-2">
-          {colors.map(color => (
+          {allColors.map((color) => (
             <button
-              key={color.name}
-              className={`w-8 h-8 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-                selectedColors.includes(color.name) ? 'ring-2 ring-black dark:ring-white' : ''
+              key={color}
+              className={`w-8 h-8 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2  ${
+                colorquery === color ? "ring-2 ring-black dark:ring-white" : ""
               }`}
-              style={{ backgroundColor: color.hex }}
-              onClick={() => toggleColor(color.name)}
-              aria-label={`Select ${color.name}`}
+              style={{ backgroundColor: color }}
+              onClick={() => toggleColor(color)}
+              aria-label={`Select ${color}`}
             />
           ))}
         </div>
       </div>
     </div>
-  ))
+  ));
 
-  FilterContent.displayName = 'FilterContent'
+  FilterContent.displayName = "FilterContent";
 
   return (
     <>
@@ -130,5 +121,5 @@ export default function ProductFilterSidebar({products}) {
         </SheetContent>
       </Sheet>
     </>
-  )
+  );
 }

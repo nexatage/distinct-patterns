@@ -6,6 +6,7 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/sanityImage";
 import { useCart } from "@/context/StateContext";
+import { calculateAverageRating } from "@/lib/utils";
 import Link from "next/link";
 const ProductCard = ({ product }) => {
   const { addToCart, removeFromCart, checkIfProductExists } = useCart();
@@ -23,6 +24,7 @@ const ProductCard = ({ product }) => {
       removeFromCart(product);
     }
   };
+  const averageRating = calculateAverageRating(product.ratings);
 
   return (
     <div>
@@ -31,7 +33,7 @@ const ProductCard = ({ product }) => {
           <Image
             width={150}
             height={150}
-            src={urlFor(product.image).quality(100).url()}
+            src={urlFor(product.images[0]).quality(100).url()}
             alt={product.name}
             className="h-[300px] w-full object-cover"
           />
@@ -50,7 +52,7 @@ const ProductCard = ({ product }) => {
                 <Star
                   key={i}
                   className={`h-4 w-4 ${
-                    i < Math.floor(product.rating)
+                    i < Math.floor(averageRating)
                       ? "fill-yellow-400 text-yellow-400"
                       : "fill-muted text-muted-foreground"
                   }`}
@@ -58,7 +60,7 @@ const ProductCard = ({ product }) => {
               ))}
             </div>
             <div className="gap-1 flex">
-              {product.variations.map(( {color} ) => (
+              {product.variations.map(({ color }) => (
                 <div
                   key={color}
                   className="h-4 w-4 rounded-full border"

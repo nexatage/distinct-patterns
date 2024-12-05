@@ -6,8 +6,7 @@ import React, {
   useState,
   useMemo,
 } from "react";
-
-const Context = createContext();
+const Context = createContext(null);
 
 export const StateContext = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
@@ -46,12 +45,12 @@ export const StateContext = ({ children }) => {
   };
 
   // Add product to cart
-  const addToCart = (product) => {
+  const addToCart = (product,selectedColor) => {
     if (checkIfProductExists(product._id)) {
       console.log("Item already in cart");
       return;
     }
-    setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    setCartItems([...cartItems, { ...product, quantity: 1 ,selectedColor}])
   };
 
   // Remove product from cart

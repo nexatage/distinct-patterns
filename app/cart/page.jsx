@@ -6,8 +6,10 @@ import {
   QuestionMarkCircleIcon,
   XMarkIcon,
 } from "@heroicons/react/20/solid";
-import { useCart } from "../../context/StateContext.js";
 import Image from "next/image";
+import Link from "next/Link";
+import { useCart } from "@/context/StateContext";
+
 import { urlFor } from "@/sanity/sanityImage";
 export default function Page() {
   const { cartItems, removeFromCart, totalPrice, setQuantity } = useCart();
@@ -41,7 +43,7 @@ export default function Page() {
                       <Image
                         width={150}
                         height={150}
-                        src={urlFor(item.image).quality(100).url()}
+                        src={urlFor(item.images[0].asset.url).quality(100).url()}
                         alt={item.name}
                         className="h-[300px] w-full object-cover"
                       />
@@ -143,7 +145,7 @@ export default function Page() {
               )}
             </ul>
             <div className=" underline my-4 text-center">
-              <a href="/products"> Continue Shopping</a>
+              <Link href="/products"> Continue Shopping</Link>
             </div>
           </section>
 
