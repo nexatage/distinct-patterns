@@ -37,7 +37,7 @@ export async function getProductsByCategory(category) {
               color
             },
             inStock,
-            rating,
+            ratings,
             availablequantity,
             "categories": category->{
               _id,
@@ -64,7 +64,7 @@ export async function getProductsByColor(color) {
         color
       },
       inStock,
-      rating,
+      ratings,
       availablequantity,
       "categories": category->{
         _id,

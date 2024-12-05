@@ -7,11 +7,42 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { urlFor } from "@/sanity/sanityImage";
+import icon from "@/public/Image.svg";
+
 import ProductCard from "@/components/cards/ProductCard";
 import { useParams } from "next/navigation";
 import { getEachProducts } from "@/sanity/products";
 import { useCart } from "@/context/StateContext";
-
+import { SimilarProducts } from "@/components/SimilarProducts";
+const ratingData = {
+  average: 4.8,
+  total: 43,
+  distribution: [
+    { rating: 5, count: 28 },
+    { rating: 4, count: 9 },
+    { rating: 3, count: 4 },
+    { rating: 2, count: 1 },
+    { rating: 1, count: 1 },
+  ],
+  items: [
+    {
+      author: "Helen M.",
+      rating: 5,
+      comment: "Excellent running shoes, It turns very sharply on the foot.",
+      helpful: 42,
+      notHelpful: 0,
+      avatar: icon,
+    },
+    {
+      author: "Ann D.",
+      rating: 4,
+      comment: "Good shoes",
+      helpful: 42,
+      notHelpful: 0,
+      avatar: icon,
+    },
+  ],
+};
 interface Product {
   _id: string;
   name: string;
@@ -21,6 +52,7 @@ interface Product {
   quantity: number;
   availablequantity: number;
   variations: [];
+  category: { title: string };
   inStock: boolean;
   availableQuantity: number;
   images: { asset: { url: string } }[];
@@ -38,7 +70,7 @@ const ProductPage = () => {
   useEffect(() => {
     if (product?.variations?.length > 0) {
       // Assuming each variation object has a `color` property
-      const firstColor = product.variations[0]?.color;
+      const firstColor = product?.variations[0]?.color;
       if (firstColor) {
         setSelectedColor(firstColor);
       }
@@ -92,7 +124,8 @@ const ProductPage = () => {
           toggleLike={() => setIsLiked(!isLiked)}
         />
       </div>
-      {/* <SimilarProducts similarProducts={product.variations || []} /> */}
+      <ProductTab />
+      <SimilarProducts category={product.category.title} />
     </div>
   );
 };
@@ -110,7 +143,7 @@ const ProductDetails = ({
   product: Product;
   selectedColor: string;
   isLiked: boolean;
-  setIsLiked: React.Dispatch<React.SetStateAction<string | null>>;
+  setIsLiked: React.Dispatch<React.SetStateAction<boolean | null>>;
   setSelectedColor: React.Dispatch<React.SetStateAction<string | null>>;
   toggleLike: () => void;
 }) => {
@@ -129,7 +162,7 @@ const ProductDetails = ({
   };
   const handleCartAction = () => {
     if (showAddCart) {
-      addToCart(product,selectedColor);
+      addToCart(product, selectedColor);
     } else {
       removeFromCart(product);
     }
@@ -166,6 +199,7 @@ const ProductDetails = ({
         </div> */}
 
         {/* Color Selection */}
+
         <div className="space-y-7">
           <p className="font-bold text-[#9A9A9A] text-[18px]">Select Color</p>
           <div className="flex gap-2">
@@ -174,7 +208,9 @@ const ProductDetails = ({
                 key={color}
                 variant={selectedColor === color ? "default" : "outline"}
                 className="px-4"
-                onClick={() => {setSelectedColor(color)}}
+                onClick={() => {
+                  setSelectedColor(color);
+                }}
               >
                 {color}
               </Button>
@@ -246,7 +282,114 @@ const ProductDetails = ({
     </div>
   );
 };
-
+const ProductTab = () => (
+  <div className="mt-12">
+    <Tabs defaultValue="details">
+      <TabsList className="border-b w-full justify-start rounded-none h-auto p-0 bg-transparent">
+        <TabsTrigger
+          value="details"
+          className="rounded-none border-b-2 border-transparent data-[state=active]:border-black data-[state=active]:bg-transparent"
+        >
+          Details
+        </TabsTrigger>
+        <TabsTrigger
+          value="reviews"
+          className="rounded-none border-b-2 border-transparent data-[state=active]:border-black data-[state=active]:bg-transparent"
+        >
+          Reviews
+        </TabsTrigger>
+        <TabsTrigger
+          value="size"
+          className="rounded-none border-b-2 border-transparent data-[state=active]:border-black data-[state=active]:bg-transparent"
+        >
+          Size
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent value="details" className="mt-6">
+        <p>
+          Create a bold and trendy t-shirt design that embodies confidence and
+          creativity. Incorporate vibrant colors, unique typography, or
+          eye-catching graphics. The theme should inspire self-expression and
+          positivity.
+        </p>
+      </TabsContent>
+      <TabsContent value="reviews" className="mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="space-y-6">
+            <select className="border rounded-md px-3 py-2">
+              <option>Newest</option>
+              <option>Highest Rating</option>
+              <option>Lowest Rating</option>
+            </select>
+            <div className="space-y-6">
+              {ratingData.items.map((review, index) => (
+                <div key={index} className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Image
+                      src={review.avatar}
+                      alt={review.author}
+                      width={40}
+                      height={40}
+                      className="rounded-full"
+                    />
+                    <div>
+                      <p className="font-medium">{review.author}</p>
+                      <RatingStars rating={review.rating} />
+                    </div>
+                  </div>
+                  <p>{review.comment}</p>
+                  <div className="flex items-center gap-4 text-sm text-gray-500">
+                    <button className="flex items-center gap-1">
+                      <span>Helpful ({review.helpful})</span>
+                    </button>
+                    <button className="flex items-center gap-1">
+                      <span>Not Helpful ({review.notHelpful})</span>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <Button variant="outline" className="w-full">
+              Load More Review
+            </Button>
+          </div>
+          <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <span className="text-4xl font-bold">{ratingData.average}</span>
+              <div>
+                <RatingStars rating={5} />
+                <p className="text-sm text-gray-500">
+                  {ratingData.total} Reviews
+                </p>
+              </div>
+            </div>
+            <div className="space-y-2">
+              {ratingData.distribution.map((item) => (
+                <div key={item.rating} className="flex items-center gap-2">
+                  <span className="w-3">{item.rating}</span>
+                  <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-yellow-400"
+                      style={{
+                        width: `${(item.count / ratingData.total) * 100}%`,
+                      }}
+                    />
+                  </div>
+                  <span className="w-8 text-sm text-gray-500">
+                    {item.count}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </TabsContent>
+      <TabsContent value="size" className="mt-6">
+        <p>Size guide information would go here.</p>
+      </TabsContent>
+    </Tabs>
+  </div>
+);
 const ProductImages = ({
   images,
   mainImage,
@@ -285,23 +428,6 @@ const ProductImages = ({
       ))}
     </div>
   </div>
-);
-
-const SimilarProducts = ({
-  similarProducts,
-}: {
-  similarProducts: Product[];
-}) => (
-  <section className="mt-20">
-    <h1 className="text-5xl sm:text-7xl font-bold leading-none mb-12">
-      Similar <span className="text-gray-400">Products</span>
-    </h1>
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {similarProducts.map((product) => (
-        <ProductCard key={product._id} product={product} />
-      ))}
-    </div>
-  </section>
 );
 
 const RatingStars = ({ rating }: { rating: number }) => (

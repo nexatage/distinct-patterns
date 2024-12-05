@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 
-import ProductCard from "./cards/ProductCard";
+import ProductCard from "@/components/cards/ProductCard";
 
 export default function Allproducts({ products }) {
   return (
