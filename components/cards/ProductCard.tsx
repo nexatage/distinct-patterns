@@ -43,7 +43,7 @@ const ProductCard = ({ product }) => {
             <Link href={`/products/${product.slug}`}>
               <h3 className="font-semibold">{product.name}</h3>
             </Link>
-            <span className="text-sm"> ${product.price}</span>
+            <span className="text-sm"> ₦ {product.price}</span>
           </div>
 
           <div className="flex w-full items-center justify-between">
