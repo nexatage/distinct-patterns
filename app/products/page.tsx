@@ -9,79 +9,97 @@ import {
 } from "@/sanity/products";
 import Image from "next/image";
 import icon from "@/public/Arrow 1.svg";
-import { useQueryState } from "nuqs";
+import { useSearchParams } from "next/navigation";
+
 const Product = () => {
   const [allproducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]);
 
-  const getCategories = allproducts.reduce((accumulator, item) => {
-    const category = item.category.title;
-    if (!accumulator.includes(category)) {
-      accumulator.push(category);
-    }
-    return accumulator;
-  }, []);
-  const getColors = allproducts.reduce((colorSet, product) => {
-    product.variations.forEach((variation) => {
-      if (!colorSet.includes(variation.color)) {
-        colorSet.push(variation.color);
+  // Fetch query parameters
+  const searchParams = useSearchParams();
+  const categoryquery = searchParams.get("category") || "";
+  const colorquery = searchParams.get("color") || "";
+
+  // Extract categories and colors from products
+  const getCategories = React.useMemo(() => {
+    if (!allproducts.length) return [];
+    return allproducts.reduce((accumulator, item) => {
+      const category = item?.category?.title;
+      if (category && !accumulator.includes(category)) {
+        accumulator.push(category);
       }
-    });
-    return colorSet;
-  }, []);
-  const [categoryquery] = useQueryState("category", {
-    defaultValue: "",
-  });
-  const [colorquery] = useQueryState("color", {
-    defaultValue: "",
-  });
+      return accumulator;
+    }, []);
+  }, [allproducts]);
+
+  const getColors = React.useMemo(() => {
+    if (!allproducts.length) return [];
+    return allproducts.reduce((colorSet, product) => {
+      product?.variations?.forEach((variation) => {
+        if (variation?.color && !colorSet.includes(variation.color)) {
+          colorSet.push(variation.color);
+        }
+      });
+      return colorSet;
+    }, []);
+  }, [allproducts]);
+
+  // Fetch all products on component mount
   useEffect(() => {
     (async () => {
-      const data = await getProducts();
-
-      setAllProducts(data);
+      try {
+        const data = await getProducts();
+        setAllProducts(data);
+      } catch (error) {
+        console.error("Failed to fetch all products:", error);
+      }
     })();
   }, []);
-  React.useEffect(() => {
+
+  // Fetch products based on query parameters
+  useEffect(() => {
     (async () => {
-      const decodedCategory = decodeURIComponent(categoryquery || "");
-      const decodedColor = decodeURIComponent(colorquery || "");
+      try {
+        const decodedCategory = decodeURIComponent(categoryquery);
+        const decodedColor = decodeURIComponent(colorquery);
+        let data;
 
-      let data;
+        if (!categoryquery && !colorquery) {
+          data = await getProducts();
+        } else if (categoryquery) {
+          data = await getProductsByCategory(decodedCategory);
+        } else if (colorquery) {
+          data = await getProductsByColor(decodedColor);
+        } else {
+          data = await getProducts();
+        }
 
-      // Fetch products based on both category and color
-      if (!categoryquery && !colorquery) {
-        data = await getProducts();
-      } else if (categoryquery) {
-        data = await getProductsByCategory(decodedCategory);
-      } else if (colorquery) {
-        data = await getProductsByColor(decodedColor);
-      } else {
-        data = await getProducts();
+        setProducts(data);
+      } catch (error) {
+        console.error("Failed to fetch filtered products:", error);
       }
-
-      setProducts(data);
     })();
   }, [categoryquery, colorquery]);
+
   return (
     <div className="p-10 pt-0">
       <h1 className="text-3xl sm:text-[clamp(50px,5vw,70px)] font-[600] m-2 mb-6">
         ALL PRODUCTS
       </h1>
       <div className="flex">
-        <div className="">
-          {/* side bar */}
+        {/* Sidebar */}
+        <div>
           <ProductFilterSidebar
             allCategories={getCategories}
             allColors={getColors}
           />
         </div>
+        {/* Product List */}
         <div className="flex-1 justify-between m-auto">
-          {/* Products */}
           <Allproducts products={products} />
         </div>
       </div>
-      {/* Our best seller  */}
+      {/* Our Best Seller */}
       <div className="flex flex-row justify-between items-start mt-28 mb-12">
         <div className="mb-6 lg:mb-0">
           <h1 className="text-5xl sm:text-7xl font-bold leading-none">
@@ -99,8 +117,8 @@ const Product = () => {
           <Image src={icon} alt="arrow" />
         </div>
       </div>
+      {/* Render products again for Best Sellers */}
       <Allproducts products={products} />
-      {/* Footer */}
     </div>
   );
 };

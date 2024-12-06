@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Star } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link"
+import Link from "next/link";
 import { urlFor } from "@/sanity/sanityImage";
 import { useCart } from "@/context/StateContext";
 import { calculateAverageRating } from "@/lib/utils";
@@ -25,7 +25,7 @@ const ProductCard = ({ product }) => {
     }
   };
   const averageRating = calculateAverageRating(product.ratings);
-  console.log(+averageRating)
+
   return (
     <div>
       <Card key={product.id} className="overflow-hidden border-none">
