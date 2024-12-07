@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white p-[1rem]">
-      <nav className="container mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
+      <nav className="container flex items-center justify-between px-4 py-4 mx-auto md:px-8">
         {/* Logo */}
         <div className="logo-box">
           <Image
@@ -56,7 +56,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex space-x-8 items-center">
+        <ul className="items-center hidden space-x-8 md:flex">
           {navigation.map(({ name, href }, index) => (
             <li key={`${index}-${name}`}>
               <Link
@@ -96,7 +96,7 @@ const Navbar = () => {
             }
           </a>
           <div
-            className="hamburger cursor-pointer md:hidden"
+            className="cursor-pointer hamburger md:hidden"
             onClick={toggleMenu}
             aria-label="Toggle navigation menu"
           >
@@ -121,7 +121,7 @@ const Navbar = () => {
       </nav>
       {/* Mobile Dropdown Menu */}
       {isOpen && (
-        <ul className="fixed top-0 left-0 w-full h-full bg-white  flex flex-col justify-center items-center space-y-8 text-white text-xl md:hidden">
+        <ul className="fixed top-0 left-0 flex flex-col items-center justify-center w-full h-full space-y-8 text-xl text-white bg-white md:hidden">
           {navigation.map(({ name, href }, index) => (
             <li key={`${index}-${name}`} onClick={closeMenu}>
               <Link
@@ -143,12 +143,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// Create a mobile navBar with five nav links (the three original nav links and the auth links zubayr will work on) and set it to hide initially. Keep in mind that the add to cart logo has to be there too
-// Set the hamburger icon such that when the icon is clicked, it switched to a close icon(animations) and the nav-links which contain the login / add to cart shows up
-// When the icon switches to close, the nav-links should appear from beside and put a z-index so that the navBar can show over the nav-links. That way, we will need to add a padding to the nav-links
-// Style the nav-links for when one of them is active except the authentication buttons
-// When each of the link,  the navBar should disappear again.
-// Have fun, bro
-
-// I stopped at linking and creating the pages to one another, then the mobile nav

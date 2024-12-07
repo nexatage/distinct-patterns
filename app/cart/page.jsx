@@ -11,11 +11,8 @@ import Link from "next/link";
 import { Heart, Minus, Plus, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/StateContext";
-import dynamic from "next/dynamic";
+
 import { urlFor } from "@/sanity/sanityImage";
-const PaystackButton = dynamic(() => import("@/components/PayStackButton"), {
-  ssr: false, // Ensure this component is only rendered on the client
-});
 export default function Page() {
   const { cartItems, removeFromCart, totalPrice, setQuantity } = useCart();
   const increaseQty = (item) => {
@@ -189,10 +186,12 @@ export default function Page() {
               </div>
             </dl>
             <div className="mt-6">
-              <PaystackButton
-                email={"abdulrahmansoyooye@gmail.com"}
-                amount={totalPrice}
-              />
+              <button
+                type="submit"
+                className="w-full rounded-md border border-transparent bg-black px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-black-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              >
+                Checkout
+              </button>
             </div>
           </section>
         </div>

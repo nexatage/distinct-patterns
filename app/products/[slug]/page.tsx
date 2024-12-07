@@ -94,13 +94,9 @@ const ProductPage = () => {
 
     fetchAndSetProduct();
   }, [slug, cartItems]);
+  console.log(selectedColor);
   if (error) return <p>Error: {error}</p>;
-  if (!product)
-    return (
-      <div className="h-[100vh]  flex justify-center items-center m-auto">
-        <div className="h-[100vh] lds-hourglass"></div>
-      </div>
-    );
+  if (!product) return <p>Loading...</p>;
 
   return (
     <div className="container mx-auto px-4 py-8">

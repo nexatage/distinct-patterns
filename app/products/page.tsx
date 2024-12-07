@@ -102,7 +102,7 @@ const Product = () => {
       {/* Our Best Seller */}
       <div className="flex flex-row justify-between items-start mt-28 mb-12">
         <div className="mb-6 lg:mb-0">
-          <h1 className="text-5xl sm:text-7xl font-bold leading-none">
+          <h1 className="text-5xl font-bold leading-none sm:text-7xl">
             OUR BEST
             <br />
             <span className="text-gray-400">SELLERS</span>
