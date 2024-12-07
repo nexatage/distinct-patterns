@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -105,7 +106,14 @@ export default function Allproducts() {
     },
     // Add more products as needed
   ];
+=======
+"use client";
+import * as React from "react";
 
+import ProductCard from "@/components/cards/ProductCard";
+>>>>>>> eedd9656661e02c80614961359bcef6f4c5719db
+
+export default function Allproducts({ products }) {
   return (
     <div className="container min-h-screen m-auto bg-background">
       <div className="container px-4 py-6 md:px-6 lg:px-8">
@@ -114,6 +122,7 @@ export default function Allproducts() {
           <div className="">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {products.map((product) => (
+<<<<<<< HEAD
                 <Card key={product.id} className="overflow-hidden border-none">
                   <CardContent className="p-0">
                     <Image
@@ -155,6 +164,9 @@ export default function Allproducts() {
                     Add to Cart
                   </Button>
                 </Card>
+=======
+                <ProductCard key={product._id} product={product} />
+>>>>>>> eedd9656661e02c80614961359bcef6f4c5719db
               ))}
             </div>
           </div>
