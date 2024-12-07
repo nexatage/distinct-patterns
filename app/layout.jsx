@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import Navbar from "../components/Navbar.jsx";
 import { Poppins } from "next/font/google";
+import { Toaster } from "@/components/ui/toaster"
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { StateContext } from "../context/StateContext.js";
 const poppins_font = Poppins({
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
         <body className={poppins_font.className}>
           <Navbar />
           <NuqsAdapter>{children}</NuqsAdapter>
+          <Toaster />
         </body>
       </StateContext>
     </html>

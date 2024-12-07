@@ -8,8 +8,11 @@ import Link from "next/link";
 import { urlFor } from "@/sanity/sanityImage";
 import { useCart } from "@/context/StateContext";
 import { calculateAverageRating } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
+
 const ProductCard = ({ product }) => {
   const { addToCart, removeFromCart, checkIfProductExists } = useCart();
+  const { toast } = useToast();
 
   // Memoized value for whether the product exists in the cart
   const showAddCart = React.useMemo(() => {
@@ -19,8 +22,14 @@ const ProductCard = ({ product }) => {
   // Handle adding/removing product
   const handleCartAction = () => {
     if (showAddCart) {
+      toast({
+        title: "Added to Cart",
+      });
       addToCart(product);
     } else {
+      toast({
+        title: "Removed from Cart",
+      });
       removeFromCart(product);
     }
   };
