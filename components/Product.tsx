@@ -1,7 +1,7 @@
-import * as React from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { Star } from 'lucide-react'
+import * as React from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Star } from "lucide-react";
 import Image from "next/image";
 import icon from "@/public/Image.svg";
 
@@ -104,10 +104,10 @@ export default function Allproducts() {
       colors: ["orange", "green", "blue"],
     },
     // Add more products as needed
-  ]
+  ];
 
   return (
-    <div className="min-h-screen m-auto container bg-background">
+    <div className="container min-h-screen m-auto bg-background">
       <div className="container px-4 py-6 md:px-6 lg:px-8">
         <div>
           {/* Product Grid */}
@@ -116,18 +116,18 @@ export default function Allproducts() {
               {products.map((product) => (
                 <Card key={product.id} className="overflow-hidden border-none">
                   <CardContent className="p-0">
-                  <Image
+                    <Image
                       src={product.image}
                       alt={product.name}
                       className="h-[300px] w-full object-cover"
                     />
                   </CardContent>
                   <CardFooter className="flex flex-col items-start gap-2 p-4">
-                    <div className="flex w-full items-center justify-between">
+                    <div className="flex items-center justify-between w-full">
                       <h3 className="font-semibold">{product.name}</h3>
                       <span className="text-sm">{product.price}</span>
                     </div>
-                    <div className="flex w-full items-center justify-between">
+                    <div className="flex items-center justify-between w-full">
                       <div className="flex items-center">
                         {[...Array(5)].map((_, i) => (
                           <Star
@@ -140,20 +140,20 @@ export default function Allproducts() {
                           />
                         ))}
                       </div>
-                      <div className="gap-1 flex">
-                        
+                      <div className="flex gap-1">
                         {product.colors.map((color) => (
                           <div
                             key={color}
-                            className="h-4 w-4 rounded-full border"
+                            className="w-4 h-4 border rounded-full"
                             style={{ backgroundColor: color }}
                           />
                         ))}
                       </div>
                     </div>
-                    
                   </CardFooter>
-                  <Button className="w-full rounded-t-none p-6 ">Add to Cart</Button>
+                  <Button className="w-full p-6 rounded-t-none ">
+                    Add to Cart
+                  </Button>
                 </Card>
               ))}
             </div>
@@ -161,5 +161,5 @@ export default function Allproducts() {
         </div>
       </div>
     </div>
-  )
+  );
 }
