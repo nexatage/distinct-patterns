@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 const Page = () => {
   return (
     <section className="mx-auto hero-3 p-7">
-      <h1 className="text-[40px] sm:text-[60px] md:text-[80px] lg:text-[100px] font-semibold text-left text-[#131313]">
+      <h1 className="text-5xl md:text-7xl lg:text-6xl  font-semibold text-left text-[#131313]">
         IN RELATION
       </h1>
       <h1 className="text-[40px] sm:text-[60px] md:text-[80px] lg:text-[100px] font-semibold text-left text-[#9e9e9e]">
@@ -60,7 +60,6 @@ const Page = () => {
         text2="but when there is nothing left to take away."
       />
       <Brand />
-      <Footer />
     </section>
   );
 };
