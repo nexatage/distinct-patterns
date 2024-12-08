@@ -1,6 +1,7 @@
 import React from "react";
 import AllProducts from "./Product";
 import { Image } from "next/image";
+import { SimilarProducts } from "./SimilarProducts";
 const StoreCollection = () => {
   return (
     <div>
@@ -14,7 +15,7 @@ const StoreCollection = () => {
           COMFORTABLE CLOTHS.
         </p>
       </div>
-      {/* <AllProducts /> */}
+      <SimilarProducts category={{ category: "Hausa" }} />
     </div>
   );
 };
