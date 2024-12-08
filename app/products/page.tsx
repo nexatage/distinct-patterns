@@ -8,8 +8,8 @@ import {
   getProductsByColor,
 } from "@/sanity/products";
 import Image from "next/image";
+import { useSearchParams } from 'next/navigation'
 import icon from "@/public/Arrow 1.svg";
-
 const Product = () => {
   const [allproducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]);

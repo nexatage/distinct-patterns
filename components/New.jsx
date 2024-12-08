@@ -4,7 +4,9 @@ const New = () => {
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-6 lg:gap-[5%] items-start">
+
         <h1 className="section-head self-center lg:self-end leading-tight text-4xl lg:text-[95px] font-semibold text-left text-black flex-none lg:flex-[60%]">
+
           NEW ARRIVAL
         </h1>
         <p className="section-paragraph self-start lg:self-end flex-none lg:flex-[35%] text-sm lg:text-[18px] font-medium leading-5 lg:leading-[25px] text-center lg:text-left text-black pb-3">

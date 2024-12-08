@@ -73,6 +73,7 @@ const Footer = () => {
 
         <div className="flex flex-col flex-1 p-8 border-l-2 border-[#9e9e9e] footer-3">
           <h1 className="text-[36px] font-semibold leading-[45px] subscribe">
+
             Subscribe To Our Newsletter
           </h1>
           <form className="flex items-center border-b border-gray-400 focus-within:border-black">

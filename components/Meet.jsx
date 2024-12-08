@@ -4,7 +4,9 @@ const Meet = () => {
   return (
     <section className="my-12">
       <div className="flex flex-col lg:flex-row gap-6 lg:gap-[5%] items-center lg:items-start">
+
         <h1 className="self-center lg:self-start leading-tight text-4xl lg:text-[95px] font-semibold text-center lg:text-left text-black flex-none lg:flex-[60%]">
+
           MEET US ON INSTAGRAM
         </h1>
         <p className="section-paragraph self-start lg:self-end flex-none lg:flex-[35%] text-sm lg:text-[18px] font-medium leading-5 lg:leading-[25px] text-center lg:text-left text-black pb-3">
