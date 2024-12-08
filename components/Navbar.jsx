@@ -45,7 +45,7 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 bg-white p-[1rem]">
       <nav className="container flex items-center justify-between px-4 py-4 mx-auto md:px-8">
         {/* Logo */}
-        <div className="logo-box">
+        <a href="/" className="logo-box" >
           <Image
             src="/assets/logo.png"
             alt="logo"
@@ -53,7 +53,7 @@ const Navbar = () => {
             height={30}
             className="w-auto h-auto"
           />
-        </div>
+        </a>
 
         {/* Desktop Navigation */}
         <ul className="items-center hidden space-x-8 md:flex">
