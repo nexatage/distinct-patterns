@@ -1,10 +1,13 @@
 import React from "react";
 import "/styles/globals.css";
-import StoreCollection from "@/components/StoreCollection";
-import ImageCarousel from "@/components/ImageCarousel";
-import New from "@/components/New";
-import Style from "@/components/Style";
-import Meet from "@/components/Meet";
+
+import StoreCollection from "../components/StoreCollection";
+import ImageCarousel from "../components/ImageCarousel";
+import New from "../components/New";
+import Style from "../components/Style";
+import Footer from "../components/Footer";
+import Meet from "../components/Meet";
+
 export default function Page() {
   return (
     <section className="px-6 home-hero sm:px-3 md:px-12 lg:px-14">
@@ -16,7 +19,8 @@ export default function Page() {
           <h1 className="text-5xl font-bold leading-tight text-left underline sm:text-5xl md:text-7xl lg:text-6xl decoration-transparent decoration-4 text-custom-gray">
             CONFIDENCE
           </h1>
-          <p className="self-center text-base font-medium leading-6 text-left uppercase decoration-transparent underline-none">
+          <p className="self-center text-base text-lg font-medium leading-6 text-left uppercase decoration-transparent underline-none">
+
             Discover pieces that blend tradition and trend, crafted to elevate
             every moment. Experience fashion that speaks to you.
           </p>
@@ -47,13 +51,16 @@ export default function Page() {
           </div>
         </div>
       </div>
-    <div><ImageCarousel /></div>
-      
+
+      <ImageCarousel />
+
 
       <New />
       <StoreCollection />
       <Style />
       <Meet />
+      <Footer />
+
     </section>
   );
 }
