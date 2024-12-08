@@ -1,11 +1,12 @@
+
 "use client";
 import * as React from "react";
 
-import ProductCard from "./cards/ProductCard";
+import ProductCard from "@/components/cards/ProductCard";
 
 export default function Allproducts({ products }) {
   return (
-    <div className="min-h-screen m-auto container bg-background">
+    <div className="container min-h-screen m-auto bg-background">
       <div className="container px-4 py-6 md:px-6 lg:px-8">
         <div>
           {/* Product Grid */}

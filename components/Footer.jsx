@@ -27,7 +27,7 @@ const Footer = () => {
           <h3 className="text-[#777777] text-[16px] font-bold uppercase company">
             COMPANY
           </h3>
-          <ul className="flex flex gap-2 mt-6 footer-links">
+          <ul className="flex flex-col gap-2 mt-6 footer-links">
             <li>
               <Link
                 className="text-[#9e9e9e] text-[18px] font-bold footer-link"
@@ -72,7 +72,8 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col flex-1 p-8 border-l-2 border-[#9e9e9e] footer-3">
-          <h1 className="text-4x font-semibold leading-[45px] subscribe">
+          <h1 className="text-[36px] font-semibold leading-[45px] subscribe">
+
             Subscribe To Our Newsletter
           </h1>
           <form className="flex items-center border-b border-gray-400 focus-within:border-black">
