@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Footer = () => {
   const date = new Date().getFullYear();
@@ -9,14 +10,19 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row lg:flex-row">
         <div className="flex flex-col flex-1 p-8">
           <div className="self-center">
-            <img src="/assets/logo.png" alt="logo" width="200" height="20" />
+            <Image width={200} height={20} src="/assets/logo.png" alt="logo" />
           </div>
           <p className="mt-8 mb-9 text-black text-[15px] font-semibold leading-[1.3] uppercase footer-text-1">
             Explore our collection, where style meets comfort in trendy quality
             fabrics.
           </p>
           <div className="inline-block p-2 mb-7 rounded-full bg-[#d9d9d9] venue-icon">
-            <img src="assets/location.png" alt="venue" />
+            <Image
+              width={30}
+              height={30}
+              src="/assets/location.png"
+              alt="venue"
+            />
           </div>
           <p className="text-black text-[15px] font-bold leading-[1.2] address">
             5th Floor, Banana Island, Lagos, Nigeria.
@@ -27,7 +33,7 @@ const Footer = () => {
           <h3 className="text-[#777777] text-[16px] font-bold uppercase company">
             COMPANY
           </h3>
-          <ul className="flex flex-col gap-2 mt-6 footer-links">
+          <ul className="flex gap-2 mt-6 footer-links">
             <li>
               <Link
                 className="text-[#9e9e9e] text-[18px] font-bold footer-link"
@@ -72,8 +78,7 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col flex-1 p-8 border-l-2 border-[#9e9e9e] footer-3">
-          <h1 className="text-[36px] font-semibold leading-[45px] subscribe">
-
+          <h1 className="text-4xl font-semibold leading-[45px] subscribe">
             Subscribe To Our Newsletter
           </h1>
           <form className="flex items-center border-b border-gray-400 focus-within:border-black">
@@ -118,7 +123,12 @@ const Footer = () => {
               target="_blank"
             >
               <div className="inline-block p-2 rounded-full bg-[#d9d9d9] venue-icon">
-                <img src="/assets/instagram.png" alt="instagram_logo" />
+                <Image
+                  width={30}
+                  height={30}
+                  src="/assets/instagram.png"
+                  alt="instagram_logo"
+                />
               </div>
             </a>
           </li>
@@ -128,14 +138,24 @@ const Footer = () => {
               target="_blank"
             >
               <div className="inline-block p-2 rounded-full bg-[#d9d9d9] venue-icon">
-                <img src="/assets/tiktok.png" alt="tiktok_logo" />
+                <Image
+                  width={30}
+                  height={30}
+                  src="/assets/tiktok.png"
+                  alt="tiktok_logo"
+                />
               </div>
             </a>
           </li>
           <li>
             <a href="https://x.com/DistinctPattern" target="_blank">
               <div className="inline-block p-2 rounded-full bg-[#d9d9d9] venue-icon">
-                <img src="/assets/x.png" alt="x_logo" />
+                <Image
+                  width={30}
+                  height={30}
+                  src="/assets/x.png"
+                  alt="x_logo"
+                />
               </div>
             </a>
           </li>

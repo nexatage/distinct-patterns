@@ -51,15 +51,14 @@ export default function Page() {
           </div>
         </div>
       </div>
+    <div><ImageCarousel /></div>
+      
 
-      <ImageCarousel />
-
-
-      <New />
-      <StoreCollection />
+<div> <New /></div>
+     
+    <div><StoreCollection /></div>  
       <Style />
       <Meet />
-      <Footer />
 
     </section>
   );
