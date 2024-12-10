@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { useCart } from "../context/StateContext.js";
+import shoppingcart from "@/public/shopping-cart-01.svg"
+// import logo from "@/public/assets/"
 
 import { motion } from "framer-motion";
 import Auth from "@/components/Auth";
@@ -43,17 +45,22 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white">
-      <nav className="container flex items-center justify-between px-4 py-4 mx-auto md:px-8">
+      <nav className=" container flex items-center justify-between px-4 py-4 mx-auto md:px-8">
         {/* Logo */}
-        <Link href="/" className="logo-box" >
+        
+          <p className="font-[Gwendolyn] font-bold text-[35px]">
+            Distinct Patterns
+          </p>
+        
+        {/* <Link href="/" className="logo-box" >
           <Image
-            src="/assets/logo.png"
+            src=
             alt="logo"
             width={130}
             height={30}
             className="w-auto h-auto"
           />
-        </Link>
+        </Link> */}
 
         {/* Desktop Navigation */}
         <ul className="items-center hidden space-x-8 md:flex">
@@ -83,7 +90,7 @@ const Navbar = () => {
           <a href="/cart" className="relative">
             {" "}
             <Image
-              src="/assets/shopping-cart.png"
+              src= {shoppingcart}
               alt="logo"
               width={18}
               height={18}

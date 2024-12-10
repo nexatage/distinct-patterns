@@ -13,7 +13,6 @@ export const BestSellers = () => {
       setProducts(data);
     })();
   }, []);
-
   
   return (
     <section className="mt-20">

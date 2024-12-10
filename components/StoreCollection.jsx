@@ -1,21 +1,41 @@
-import React from "react";
-import AllProducts from "./Product";
+"use client";
+import React, { useState, useEffect } from "react";
 import { Image } from "next/image";
-import { SimilarProducts } from "./SimilarProducts";
+import Allproducts from "@/components/Product";
+import {
+  getProducts
+} from "@/sanity/products";
 const StoreCollection = () => {
+  const [allproducts, setAllProducts] = useState([]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await getProducts();
+        setAllProducts(data);
+      } catch (error) {
+        console.error("Failed to fetch all products:", error);
+      }
+    })();
+  }, []);
   return (
     <div>
-      <div className="flex flex-col lg:flex-row gap-6 lg:gap-[5%] items-start">
-        <h1 className="section-head self-center lg:self-end leading-tight text-4xl lg:text-[80px] font-semibold text-left text-black flex-none lg:flex-[60%]">
-          STORE COLLECTION
-        </h1>
-        <p className="section-paragraph self-start lg:self-end flex-none lg:flex-[35%] text-sm lg:text-[18px] font-medium leading-5 lg:leading-[25px] text-center lg:text-left text-black pb-3">
-          A SIMPLE CLEAN, SUPER FAST HIGHLY FLEXIBLE, LIGHT MODERN THEME THAT
-          CAN ENHANCE THE LOOK AND FUNCTIONALITY. PERFECT BLEND OF FASHION AND
-          COMFORTABLE CLOTHS.
-        </p>
-      </div>
-      <SimilarProducts category={{ title: "Hausa" }} />
+      <section className="mt-14">
+          <div className="flex flex-row justify-between items-start mt-28 mb-12">
+            <div className="mb-6 lg:mb-0 ">
+              <h1 className="text-5xl sm:text-7xl md:text-[80px] font-bold leading-none">
+                Store Collection
+              </h1>
+            </div>
+            <div className="hidden md:block max-w-xs mt-9">
+              <p className="text-sm leading-tight mb-4">
+                Browse our range of hand-picked items, designed to capture your unique style. our store collection has something for every occasion.
+              </p>
+            </div>
+          </div>
+        </section>
+      <div className="flex-1 justify-between m-auto">
+          <Allproducts products={allproducts.slice(0,6)} />
+        </div>
     </div>
   );
 };

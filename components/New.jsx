@@ -1,44 +1,77 @@
+"use client"
 import React from "react";
+import { getProducts } from "@/sanity/products";
+import { useEffect, useState } from "react";
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import { urlFor } from "@/sanity/sanityImage";
 
 const New = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const data = await getProducts();
+      setProducts(data);
+      console.log(data)
+    })();
+  }, []);
   return (
-    <div>
-      <div className="flex flex-col lg:flex-row gap-6 lg:gap-[5%] items-start">
-
-        <h1 className="section-head self-center lg:self-end leading-tight text-4xl lg:text-[95px] font-semibold text-left text-black flex-none lg:flex-[60%]">
-
-          NEW ARRIVAL
-        </h1>
-        <p className="section-paragraph self-start lg:self-end flex-none lg:flex-[35%] text-sm lg:text-[18px] font-medium leading-5 lg:leading-[25px] text-center lg:text-left text-black pb-3">
-          A SIMPLE CLEAN, SUPER FAST HIGHLY FLEXIBLE, LIGHT MODERN THEME THAT
-          CAN ENHANCE THE LOOK AND FUNCTIONALITY. PERFECT BLEND OF FASHION AND
-          COMFORTABLE CLOTHS.
-        </p>
+    <section className="w-full py-12 px-4 md:px-6">
+      <div className="container mx-auto">
+      <div className="flex flex-row justify-between items-start mt-28 mb-12">
+        <div className="mb-6 lg:mb-0">
+          <h1 className="text-5xl sm:text-7xl font-bold leading-none">
+            New Arrivals
+          </h1>
+        </div>
+        <div className="hidden md:block max-w-xs mt-9">
+          <p className="text-xs leading-tight mb-4">
+          Fresh from our design studio, our new arrivals bring you the latest in Afro-centric fashion. Carefully crafted and thoughtfully designed, these pieces are the perfect way to refresh your wardrobe.
+          </p>
+        </div>
       </div>
-      <div className="grid grid-cols-1 gap-3 arrival sm:grid-cols-2 lg:gap-6">
-        <img
-          src="/assets/arrival-1.jpg"
-          alt="arrival_1"
-          className="object-cover w-full"
-        />
-        <img
-          src="/assets/arrival-2.jpg"
-          alt="arrival_2"
-          className="object-cover w-full"
-        />
-        <img
-          src="/assets/arrival-3.jpg"
-          alt="arrival_3"
-          className="object-cover w-full"
-        />
-        <img
-          src="/assets/arrival-4.jpg"
-          alt="arrival_4"
-          className="object-cover w-full"
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {products.slice(0,4).map((product) => (
+            <div key={product._id} className="group relative aspect-square overflow-hidden rounded-lg bg-gray-100">
+              <Image
+                src={urlFor(product.images[0]).quality(100).url()}
+                alt={product.name}
+                width={600}
+                height={600}
+                className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white p-6">
+                <h3 className="text-2xl font-bold mb-2">{product.name}</h3>
+                <p className="text-center mb-4">{product.description}</p>
+                <Button
+                  asChild
+                  variant="secondary"
+                  className="mt-2"
+                >
+                  <a href={product.url} target="_blank" rel="noopener noreferrer">
+                    View Product
+                  </a>
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-center mt-8">
+          <Button 
+            asChild 
+            variant="outline" 
+            className="rounded-full px-8 hover:bg-black hover:text-white transition-colors duration-300"
+          >
+            <Link href="/products">
+              ALL PRODUCTS
+              <span className="ml-2">→</span>
+            </Link>
+          </Button>
+        </div>
       </div>
-      <h1 className="mt-6 text-center">Button</h1>
-    </div>
+    </section>
   );
 };
 

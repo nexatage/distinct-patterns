@@ -2,7 +2,7 @@ import React from "react";
 import "/styles/globals.css";
 
 import StoreCollection from "../components/StoreCollection";
-import ImageCarousel from "../components/ImageCarousel";
+import ImageCarousel from "@/components/ImageCarousel";
 import New from "../components/New";
 import Style from "../components/Style";
 import Footer from "../components/Footer";
@@ -79,19 +79,21 @@ export default function Page() {
       </div>
       {/* Distinct Patterns Text */}
       <div className="absolute right-8 top-1/2 -translate-y-1/2">
-        <p className="vertical-text transform rotate-180 text-gray-400" style={{ writingMode: 'vertical-rl' }}>
+        <p className="font-[Gwendolyn] font-bold text-[35px] vertical-text transform rotate-180" style={{ writingMode: 'vertical-rl' }}>
           Distinct Patterns
         </p>
       </div>
       </div>
-    </div>
-  </div>
-
       <ImageCarousel />
       <New />
       <StoreCollection />
       <Style />
       <Meet />
+    </div>
+    
+  </div>
+
+      
 
       </div>
   );
