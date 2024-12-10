@@ -4,7 +4,7 @@ import React from "react";
 const Vision = (props) => {
   return (
     <div className="flex flex-col items-center px-4 lg:px-12">
-      <h1 className="my-8 text-4xl font-bold text-center text-gray-600 md:text-6xl lg:text-8xl">
+      <h1 className="my-8 text-4xl font-bold text-center text-gray-600 md:text-6xl lg:text-6xl">
         <span className="text-black">OUR</span> {props.head}
       </h1>
       <p className="mb-6 text-lg text-left text-gray-800 md:text-2xl lg:text-5xl">

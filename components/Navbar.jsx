@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useCart } from "../context/StateContext.js";
 
 import { motion } from "framer-motion";
-import Auth from "./auth.js";
+import Auth from "@/components/Auth";
 const navigation = [
   {
     name: "Home",

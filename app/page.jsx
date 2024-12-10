@@ -92,7 +92,6 @@ export default function Page() {
       <StoreCollection />
       <Style />
       <Meet />
-      <Footer />
 
       </div>
   );
