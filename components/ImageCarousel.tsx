@@ -60,10 +60,10 @@ export default function Component() {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center mb-20">
+    <div className="w-full h-full flex flex-col justify-center items-center mb-2 md:mb-10">
       <div className="w-full px-4 py-12 space-y-8">
         <section className="mt-20">
-          <div className="flex flex-row justify-between items-start mt-28 mb-12">
+          <div className="flex flex-row justify-between items-start mt-5 md:mt-28 mb-5 md:mb-12">
             <div className="mb-6 lg:mb-0 ">
               <h1 className="text-5xl sm:text-7xl md:text-[80px] font-bold leading-none">
                 Pictured

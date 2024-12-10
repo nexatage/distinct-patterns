@@ -1,3 +1,4 @@
+
 import "../styles/globals.css";
 import Navbar from "../components/Navbar.jsx";
 import { Poppins } from "next/font/google";
@@ -7,6 +8,7 @@ import { StateContext } from "../context/StateContext.js";
 
 import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import Footer from "@/components/Footer";
+import Breadcrumbss from "@/components/breadcrumbsComponent";
 
 
 const poppins_font = Poppins({
@@ -38,6 +40,9 @@ export default function RootLayout({ children }) {
           </header>
           <main>
           <Navbar />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbss/>
+          </div>
           <NuqsAdapter>
             <div className="mt-[2rem]">{children}</div>
           </NuqsAdapter>

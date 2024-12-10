@@ -20,7 +20,7 @@ const New = () => {
   return (
     <section className="w-full py-12 px-4 md:px-6">
       <div className="container mx-auto">
-      <div className="flex flex-row justify-between items-start mt-28 mb-12">
+      <div className="flex flex-row justify-between items-start mt-5 md:mt-28 mb-5 md:mb-12">
         <div className="mb-6 lg:mb-0">
           <h1 className="text-5xl sm:text-7xl font-bold leading-none">
             New Arrivals
@@ -50,9 +50,9 @@ const New = () => {
                   variant="secondary"
                   className="mt-2"
                 >
-                  <a href={product.url} target="_blank" rel="noopener noreferrer">
-                    View Product
-                  </a>
+                  <Link href={`/products/${product.slug}`}>
+                    <p>View product</p>
+                  </Link>
                 </Button>
               </div>
             </div>

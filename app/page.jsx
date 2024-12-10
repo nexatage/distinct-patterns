@@ -20,7 +20,7 @@ export default function Page() {
     {/* Main Content Container */}
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="relative z-10 flex flex-col ">
-          <h1 className="text-6xl md:text-[72px] [@media(min-width:1230px)]:text-[95px] font-bold tracking-tight">
+          <h1 className="text-5xl md:text-[72px] [@media(min-width:1230px)]:text-[95px] font-bold tracking-tight">
             EMBRACE TRADITION WITH
             <br />
             <span className="text-gray-400 relative inline-flex items-center">
@@ -62,7 +62,7 @@ export default function Page() {
           {/* <img src="YOUR_HERO_IMAGE_URL" alt="Hero fashion" className="rounded-3xl w-full max-w-3xl mx-auto" /> */}
         </div>
         {/* Description Text */}
-      <div className="absolute bottom-24 left-8 md:left-12 max-w-xs">
+      <div className="hidden md:block absolute bottom-24 left-8 md:left-12 max-w-xs">
         <p className="text-sm text-gray-800">
           DISTINCT PATTERN ISN'T JUST A BRAND; IT'S A JOURNEY. WE EMBRACE THE RICH HERITAGE OF AFRICAN FABRICS WHILE BLENDING THEM WITH MODERN AESTHETICS. EACH PIECE IS CRAFTED WITH PRECISION AND PASSION, EACH PIECE DESIGNED TO MAKE A STATEMENT.
         </p>

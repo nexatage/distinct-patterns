@@ -1,67 +1,65 @@
-import React from "react";
-
-const Meet = () => {
+import { Button } from "@/components/ui/button"
+import Image from "next/image"
+import Link from "next/link"
+import I1 from '@/public/images/Rectangle 13.svg'
+import I2 from '@/public/images/Rectangle 14.svg'
+import I3 from '@/public/images/Rectangle 15.svg'
+import I4 from '@/public/images/Rectangle 16.svg'
+import I5 from '@/public/images/Rectangle 17.svg'
+export default function InstagramSection() {
   return (
-    <section className="my-12">
-      <div className="flex flex-col lg:flex-row gap-6 lg:gap-[5%] items-center lg:items-start">
+    <section className="container px-4 py-12 mx-auto">
+      <div className="flex flex-col [@media(min-width:490px)]:flex-row justify-between items-start mt-5 md:mt-28 mb-5 md:mb-12">
+            <div className="mb-6 lg:mb-0 ">
+              <h1 className="text-5xl sm:text-7xl md:text-[80px] font-bold leading-none">
+                Meet Us
+                <br/>
+                <span>On Instagram</span>
+              </h1>
+            </div>
+            <div className="max-w-xs mt-9">
+              <p className=" hidden md:block text-sm leading-tight mb-4">
+              A simple clean, super fast highly flexible, light modern theme that can enhance the look and functionality. Perfect blend of fashion and comfortable Cloths.
+              </p>
+              <Button
+            asChild
+            className="rounded-full px-6"
+            variant="default"
+          >
+            <Link href="https://instagram.com">
+              FOLLOW US
+              <span className="ml-2">→</span>
+            </Link>
+          </Button>
+            </div>
 
-        <h1 className="self-center lg:self-start leading-tight text-4xl lg:text-[95px] font-semibold text-center lg:text-left text-black flex-none lg:flex-[60%]">
+          
 
-          MEET US ON INSTAGRAM
-        </h1>
-        <p className="section-paragraph self-start lg:self-end flex-none lg:flex-[35%] text-sm lg:text-[18px] font-medium leading-5 lg:leading-[25px] text-center lg:text-left text-black pb-3">
-          A SIMPLE CLEAN, SUPER FAST HIGHLY FLEXIBLE, LIGHT MODERN THEME THAT
-          CAN ENHANCE THE LOOK AND FUNCTIONALITY. PERFECT BLEND OF FASHION AND
-          COMFORTABLE CLOTHS.
-        </p>
       </div>
-      <div className="text-black">
-        <button className="px-6 py-3 text-white transition bg-black rounded button hover:bg-gray-800">
-          Follow us
-        </button>
-      </div>
-
-      <div className="flex flex-col gap-4 mt-12 photos lg:flex-row lg:gap-2">
-        <div className="photo-box-1 basis-[49%]">
-          <img
-            src="/assets/meet-main.png"
-            className="w-full photo-1"
-            alt="Main photo"
+      <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-2">
+        <div className="md:col-span-2 lg:col-span-2">
+          <Image
+            src={I1}
+            alt="Featured fashion image"
+            width={600}
+            height={800}
+            className="w-full h-full object-cover aspect-[3/4]"
           />
         </div>
-        <div className="grid grid-cols-2 grid-rows-2 gap-4 basis-[49%] photo-box-main">
-          <div className="photo-box-2">
-            <img
-              src="/assets/meet-1.jpg"
-              className="w-full photo-2"
-              alt="Photo 1"
+        <div className="md:col-span-1 lg:col-span-3 grid grid-cols-2 gap-2">
+          {[I2,I3,I4,I5].map((image, i) => (
+            <Image
+              key={i}
+              src={image}
+              alt={`Fashion image ${i + 1}`}
+              width={300}
+              height={300}
+              className="w-full aspect-square object-cover"
             />
-          </div>
-          <div className="photo-box-3">
-            <img
-              src="/assets/meet-2.jpg"
-              className="w-full photo-3"
-              alt="Photo 2"
-            />
-          </div>
-          <div className="photo-box-4">
-            <img
-              src="/assets/meet-3.jpg"
-              className="w-full photo-4"
-              alt="Photo 3"
-            />
-          </div>
-          <div className="photo-box-5">
-            <img
-              src="/assets/meet-4.jpg"
-              className="w-full photo-5"
-              alt="Photo 4"
-            />
-          </div>
+          ))}
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Meet;
