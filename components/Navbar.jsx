@@ -42,7 +42,7 @@ const Navbar = () => {
   const { totalcartQuantity } = useCart();
 
   return (
-    <header className="sticky top-0 z-50 bg-white p-[1rem]">
+    <header className="sticky top-0 z-50 bg-white">
       <nav className="container flex items-center justify-between px-4 py-4 mx-auto md:px-8">
         {/* Logo */}
         <Link href="/" className="logo-box" >

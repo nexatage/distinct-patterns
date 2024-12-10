@@ -62,6 +62,7 @@ const Page = () => {
       />
       <Brand />
       <Footer />
+      </section>
   );
 };
 

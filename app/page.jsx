@@ -7,60 +7,93 @@ import New from "../components/New";
 import Style from "../components/Style";
 import Footer from "../components/Footer";
 import Meet from "../components/Meet";
+import sim from "@/public/Rectangle 1.svg"
+import maleek from "@/public/maleek-home.svg"
+import Image from "next/image";
+import { ArrowRight } from 'lucide-react'
+import { Button } from "@/components/ui/button"
 
 export default function Page() {
   return (
-    <section className="px-6 home-hero sm:px-3 md:px-12 lg:px-14">
-      <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-12">
-        <h2 className="text-4xl font-semibold leading-tight text-left text-black underline sm:text-5xl md:text-7xl lg:text-6xl decoration-transparent decoration-4">
-          EMBRACE TRADITION WITH
-        </h2>
-        <div className="flex flex-col gap-0 mb-5 sm:flex-row sm:gap-5 sm:space-x-5 sm:mb-0">
-          <h1 className="text-5xl font-bold leading-tight text-left underline sm:text-5xl md:text-7xl lg:text-6xl decoration-transparent decoration-4 text-custom-gray">
-            CONFIDENCE
+    <div>
+    <div className="relative w-full min-h-screen  overflow-hidden">
+    {/* Main Content Container */}
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
+        <div className="relative z-10 flex flex-col ">
+          <h1 className="text-6xl md:text-[72px] [@media(min-width:1230px)]:text-[95px] font-bold tracking-tight">
+            EMBRACE TRADITION WITH
+            <br />
+            <span className="text-gray-400 relative inline-flex items-center">
+              CONFIDENCE
+              <div className="hidden [@media(min-width:1230px)]:block ml-12 max-w-sm">
+                <p className="text-sm tracking-tight text-gray-600">
+                  Discover pieces that blend tradition and trend, crafted to elevate
+                  every moment. Experience fashion that speaks to you.
+                </p>
+            </div>
+            </span>
           </h1>
-          <p className="self-center text-base text-lg font-medium leading-6 text-left uppercase decoration-transparent underline-none">
-
-            Discover pieces that blend tradition and trend, crafted to elevate
-            every moment. Experience fashion that speaks to you.
-          </p>
         </div>
-      </div>
-      <div className="mb-12">
-        <div className="relative w-full lg:h-[800px] lg:bg-[url('/assets/homepage-hero-background.png')] lg:bg-no-repeat lg:bg-cover lg:bg-center flex flex-col lg:flex-row gap-12 px-4 lg:px-10 pb-10">
-          {/* Image Section */}
-          <div className="relative lg:absolute lg:bottom-2 lg:left-[40%] lg:translate-x-0">
-            <img
-              className="w-auto h-auto max-w-full"
-              src="/assets/hero-home.png"
-              alt="hero-image"
-            />
-          </div>
 
-          {/* Text Section */}
-          <div className="text-center lg:text-left lg:w-1/2 lg:self-end lg:pb-14 lg:max-w-[500px]">
-            <p className="text-sm font-medium leading-6 text-black uppercase">
-              Distinct Pattern isn’t just a brand; it’s a journey. We embrace
-              the rich heritage of African fabrics while blending them with
-              modern style. Our collections are crafted with precision and
-              passion, each piece designed to make a statement.
-            </p>
-            <button className="px-4 py-2 mt-4 text-black border border-black">
-              SHOP NOW
-            </button>
-          </div>
+
+      {/* Main Image Container */}
+      <div className="relative mt-8 md:mt-0">
+        {/* Sim-card shaped background image */}
+        <div className="absolute inset-0 -bottom-12 z-0">
+          {/* Replace the src with your actual sim-card shaped background image path */}
+          <Image
+            src={sim}
+            alt="Sim-card shaped background"
+            className="w-full h-full object-cover rounded-3xl"
+          />
+          {/* Add your sim-card shaped background image here */}
+          {/* <img src="YOUR_SIM_CARD_BACKGROUND_IMAGE_URL" alt="Sim-card shaped background" className="w-full h-full object-cover rounded-3xl" /> */}
         </div>
+
+        {/* Main Image */}
+        <div className="relative z-10">
+          {/* Replace the src with your actual image path */}
+          <Image
+            src={maleek}
+            alt="Model wearing traditional fashion"
+            className="mr-3 md:mr-7 rounded-3xl w-full max-w-3xl mx-auto"
+          />
+          {/* Add your hero image here */}
+          {/* <img src="YOUR_HERO_IMAGE_URL" alt="Hero fashion" className="rounded-3xl w-full max-w-3xl mx-auto" /> */}
+        </div>
+        {/* Description Text */}
+      <div className="absolute bottom-24 left-8 md:left-12 max-w-xs">
+        <p className="text-sm text-gray-800">
+          DISTINCT PATTERN ISN'T JUST A BRAND; IT'S A JOURNEY. WE EMBRACE THE RICH HERITAGE OF AFRICAN FABRICS WHILE BLENDING THEM WITH MODERN AESTHETICS. EACH PIECE IS CRAFTED WITH PRECISION AND PASSION, EACH PIECE DESIGNED TO MAKE A STATEMENT.
+        </p>
       </div>
+      {/* Shop Now Button */}
+      <div className="absolute bottom-12 left-8 md:left-12">
+        <Button 
+          variant="outline" 
+          className="group border-black hover:bg-black hover:text-white transition-colors"
+        >
+          SHOP NOW
+          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+        </Button>
+      </div>
+      {/* Distinct Patterns Text */}
+      <div className="absolute right-8 top-1/2 -translate-y-1/2">
+        <p className="vertical-text transform rotate-180 text-gray-400" style={{ writingMode: 'vertical-rl' }}>
+          Distinct Patterns
+        </p>
+      </div>
+      </div>
+    </div>
+  </div>
 
       <ImageCarousel />
-
-
       <New />
       <StoreCollection />
       <Style />
       <Meet />
       <Footer />
 
-    </section>
+      </div>
   );
 }
