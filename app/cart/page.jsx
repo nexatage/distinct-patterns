@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/StateContext";
 import dynamic from "next/dynamic";
 import { urlFor } from "@/sanity/sanityImage";
+
 const PaystackButton = dynamic(() => import("@/components/PayStackButton"), {
   ssr: false, // Ensure this component is only rendered on the client
 });
@@ -184,7 +185,7 @@ export default function Page() {
                   Order total
                 </dt>
                 <dd className="text-base font-medium text-gray-900">
-                  $ {totalPrice.toLocaleString()}
+                 ₦ {totalPrice.toLocaleString()}
                 </dd>
               </div>
             </dl>

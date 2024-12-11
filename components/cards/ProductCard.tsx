@@ -49,9 +49,9 @@ const ProductCard = ({ product }) => {
           />
           {/* Color Variants Overlay */}
           <div className="absolute bottom-2 left-2 flex gap-2 bg-white/90 p-2  rounded-2xl">
-            {product.variations.map(({ color }) => (
+            {product.variations.map(({ color },index) => (
               <div
-                key={color}
+                key={`${color}-${index}`}
                 className="h-5 w-5 rounded-full border border-gray-300"
                 style={{
                   backgroundColor: color,

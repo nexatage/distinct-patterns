@@ -94,7 +94,7 @@ const ProductPage = () => {
 
     fetchAndSetProduct();
   }, [slug, cartItems]);
-  console.log(selectedColor);
+  console.log(product);
   if (error) return <p>Error: {error}</p>;
   if (!product) return <p>Loading...</p>;
 
@@ -194,9 +194,9 @@ const ProductDetails = ({
         <div className="space-y-7">
           <p className="font-bold text-[#9A9A9A] text-[18px]">Select Color</p>
           <div className="flex gap-2">
-            {product.variations.map(({ color }) => (
+            {product.variations.map(({ color }, index) => (
               <Button
-                key={color}
+                key={`${color}-${index}`}
                 variant={selectedColor === color ? "default" : "outline"}
                 className="px-4"
                 onClick={() => {
@@ -277,22 +277,13 @@ const ProductTab = () => (
   <div className="mt-12">
     <Tabs defaultValue="reviews">
       <TabsList className="-full justify-start rounded-none h-auto p-0 bg-transparent">
-        <TabsTrigger
-          value="details"
-          className="text-[1rem] "
-        >
+        <TabsTrigger value="details" className="text-[1rem] ">
           Details
         </TabsTrigger>
-        <TabsTrigger
-          value="reviews"
-          className="text-[1rem]"
-        >
+        <TabsTrigger value="reviews" className="text-[1rem]">
           Reviews
         </TabsTrigger>
-        <TabsTrigger
-          value="size"
-          className="text-[1rem]"
-        >
+        <TabsTrigger value="size" className="text-[1rem]">
           Size
         </TabsTrigger>
       </TabsList>

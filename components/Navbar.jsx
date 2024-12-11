@@ -54,7 +54,7 @@ const Navbar = () => {
         </ul>
 
         {/* Cart and Authentication */}
-        <div className="hidden md:flex items-center w-[20%]  gap-[1rem]">
+        <div className="hidden md:flex items-center w-[30%] justify-end  gap-[1rem]">
           <a href="/cart" className="relative">
             <Image
               src={shoppingcart}
