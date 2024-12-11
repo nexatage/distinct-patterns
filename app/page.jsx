@@ -12,6 +12,7 @@ import maleek from "@/public/maleek-home.svg"
 import Image from "next/image";
 import { ArrowRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -68,13 +69,15 @@ export default function Page() {
         </p>
       </div>
       {/* Shop Now Button */}
-      <div className="absolute bottom-12 left-8 md:left-12">
+      <div className="absolute bottom-12 left-8 md:left-12 z-10">
         <Button 
           variant="outline" 
           className="group border-black hover:bg-black hover:text-white transition-colors"
         >
+          <Link href="/products" className="flex">
           SHOP NOW
-          <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="mt-[2px] ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </Button>
       </div>
       {/* Distinct Patterns Text */}
