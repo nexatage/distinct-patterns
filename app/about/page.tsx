@@ -6,7 +6,6 @@ import maleek from "@/public/about/WhatsApp_Image_2024-10-22_at_20.54.47-removeb
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import sim from "@/public/about/Frame 18.svg";
 const Page = () => {
   return (
       <div className="w-full bg-white py-4 px-4 sm:px-6 lg:px-8 mx-auto">

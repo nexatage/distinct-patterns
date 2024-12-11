@@ -8,7 +8,7 @@ import Style from "../components/Style";
 import Footer from "../components/Footer";
 import Meet from "../components/Meet";
 import sim from "@/public/Rectangle 1.svg";
-import maleek from "@/public/maleek-home.svg";
+import maleek from "@/public/home/WhatsApp_Image_2024-10-22_at_20.54.47-removebg-preview 1.svg";
 import Image from "next/image";
 import { ArrowRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"

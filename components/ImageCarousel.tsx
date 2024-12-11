@@ -13,12 +13,12 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { useEffect } from "react";
-import c1 from "@/public/c1.svg";
-import c2 from "@/public/c2.svg";
-import c3 from "@/public/c3.svg";
-import c4 from "@/public/c4.svg";
-import c5 from "@/public/c5.svg";
-import c6 from "@/public/c6.svg";
+import c1 from "@/public/home/c1.svg";
+import c2 from "@/public/home/c2.svg";
+import c3 from "@/public/home/c3.svg";
+import c4 from "@/public/home/c4.svg";
+import c5 from "@/public/home/c5.svg";
+import c6 from "@/public/home/c6.svg";
 import icon4 from "@/public/Arrow 1.svg";
 
 export default function Component() {
