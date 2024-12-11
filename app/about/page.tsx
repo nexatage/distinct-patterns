@@ -60,7 +60,7 @@ const Page = () => {
         text2="but when there is nothing left to take away."
       />
       <Brand />
-    </section>
+      </section>
   );
 };
 

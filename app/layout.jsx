@@ -6,6 +6,8 @@ import { Poppins, Gwendolyn } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { StateContext } from "@/context/StateContext";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import Breadcrumbss from "@/components/breadcrumbsComponent";
+
 // Font setup using `next/font`
 const poppins = Poppins({
   weight: ["400"],
@@ -36,7 +38,9 @@ export default function RootLayout({ children }) {
               <div className="flex flex-col min-h-screen">
                 {/* Navbar */}
                 <Navbar />
-
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <Breadcrumbss />
+                </div>
                 {/* Main Content */}
                 <main className="flex-1 mt-8">{children}</main>
 

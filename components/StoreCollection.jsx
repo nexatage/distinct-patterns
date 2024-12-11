@@ -19,8 +19,8 @@ const StoreCollection = () => {
   }, []);
   return (
     <div>
-      <section className="mt-14">
-          <div className="flex flex-row justify-between items-start mt-28 mb-12">
+      <section className="mt-5 md:mt-14">
+          <div className="flex flex-row justify-between items-start mt-5 md:mt-28 mb-5 md:mb-12">
             <div className="mb-6 lg:mb-0 ">
               <h1 className="text-5xl sm:text-7xl md:text-[80px] font-bold leading-none">
                 Store Collection

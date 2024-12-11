@@ -19,8 +19,6 @@ const navigation = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Products", href: "/products" },
-  { name: "Blog", href: "/blog" },
-  { name: "Contact", href: "/contact" },
 ];
 
 const Navbar = () => {
@@ -33,7 +31,7 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 bg-white ">
       <nav className="container flex items-center justify-between px-4 py-4 mx-auto md:px-8">
         {/* Logo */}
-        <Link href="/" className="font-[Gwendolyn] font-bold text-[35px]">
+        <Link href="/" className="font-[Gwendolyn] font-bold text-[30px]">
           Distinct Patterns
         </Link>
 
@@ -56,7 +54,7 @@ const Navbar = () => {
         </ul>
 
         {/* Cart and Authentication */}
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="hidden md:flex items-center w-[20%]  gap-[1rem]">
           <a href="/cart" className="relative">
             <Image
               src={shoppingcart}
@@ -121,7 +119,7 @@ const Navbar = () => {
                 Distinct Patterns
               </SheetTitle>
             </SheetHeader>
-            <ul className="flex  flex-col mt-6  space-y-12 items-left  h-full">
+            <ul className="flex  flex-col mt-12  space-y-12  h-full">
               {navigation.map(({ name, href }) => (
                 <li key={name}>
                   <Link

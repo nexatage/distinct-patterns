@@ -34,7 +34,7 @@ const ProductCard = ({ product }) => {
     }
   };
   const averageRating = calculateAverageRating(product.ratings);
-
+  console.log(product)
   return (
     <div>
       <div key={product.id} className="overflow-hidden border ">
@@ -48,7 +48,7 @@ const ProductCard = ({ product }) => {
             className="h-[300px] w-full object-cover"
           />
           {/* Color Variants Overlay */}
-          <div className="absolute bottom-2 left-2 flex gap-2 bg-white/90 p-2  rounded-lg">
+          <div className="absolute bottom-2 left-2 flex gap-2 bg-white/90 p-2  rounded-2xl">
             {product.variations.map(({ color }) => (
               <div
                 key={color}
@@ -101,13 +101,13 @@ const ProductCard = ({ product }) => {
               onClick={handleCartAction}
             >
               {showAddCart ? (
-                <div className=" flex items-center justify-between gap-2">
+                <div className=" flex items-center justify-start gap-2">
                   <span>Add to Cart</span>
                   <span className="text-lg font-bold">+</span>
                 </div>
               ) : (
-                <div className=" flex items-center justify-between gap-2">
-                  <span>Remove from Cart</span>
+                <div className=" flex items-center justify-start gap-2">
+                  <span>Remove</span>
                   <span className="text-lg font-bold">+</span>
                 </div>
               )}
