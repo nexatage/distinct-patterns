@@ -40,7 +40,7 @@ export default function ProductFilterSidebar({ allCategories, allColors }) {
   const FilterContent = React.forwardRef<HTMLDivElement>((props, ref) => (
     <div ref={ref} className="space-y-10" {...props}>
       <div>
-        <h3 className="text-base font-semibold mb-4">Filter by category</h3>
+        <h3 className="text-base text-[1.2rem] mb-7">Filter by category</h3>
         <div className="flex gap-3 mb-7">
           <Button
             variant={selectedType === "All Products" ? "default" : "outline"}
