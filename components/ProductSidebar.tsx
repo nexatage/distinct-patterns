@@ -17,7 +17,9 @@ import { useRouter } from "next/navigation";
 export default function ProductFilterSidebar({ allCategories, allColors }) {
   const router = useRouter();
 
-  const [selectedType, setSelectedType] = React.useState<string | null>(null);
+  const [selectedType, setSelectedType] = React.useState<string | null>(
+    "All Products"
+  );
   const [isOpen, setIsOpen] = React.useState(false);
 
   const [categoryquery, setCategoryQuery] = useQueryState("category", {
@@ -43,7 +45,10 @@ export default function ProductFilterSidebar({ allCategories, allColors }) {
           <Button
             variant={selectedType === "All Products" ? "default" : "outline"}
             size="sm"
-            onClick={() => router.push("/products")}
+            onClick={() => {
+              setSelectedType("All Products");
+              router.push("/products");
+            }}
           >
             All Products
           </Button>

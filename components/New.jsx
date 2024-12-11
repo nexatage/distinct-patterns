@@ -1,9 +1,9 @@
-"use client"
+"use client";
 import React from "react";
 import { getProducts } from "@/sanity/products";
 import { useEffect, useState } from "react";
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { urlFor } from "@/sanity/sanityImage";
 import { ExternalLink } from 'lucide-react';
@@ -15,7 +15,7 @@ const New = () => {
     (async () => {
       const data = await getProducts();
       setProducts(data);
-      console.log(data)
+      console.log(data);
     })();
   }, []);
   return (
@@ -33,7 +33,7 @@ const New = () => {
           </p>
         </div>
       </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 cursor-pointer md:grid-cols-2 gap-6">
           {products.slice(0,4).map((product) => (
             <div key={product._id} className="group relative aspect-square overflow-hidden rounded-lg bg-gray-100">
               <Image
@@ -60,9 +60,9 @@ const New = () => {
           ))}
         </div>
         <div className="flex justify-center mt-8">
-          <Button 
-            asChild 
-            variant="outline" 
+          <Button
+            asChild
+            variant="outline"
             className="rounded-full px-8 hover:bg-black hover:text-white transition-colors duration-300"
           >
             <Link href="/products">

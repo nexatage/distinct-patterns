@@ -3,25 +3,40 @@ import { getProducts } from "@/sanity/products";
 import icon4 from "@/public/Arrow 1.svg";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+
 export const BestSellers = () => {
-  const [products, setProducts] = useState([]);
+  const [topProducts, setTopProducts] = useState([]);
 
   useEffect(() => {
     (async () => {
       const data = await getProducts();
 
-      setProducts(data);
+      // Calculate the average rating for each product
+      const sortedProducts = data
+        .map((product) => {
+          const ratings = product.ratings || []; // Handle cases where ratings may not exist
+          const avgRating =
+            ratings.length > 0
+              ? ratings.reduce((sum, rating) => sum + rating, 0) /
+                ratings.length
+              : 0;
+          return { ...product, avgRating };
+        })
+        .sort((a, b) => b.avgRating - a.avgRating) // Sort by average rating in descending order
+        .slice(0, 5); // Get the top 5 products
+
+      setTopProducts(sortedProducts);
     })();
   }, []);
-  
+
   return (
     <section className="mt-20">
       <div className="flex flex-row justify-between items-start mt-28 mb-12">
         <div className="mb-6 lg:mb-0">
           <h1 className="text-5xl sm:text-7xl font-bold leading-none">
-            Similar
+            Our Best
             <br />
-            <span className="text-gray-400">Products</span>
+            <span className="text-gray-400">Sellers</span>
           </h1>
         </div>
         <div className="hidden md:block max-w-xs mt-9">
@@ -34,7 +49,7 @@ export const BestSellers = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
+        {topProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>

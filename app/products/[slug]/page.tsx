@@ -275,23 +275,23 @@ const ProductDetails = ({
 };
 const ProductTab = () => (
   <div className="mt-12">
-    <Tabs defaultValue="details">
-      <TabsList className="border-b w-full justify-start rounded-none h-auto p-0 bg-transparent">
+    <Tabs defaultValue="reviews">
+      <TabsList className="-full justify-start rounded-none h-auto p-0 bg-transparent">
         <TabsTrigger
           value="details"
-          className="rounded-none border-b-2 border-transparent data-[state=active]:border-black data-[state=active]:bg-transparent"
+          className="text-[1rem] "
         >
           Details
         </TabsTrigger>
         <TabsTrigger
           value="reviews"
-          className="rounded-none border-b-2 border-transparent data-[state=active]:border-black data-[state=active]:bg-transparent"
+          className="text-[1rem]"
         >
           Reviews
         </TabsTrigger>
         <TabsTrigger
           value="size"
-          className="rounded-none border-b-2 border-transparent data-[state=active]:border-black data-[state=active]:bg-transparent"
+          className="text-[1rem]"
         >
           Size
         </TabsTrigger>

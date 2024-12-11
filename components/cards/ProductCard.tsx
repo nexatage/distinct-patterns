@@ -9,7 +9,7 @@ import { urlFor } from "@/sanity/sanityImage";
 import { useCart } from "@/context/StateContext";
 import { calculateAverageRating } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-
+import { lightenColor } from "@/lib/utils";
 const ProductCard = ({ product }) => {
   const { addToCart, removeFromCart, checkIfProductExists } = useCart();
   const { toast } = useToast();
@@ -23,22 +23,23 @@ const ProductCard = ({ product }) => {
   const handleCartAction = () => {
     if (showAddCart) {
       toast({
-        title: "Added to Cart",
+        description: "Added to Cart",
       });
       addToCart(product);
     } else {
       toast({
-        title: "Removed from Cart",
+        description: "Removed from Cart",
       });
       removeFromCart(product);
     }
   };
   const averageRating = calculateAverageRating(product.ratings);
-
+  console.log(product)
   return (
     <div>
-      <Card key={product.id} className="overflow-hidden border-none">
-        <CardContent className="p-0">
+      <div key={product.id} className="overflow-hidden border ">
+        {/* Product Image */}
+        <div className="p-0 relative">
           <Image
             width={150}
             height={150}
@@ -46,46 +47,74 @@ const ProductCard = ({ product }) => {
             alt={product.name}
             className="h-[300px] w-full object-cover"
           />
-        </CardContent>
-        <CardFooter className="flex flex-col items-start gap-2 p-4">
-          <div className="flex w-full items-center justify-between">
-            <Link href={`/products/${product.slug}`}>
-              <h3 className="font-semibold">{product.name}</h3>
-            </Link>
-            <span className="text-sm"> ${product.price}</span>
+          {/* Color Variants Overlay */}
+          <div className="absolute bottom-2 left-2 flex gap-2 bg-white/90 p-2  rounded-2xl">
+            {product.variations.map(({ color }) => (
+              <div
+                key={color}
+                className="h-5 w-5 rounded-full border border-gray-300"
+                style={{
+                  backgroundColor: color,
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Product Details */}
+        <CardFooter className="flex flex-col items-start gap-3 p-4">
+          {/* Product Name */}
+          <Link href={`/products/${product.slug}`}>
+            <h3 className="text-lg font-thin text-gray-800">{product.name}</h3>
+          </Link>
+
+          {/* Pricing */}
+          <div className="flex items-center gap-2">
+            <span className="text-md font-thin text-gray-900">
+              ₦ {product.price.toLocaleString()}
+            </span>
+            {product.originalPrice && (
+              <span className="text-sm line-through text-gray-400">
+                ${product.originalPrice}USD
+              </span>
+            )}
           </div>
 
-          <div className="flex w-full items-center justify-between">
+          {/* Ratings */}
+          <div className="flex  w-full  justify-between flex-row-reverse">
             <div className="flex items-center">
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={`h-4 w-4 ${
+                  className={`h-5 w-5 ${
                     i < Math.floor(+averageRating)
                       ? "fill-yellow-400 text-yellow-400"
-                      : "fill-muted text-muted-foreground"
+                      : "fill-gray-300 text-gray-300"
                   }`}
                 />
               ))}
             </div>
-            <div className="gap-1 flex">
-              {product.variations.map(({ color }) => (
-                <div
-                  key={color}
-                  className="h-4 w-4 rounded-full border"
-                  style={{ backgroundColor: color }}
-                />
-              ))}
+
+            {/* Add to Cart Button */}
+            <div
+              className="w-full cursor-pointer text-left text-black text-md font-medium py-2 rounded-md "
+              onClick={handleCartAction}
+            >
+              {showAddCart ? (
+                <div className=" flex items-center justify-start gap-2">
+                  <span>Add to Cart</span>
+                  <span className="text-lg font-bold">+</span>
+                </div>
+              ) : (
+                <div className=" flex items-center justify-start gap-2">
+                  <span>Remove</span>
+                  <span className="text-lg font-bold">+</span>
+                </div>
+              )}
             </div>
           </div>
         </CardFooter>
-        <Button
-          className="w-full rounded-t-none p-6 "
-          onClick={() => handleCartAction()}
-        >
-          {showAddCart ? "Add to Cart" : "Remove from Cart"}
-        </Button>
-      </Card>
+      </div>
     </div>
   );
 };

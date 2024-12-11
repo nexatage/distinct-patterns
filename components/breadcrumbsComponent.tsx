@@ -11,15 +11,15 @@ import { usePathname } from "next/navigation";
 
 export default function Breadcrumbss() {
   const pathname = usePathname();
-  const pathnameSeparate = pathname.split("/", 3).slice(1,5); // Removes empty strings and gets path parts
+  const pathnameSeparate = pathname.split("/", 3).slice(1, 5); // Removes empty strings and gets path parts
 
   // Only render if `pathnameSeparate` has elements
-  if (pathnameSeparate.length === 0|| pathnameSeparate[0] == "" ) {
+  if (pathnameSeparate.length === 0 || pathnameSeparate[0] == "") {
     return null;
   }
 
   return (
-    <div>
+    <div className="w-full flex  ml-auto">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

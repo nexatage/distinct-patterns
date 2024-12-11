@@ -1,57 +1,59 @@
-
 import "../styles/globals.css";
-import Navbar from "../components/Navbar.jsx";
-import { Poppins } from "next/font/google";
-import { Toaster } from "@/components/ui/toaster";
-import { NuqsAdapter } from "nuqs/adapters/next/app";
-import { StateContext } from "../context/StateContext.js";
-
-import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/toaster";
+import { Poppins, Gwendolyn } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+import { StateContext } from "@/context/StateContext";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import Breadcrumbss from "@/components/breadcrumbsComponent";
 
-
-const poppins_font = Poppins({
-  weight: "400",
+// Font setup using `next/font`
+const poppins = Poppins({
+  weight: ["400"],
   subsets: ["latin"],
+  variable: "--font-poppins",
 });
+
+const gwendolyn = Gwendolyn({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-gwendolyn",
+});
+
+// Metadata for the app
 export const metadata = {
   title: "Distinct Patterns",
+  description:
+    "Shop the perfect blend of fashion and comfort with Distinct Patterns.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-    <html lang="en">
-      <head>
-      <link rel="preconnect" href="https://fonts.googleapis.com"/>
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-      <link href="https://fonts.googleapis.com/css2?family=Gwendolyn:wght@400;700&display=swap" rel="stylesheet"/>
-      </head>
-      <StateContext>
-        <body className={poppins_font.className}>
-        <header>
-            <SignedOut>
-              <SignInButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </header>
-          <main>
-          <Navbar />
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Breadcrumbss/>
-          </div>
+      <html lang="en" className={`${poppins.variable} ${gwendolyn.variable}`}>
+        <body className="min-h-screen bg-white">
           <NuqsAdapter>
-            <div className="mt-[2rem]">{children}</div>
+            <StateContext>
+              <div className="flex flex-col min-h-screen">
+                {/* Navbar */}
+                <Navbar />
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <Breadcrumbss />
+                </div>
+                {/* Main Content */}
+                <main className="flex-1 mt-8">{children}</main>
+
+                {/* Toaster for notifications */}
+                <Toaster />
+
+                {/* Footer */}
+                <Footer />
+              </div>
+            </StateContext>
           </NuqsAdapter>
-          <Toaster />
-          <Footer />
-          </main>
         </body>
-      </StateContext>
-    </html>
+      </html>
     </ClerkProvider>
   );
 }
