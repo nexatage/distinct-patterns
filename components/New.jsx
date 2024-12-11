@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { urlFor } from "@/sanity/sanityImage";
+import { ExternalLink } from 'lucide-react';
 
 const New = () => {
   const [products, setProducts] = useState([]);
@@ -50,8 +51,8 @@ const New = () => {
                   variant="secondary"
                   className="mt-2"
                 >
-                  <Link href={`/products/${product.slug}`}>
-                    <p>View product</p>
+                  <Link href={`/products/${product.slug}`} target = "_blank">
+                    <p className = "flex gap-2">View product <span><ExternalLink /></span></p> 
                   </Link>
                 </Button>
               </div>

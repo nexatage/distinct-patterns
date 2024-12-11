@@ -51,7 +51,7 @@ export default function Footer() {
                 "Return Policy"
               ].map((item) => (
                 <li key={item}>
-                  <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground">
+                  <Link href={`/${item.split(" ")[0].toLowerCase()}`} className="text-sm text-muted-foreground hover:text-foreground">
                     {item}
                   </Link>
                 </li>

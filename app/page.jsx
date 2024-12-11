@@ -10,8 +10,9 @@ import Meet from "../components/Meet";
 import sim from "@/public/Rectangle 1.svg";
 import maleek from "@/public/maleek-home.svg";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowRight } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -49,53 +50,53 @@ export default function Page() {
               {/* <img src="YOUR_SIM_CARD_BACKGROUND_IMAGE_URL" alt="Sim-card shaped background" className="w-full h-full object-cover rounded-3xl" /> */}
             </div>
 
-            {/* Main Image */}
-            <div className="relative z-10">
-              {/* Replace the src with your actual image path */}
-              <Image
-                src={maleek}
-                alt="Model wearing traditional fashion"
-                className="mr-3 md:mr-7 rounded-3xl w-full max-w-3xl mx-auto"
-              />
-              {/* Add your hero image here */}
-              {/* <img src="YOUR_HERO_IMAGE_URL" alt="Hero fashion" className="rounded-3xl w-full max-w-3xl mx-auto" /> */}
-            </div>
-            {/* Description Text */}
-            <div className="hidden md:block absolute bottom-24 left-8 md:left-12 max-w-xs">
-              <p className="text-sm text-gray-800">
-                DISTINCT PATTERN ISN&apos;T JUST A BRAND; IT&apos;S A JOURNEY.
-                WE EMBRACE THE RICH HERITAGE OF AFRICAN FABRICS WHILE BLENDING
-                THEM WITH MODERN AESTHETICS. EACH PIECE IS CRAFTED WITH
-                PRECISION AND PASSION, EACH PIECE DESIGNED TO MAKE A STATEMENT.
-              </p>
-            </div>
-            {/* Shop Now Button */}
-            <div className="absolute bottom-12 left-8 md:left-12">
-              <Button
-                variant="outline"
-                className="group border-black hover:bg-black hover:text-white transition-colors"
-              >
-                SHOP NOW
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </div>
-            {/* Distinct Patterns Text */}
-            <div className="absolute right-8 top-1/2 -translate-y-1/2">
-              <p
-                className="font-[Gwendolyn] font-bold text-[35px] vertical-text transform rotate-180"
-                style={{ writingMode: "vertical-rl" }}
-              >
-                Distinct Patterns
-              </p>
-            </div>
-          </div>
-          <ImageCarousel />
-          <New />
-          <StoreCollection />
-          <Style />
-          <Meet />
+        {/* Main Image */}
+        <div className="relative z-10">
+          {/* Replace the src with your actual image path */}
+          <Image
+            src={maleek}
+            alt="Model wearing traditional fashion"
+            className="mr-3 md:mr-7 rounded-3xl w-full max-w-3xl mx-auto"
+          />
+          {/* Add your hero image here */}
+          {/* <img src="YOUR_HERO_IMAGE_URL" alt="Hero fashion" className="rounded-3xl w-full max-w-3xl mx-auto" /> */}
         </div>
+        {/* Description Text */}
+      <div className="hidden md:block absolute bottom-24 left-8 md:left-12 max-w-xs">
+        <p className="text-sm text-gray-800">
+          DISTINCT PATTERN ISN&apos;T JUST A BRAND; IT&apos;S A JOURNEY. WE EMBRACE THE RICH HERITAGE OF AFRICAN FABRICS WHILE BLENDING THEM WITH MODERN AESTHETICS. EACH PIECE IS CRAFTED WITH PRECISION AND PASSION, EACH PIECE DESIGNED TO MAKE A STATEMENT.
+        </p>
       </div>
+      {/* Shop Now Button */}
+      <div className="absolute bottom-12 left-8 md:left-12 z-10">
+        <Button 
+          variant="outline" 
+          className="group border-black hover:bg-black hover:text-white transition-colors"
+        >
+          <Link href="/products" className="flex">
+          SHOP NOW
+          <ArrowRight className="mt-[2px] ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </Button>
+      </div>
+      {/* Distinct Patterns Text */}
+      <div className="absolute right-8 top-1/2 -translate-y-1/2">
+        <p className="font-[Gwendolyn] font-bold text-[35px] vertical-text transform rotate-180" style={{ writingMode: 'vertical-rl' }}>
+          Distinct Patterns
+        </p>
+      </div>
+      </div>
+      <ImageCarousel />
+      <New />
+      <StoreCollection />
+      <Style />
+      <Meet />
     </div>
+    
+  </div>
+
+      
+
+      </div>
   );
 }
