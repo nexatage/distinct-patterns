@@ -1,4 +1,7 @@
 import React from "react";
+import { Button } from "./ui/button";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const Brand = () => {
   return (
@@ -14,9 +17,15 @@ const Brand = () => {
           redefine your casual style. The soft and breathable cotton material
           ensures maximum comfort.
         </p>
-        <button className="px-6 py-3 text-sm text-white transition bg-gray-800 rounded md:text-base hover:bg-gray-600">
+        <Button 
+          variant="outline" 
+          className="group border-black hover:bg-black hover:text-white transition-colors"
+        >
+          <Link href="/products" className="flex">
           SHOP NOW
-        </button>
+          <ArrowRight className="mt-[2px] ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </Button>
       </div>
 
       {/* Image Box */}

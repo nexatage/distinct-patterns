@@ -4,6 +4,10 @@ import Brand from "../../components/Brand";
 import Image from "next/image";
 import maleek from "@/public/about/WhatsApp_Image_2024-10-22_at_20.54.47-removebg-preview 1.svg";
 import { Button } from "@/components/ui/button";
+import v1 from "@/public/missionandvision/v1.svg"
+import v2 from "@/public/missionandvision/v2.svg"
+import m1 from "@/public/missionandvision/c5.svg"
+import m2 from "@/public/missionandvision/c6.svg"
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 const Page = () => {
@@ -53,18 +57,16 @@ const Page = () => {
       </div>
 
       <Vision
-        head="VISION"
-        img1="vision-1.jpg"
-        img2="vision-2.jpg"
-        text="Perfection is achieved, not when there is nothing more to add,"
-        text2="but when there is nothing left to take away."
+        title="OUR VISION"
+        leftImage={v1}
+        rightImage={v2}
       />
       <Vision
-        head="MISSION"
-        img1="mission-1.jpg"
-        img2="mission-2.jpg"
-        text="Perfection is achieved, not when there is nothing more to add,"
-        text2="but when there is nothing left to take away."
+        title="OUR MISSION"
+        leftImage={m1}
+        rightImage={m2}
+        text1="Perfection Is Achieved, Not When There Is Nothing More To Add,"
+        text2="But When There Is Nothing Left To Take Away."
       />
       <Brand />
       </div>
