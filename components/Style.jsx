@@ -22,7 +22,7 @@ const Style = () => {
         EMPOWER YOUR FASHION
       </h1>
       <div>
-        <p className="block px-6 py-3 text-lg text-center text-white bg-black rounded cursor-pointer button mt-7 lg:text-xl hover:bg-gray-800">
+        <p className="block px-6 py-3 text-lg text-center text-white bg-black rounded-full cursor-pointer button mt-7 lg:text-xl hover:bg-gray-800">
             <Link href="/products">
               Shop Now
               <span className="ml-2">→</span>

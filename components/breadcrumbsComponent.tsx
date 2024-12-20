@@ -19,19 +19,19 @@ export default function Breadcrumbss() {
   }
 
   return (
-    <div className="w-full flex justify-start ml-auto">
+    <div className="flex justify-start mr-auto ">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            <BreadcrumbLink className="font-semibold" href="/">HOME</BreadcrumbLink>
           </BreadcrumbItem>
 
           {pathnameSeparate.map((pathname, index) => (
             <div key={index} className="flex justify-center items-center">
               <BreadcrumbSeparator />
               <BreadcrumbItem key={pathname}>
-                <BreadcrumbLink href={`/${pathname}`}>
-                  {`${pathname.slice(0, 1).toUpperCase()}${pathname.slice(1)}`}
+                <BreadcrumbLink className="font-semibold" href={`/${pathname}`}>
+                  {`${pathname.toUpperCase()}`}
                 </BreadcrumbLink>
               </BreadcrumbItem>
             </div>
