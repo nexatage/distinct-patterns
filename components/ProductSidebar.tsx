@@ -78,16 +78,16 @@ export default function ProductFilterSidebar({ allCategories, allColors }) {
           ))}
         </div>
       </div>
-      <div>
+      <div className="flex flex-col">
         <h3 className="text-base font-semibold mb-4">Choose Color</h3>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-col gap-2">
           {allColors.map((color) => (
             <button
               key={color}
-              className={`w-8 h-8 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2  ${
+              className={`w-4 h-8 rounded-2xl focus:outline-none  focus:ring-2 focus:ring-offset-2  ${
                 colorquery === color ? "ring-2 ring-black dark:ring-white" : ""
               }`}
-              style={{ backgroundColor: color }}
+              style={{ backgroundColor: color, opacity:1 }}
               onClick={() => toggleColor(color)}
               aria-label={`Select ${color}`}
             />

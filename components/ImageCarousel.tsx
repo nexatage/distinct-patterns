@@ -13,12 +13,7 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { useEffect } from "react";
-import c1 from "@/public/home/c1.svg";
-import c2 from "@/public/home/c2.svg";
-import c3 from "@/public/home/c3.svg";
-import c4 from "@/public/home/c4.svg";
-import c5 from "@/public/home/c5.svg";
-import c6 from "@/public/home/c6.svg";
+import brand from "@/public/assets/brand.jpg"
 import icon4 from "@/public/Arrow 1.svg";
 
 export default function Component() {
@@ -27,7 +22,7 @@ export default function Component() {
   const [count, setCount] = React.useState(0);
   const [autoplay, setAutoplay] = React.useState(true);
 
-  const slides = [c1, c2, c3, c4, c5, c6];
+  const slides = [brand, brand, brand, brand, brand, brand];
   useEffect(() => {
     if (!api) {
       return;
@@ -66,9 +61,9 @@ export default function Component() {
           <div className="flex flex-row justify-between items-start mt-5 md:mt-28 mb-5 md:mb-12">
             <div className="mb-6 lg:mb-0 ">
               <h1 className="text-5xl sm:text-7xl md:text-[80px] font-bold leading-none">
-                Pictured
+                PICTURED
                 <br />
-                <span>Collection</span>
+                <span>COLLECTION</span>
               </h1>
             </div>
             <div className="hidden md:block max-w-xs mt-9">
@@ -86,7 +81,7 @@ export default function Component() {
       <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className="h-full w-full"
+        className="h-full w-[90%]"
       >
         <Carousel
           setApi={setApi}
@@ -100,19 +95,19 @@ export default function Component() {
             {slides.map((slide, index) => (
               <CarouselItem
                 key={index}
-                className="pl-2 md:pl-4 basis-full md:basis-2/3 lg:basis-1/2"
+                className="pl-2 md:pl-4  basis-full md:basis-2/3 lg:basis-1/2 rounded-2xl"
               >
                 <div
                   className={cn(
-                    "relative aspect-[3/4] rounded-2xl overflow-hidden transition-all duration-300",
-                    current === index ? "scale-110 z-10" : "scale-90 opacity-70"
+                    "relative aspect-[3/4] border rounded-2xl overflow-hidden transition-all duration-300",
+                    current === index ? "scale-110 z-10 rounded-2xl" : "scale-90 opacity-70 rounded-2xl"
                   )}
                 >
                   <Image
                     src={slide}
                     alt={`Collection image ${index + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-cover rounded-2xl"
                     priority={index === 0}
                   />
                   {current === index && (
@@ -140,7 +135,7 @@ export default function Component() {
             key={i}
             className={cn(
               "h-2 rounded-full transition-all duration-300",
-              current === i ? "w-6 bg-primary" : "w-2 bg-muted"
+              current === i ? "w-6 bg-primary" : "w-2 bg-slate-200"
             )}
           />
         ))}

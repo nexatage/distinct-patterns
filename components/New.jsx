@@ -24,7 +24,7 @@ const New = () => {
       <div className="flex flex-row justify-between items-start mt-5 md:mt-28 mb-5 md:mb-12">
         <div className="mb-6 lg:mb-0">
           <h1 className="text-5xl sm:text-7xl font-bold leading-none">
-            New Arrivals
+            NEW ARRIVALS
           </h1>
         </div>
         <div className="hidden md:block max-w-xs mt-9">
@@ -33,7 +33,7 @@ const New = () => {
           </p>
         </div>
       </div>
-        <div className="grid grid-cols-1 cursor-pointer md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 cursor-pointer md:grid-cols-2 gap-[1rem]">
           {products.slice(0,4).map((product) => (
             <div key={product._id} className="group relative aspect-square overflow-hidden rounded-lg bg-gray-100">
               <Image

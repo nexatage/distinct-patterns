@@ -36,7 +36,8 @@ const Page = () => {
                   variant="default" 
                   className="bg-black text-white rounded-full px-6 py-2 text-sm hover:bg-gray-800 transition-colors"
                 >
-                  SHOP NOW
+                  <a href="/products">SHOP NOW</a>
+                  
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>

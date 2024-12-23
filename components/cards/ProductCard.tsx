@@ -34,10 +34,10 @@ const ProductCard = ({ product }) => {
     }
   };
   const averageRating = calculateAverageRating(product.ratings);
-  console.log(product)
+
   return (
     <div>
-      <div key={product.id} className="overflow-hidden border ">
+      <div key={product.id} className="overflow-hidden border rounded-2xl">
         {/* Product Image */}
         <div className="p-0 relative">
           <Image
@@ -45,7 +45,7 @@ const ProductCard = ({ product }) => {
             height={150}
             src={urlFor(product.images[0]).quality(100).url()}
             alt={product.name}
-            className="h-[300px] w-full object-cover"
+            className="h-[300px] w-full object-cover  rounded-tr-2xl rounded-tl-2xl"
           />
           {/* Color Variants Overlay */}
           <div className="absolute bottom-2 left-2 flex gap-2 bg-white/90 p-2  rounded-2xl">
@@ -62,15 +62,15 @@ const ProductCard = ({ product }) => {
         </div>
 
         {/* Product Details */}
-        <CardFooter className="flex flex-col items-start gap-3 p-4">
+        <div className="flex  flex-col items-start space-y-2 py-4 px-4">
           {/* Product Name */}
           <Link href={`/products/${product.slug}`}>
-            <h3 className="text-lg font-thin text-gray-800">{product.name}</h3>
+            <h3 className="text-sm font-thin text-gray-700">{product.name}</h3>
           </Link>
 
           {/* Pricing */}
-          <div className="flex items-center gap-2">
-            <span className="text-md font-thin text-gray-900">
+          <div className="flex items-left gap-2">
+            <span className="text-lg font-thin text-gray-900">
               ₦ {product.price.toLocaleString()}
             </span>
             {product.originalPrice && (
@@ -81,15 +81,14 @@ const ProductCard = ({ product }) => {
           </div>
 
           {/* Ratings */}
-          <div className="flex  w-full  justify-between flex-row-reverse">
-            <div className="flex items-center">
-              {[...Array(5)].map((_, i) => (
+          <div className="flex  w-full  justify-between items-center flex-row-reverse">
+            <div className="flex items-start">
+              {[...Array(Math.round(+averageRating))].map((_, i) => (
                 <Star
                   key={i}
                   className={`h-5 w-5 ${
-                    i < Math.floor(+averageRating)
-                      ? "fill-yellow-400 text-yellow-400"
-                      : "fill-gray-300 text-gray-300"
+                    "fill-yellow-400 text-yellow-400"
+                     
                   }`}
                 />
               ))}
@@ -113,7 +112,7 @@ const ProductCard = ({ product }) => {
               )}
             </div>
           </div>
-        </CardFooter>
+        </div>
       </div>
     </div>
   );

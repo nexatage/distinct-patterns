@@ -19,6 +19,7 @@ const navigation = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Products", href: "/products" },
+  { name: "Blog", href: "/blog" },
 ];
 
 const Navbar = () => {
@@ -43,11 +44,11 @@ const Navbar = () => {
                 href={href}
                 className={`${
                   isActive(href)
-                    ? "text-black bg-gray-200 p-2 rounded-lg"
-                    : "text-gray-600"
-                } hover:text-black transition`}
+                    ? "text-slate-500  p-2 rounded-lg"
+                    : "text-slate-400"
+                } hover:text-black transition font-semibold`}
               >
-                {name}
+                {name.toUpperCase()}
               </Link>
             </li>
           ))}
@@ -126,11 +127,11 @@ const Navbar = () => {
                     href={href}
                     className={`${
                       isActive(href)
-                        ? "text-black  bg-gray-200 p-2 rounded-lg"
-                        : "text-gray-500"
-                    } hover:text-black transition`}
+                        ? "text-slate-500  p-2 rounded-lg"
+                        : "text-slate-400"
+                    } hover:text-black transition font-semibold`}
                   >
-                    {name}
+                    {name.toUpperCase()}
                   </Link>
                 </li>
               ))}

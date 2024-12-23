@@ -12,9 +12,9 @@ export default function InstagramSection() {
       <div className="flex flex-col [@media(min-width:490px)]:flex-row justify-between items-start mt-5 md:mt-28 mb-5 md:mb-12">
             <div className="mb-6 lg:mb-0 ">
               <h1 className="text-5xl sm:text-7xl md:text-[80px] font-bold leading-none">
-                Meet Us
+                MEET US
                 <br/>
-                <span>On Instagram</span>
+                <span>ON INSTAGRAM</span>
               </h1>
             </div>
             <div className="max-w-xs mt-9">
@@ -46,7 +46,7 @@ export default function InstagramSection() {
             className="w-full h-full object-cover aspect-[3/4]"
           />
         </div>
-        <div className="md:col-span-1 lg:col-span-3 grid grid-cols-2 gap-2">
+        <div className="md:col-span-1 lg:col-span-3 grid grid-cols-2 gap-4">
           {[I2,I3,I4,I5].map((image, i) => (
             <Image
               key={i}

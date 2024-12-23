@@ -25,7 +25,7 @@ const Auth = () => {
         </SignedIn>
       </div>
       <SignedOut>
-        <div className={"flex max-md:flex-col max-md:*:space-y-2  space-x-2"}>
+        <div className={"flex max-md:flex-col max-md:space-y-2  space-x-2"}>
           <SignInButton>
             <Button className="px-4 py-2 bg-black text-white rounded-2xl">
               Log in

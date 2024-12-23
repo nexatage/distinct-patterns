@@ -21,7 +21,7 @@ const StoreCollection = () => {
         <div className="flex flex-row justify-between items-start mt-5 md:mt-28 mb-5 md:mb-12">
           <div className="mb-6 lg:mb-0 ">
             <h1 className="text-5xl sm:text-7xl md:text-[80px] font-bold leading-none">
-              Store Collection
+              STORE COLLECTION
             </h1>
           </div>
           <div className="hidden md:block max-w-xs mt-9">
