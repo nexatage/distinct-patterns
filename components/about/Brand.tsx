@@ -1,7 +1,8 @@
 import React from "react";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import  Image  from "next/image";
 
 const Brand = () => {
   return (
@@ -9,7 +10,7 @@ const Brand = () => {
       {/* Text Box */}
       <div className="order-1 w-full text-left text-box lg:w-1/2 lg:order-2">
         <h2 className="mb-6 text-3xl font-semibold leading-tight text-gray-800 md:text-5xl lg:text-6xl">
-          OUR BRAND <span className="text-gray-500">STORY</span>
+          OUR BRAND <span className="text-[#999999]">STORY</span>
         </h2>
         <p className="mb-6 text-sm leading-relaxed text-gray-700 uppercase md:text-lg lg:text-xl">
           Introducing our latest T-shirt, where comfort meets originality.
@@ -30,7 +31,8 @@ const Brand = () => {
 
       {/* Image Box */}
       <div className="flex order-2 w-full img-box lg:w-1/2 lg:justify-center lg:order-1">
-        <img
+        <Image
+        fill
           src="/assets/brand.jpg"
           alt="brand_story"
           className="object-contain w-full h-auto lg:w-2/3"

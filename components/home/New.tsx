@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { urlFor } from "@/sanity/sanityImage";
 import { ExternalLink } from 'lucide-react';
+import ProductSkeleton from "@/components/skeleton/ProductSkeleton"
 
 const New = () => {
   const [products, setProducts] = useState([]);
@@ -34,13 +35,13 @@ const New = () => {
         </div>
       </div>
         <div className="grid grid-cols-1 cursor-pointer md:grid-cols-2 gap-[1rem]">
-          {products.slice(0,4).map((product) => (
+          {products.length > 0 ? products.slice(0,4).map((product) => (
             <div key={product._id} className="group relative aspect-square overflow-hidden rounded-lg bg-gray-100">
               <Image
                 src={urlFor(product.images[0]).quality(100).url()}
                 alt={product.name}
-                width={600}
-                height={600}
+                width={400}
+                height={400}
                 className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white p-6">
@@ -57,8 +58,8 @@ const New = () => {
                 </Button>
               </div>
             </div>
-          ))}
-        </div>
+          )) : <ProductSkeleton/>}
+      </div>
         <div className="flex justify-center mt-8">
           <Button
             asChild

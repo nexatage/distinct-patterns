@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import ProductFilterSidebar from "@/components/ProductSidebar";
-import Allproducts from "@/components/Product";
+import ProductFilterSidebar from "@/components/product/ProductSidebar";
+import Allproducts from "@/components/product/Product";
 import {
   getProducts,
   getProductsByCategory,
@@ -10,6 +10,7 @@ import {
 import Image from "next/image";
 import { useSearchParams } from 'next/navigation'
 import icon from "@/public/Arrow 1.svg";
+import { BestSellers } from "@/components/product/BestSellers";
 const Product = () => {
   const [allproducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]);
@@ -99,26 +100,9 @@ const Product = () => {
         </div>
       </div>
       {/* Our Best Seller */}
-      <div className="flex flex-row justify-between items-start mt-28 mb-12">
-        <div className="mb-6 lg:mb-0">
-          <h1 className="text-5xl font-bold leading-none sm:text-7xl">
-            OUR BEST
-            <br />
-            <span className="text-gray-400">SELLERS</span>
-          </h1>
-        </div>
-        <div className="hidden md:block max-w-xs mt-9">
-          <p className="text-xs leading-tight mb-4">
-            A SIMPLE CLEAN, SUPER FAST HIGHLY FLEXIBLE, LIGHT MODERN THEME THAT
-            CAN ENHANCE THE LOOK AND FUNCTIONALITY. PERFECT BLEND OF FASHION AND
-            COMFORTABLE CLOTHS.
-          </p>
-          <Image src={icon} alt="arrow" />
-        </div>
+      
+      <BestSellers />
       </div>
-      {/* Render products again for Best Sellers */}
-      <Allproducts products={products} />
-    </div>
   );
 };
 

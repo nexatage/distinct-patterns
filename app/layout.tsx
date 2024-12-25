@@ -1,12 +1,12 @@
 import "../styles/globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/shared/Navbar";
+import Footer from "@/components/shared/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { Poppins, Gwendolyn } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { StateContext } from "@/context/StateContext";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
-import Breadcrumbss from "@/components/breadcrumbsComponent";
+import Breadcrumbss from "@/components/product/breadcrumbsComponent";
 
 // Font setup using `next/font`
 const poppins = Poppins({
@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
               <div className="flex flex-col min-h-screen">
                 {/* Navbar */}
                 <Navbar />
-                <div className="w-full px-8">
+                <div className="w-full px-10 pt-0">
                   <Breadcrumbss />
                 </div>
                 {/* Main Content */}

@@ -3,7 +3,7 @@ import { getProducts } from "@/sanity/products";
 import icon4 from "@/public/Arrow 1.svg";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-
+import ProductSkeleton from "@/components/skeleton/ProductSkeleton"
 export const BestSellers = () => {
   const [topProducts, setTopProducts] = useState([]);
 
@@ -48,11 +48,16 @@ export const BestSellers = () => {
           <Image src={icon4} alt="arrow" />
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {topProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+        {topProducts.length > 0  ? topProducts.map((product) => (
+         
+       <ProductCard key={product._id} product={product} />
+
+        )) :<ProductSkeleton/> }
       </div>
+      {/* 
+      
+      */}
     </section>
   );
 };

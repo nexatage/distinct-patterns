@@ -1,6 +1,6 @@
 import React from "react";
-import Vision from "../../components/Vision";
-import Brand from "../../components/Brand";
+import Vision from "@/components/about/Vision";
+import Brand from "@/components/about/Brand";
 import Image from "next/image";
 import maleek from "@/public/about/WhatsApp_Image_2024-10-22_at_20.54.47-removebg-preview 1.svg";
 import { Button } from "@/components/ui/button";
@@ -36,7 +36,7 @@ const Page = () => {
                   variant="default" 
                   className="bg-black text-white rounded-full px-6 py-2 text-sm hover:bg-gray-800 transition-colors"
                 >
-                  <a href="/products">SHOP NOW</a>
+                  <Link href="/products">SHOP NOW</Link>
                   
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
