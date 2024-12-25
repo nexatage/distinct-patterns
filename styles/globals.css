@@ -12,6 +12,26 @@ body {
   font-family: "Poppins";
 }
 
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border:solid 1px #f6f6f6;
+  background-color:#ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(145, 141, 145, 0.533);
+  
+  border-radius: 5px;
+}
+
+
 .logo-box {
   align-self: center;
 }

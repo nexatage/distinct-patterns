@@ -4,7 +4,7 @@ import {
   CheckIcon,
   ClockIcon,
   QuestionMarkCircleIcon,
-  XMarkIcon,
+  TrashIcon,
 } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,7 +14,7 @@ import { useCart } from "@/context/StateContext";
 import dynamic from "next/dynamic";
 import { urlFor } from "@/sanity/sanityImage";
 
-const PaystackButton = dynamic(() => import("@/components/PayStackButton"), {
+const PaystackButton = dynamic(() => import("@/components/shared/PayStackButton"), {
   ssr: false, // Ensure this component is only rendered on the client
 });
 export default function Page() {
@@ -40,7 +40,7 @@ export default function Page() {
             </h2>
             <ul
               role="list"
-              className="divide-y divide-gray-200 border-b border-t border-gray-200"
+              className="divide-y divide-gray-200 "
             >
               {cartItems.length > 0 ? (
                 cartItems.map((item, itemIdx) => (
@@ -60,10 +60,10 @@ export default function Page() {
                     <div className="flex flex-col space-y-8 mt-[1rem]">
                       <div className="space-y-4">
                         <h3 className="text-[35px] font-semibold text-gray-700 hover:text-gray-800">
-                          {item.name}
+                          <Link href={`/products/${item.slug}`}>{item.name}</Link>
                         </h3>
                         <Button className="px-4 text-white">
-                          {item.selectedColor}
+                          {item.selectedColor.toUpperCase()}
                         </Button>
                         <p className="text-[25px] text-[#8F8F8F] font-semibold">
                           ₦ {item.price.toLocaleString()}
@@ -94,11 +94,11 @@ export default function Page() {
                         </div>
                         <button
                           type="button"
-                          className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500"
+                          className="-m-2 inline-flex p-2 text-gray-400 hover:text-[#999999]"
                           onClick={() => removeFromCart?.(item)}
                         >
                           <span className="sr-only">Remove</span>
-                          <XMarkIcon aria-hidden="true" className="size-5" />
+                          <TrashIcon aria-hidden="true" className="size-5" />
                         </button>
                       </div>
 
@@ -127,8 +127,8 @@ export default function Page() {
                 </div>
               )}
             </ul>
-            <div className="underline my-4 text-center">
-              <Link href="/products">Continue Shopping</Link>
+            <div className="p-2 border rounded-full my-4 text-center">
+              <Link href="/products">All Products</Link>
             </div>
           </section>
 
@@ -149,7 +149,7 @@ export default function Page() {
                   <span>Shipping estimate</span>
                   <a
                     href="#"
-                    className="ml-2 shrink-0 text-gray-400 hover:text-gray-500"
+                    className="ml-2 shrink-0 text-gray-400 hover:text-[#999999]"
                   >
                     <span className="sr-only">
                       Learn more about how shipping is calculated
@@ -167,7 +167,7 @@ export default function Page() {
                   <span>Tax estimate</span>
                   <a
                     href="#"
-                    className="ml-2 shrink-0 text-gray-400 hover:text-gray-500"
+                    className="ml-2 shrink-0 text-gray-400 hover:text-[#999999]"
                   >
                     <span className="sr-only">
                       Learn more about how tax is calculated
@@ -191,7 +191,7 @@ export default function Page() {
             </dl>
             <div className="mt-6">
               <PaystackButton
-                email={"abdulrahmansoyooye@gmail.com"}
+               
                 amount={totalPrice}
               />
             </div>

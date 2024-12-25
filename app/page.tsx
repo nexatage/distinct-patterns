@@ -1,12 +1,12 @@
 import React from "react";
 import "/styles/globals.css";
 
-import StoreCollection from "../components/StoreCollection";
-import BlogComponent from "@/components/BlogComponent";
-import ImageCarousel from "@/components/ImageCarousel";
-import New from "@/components/New";
-import Style from "@/components/Style";
-import Meet from "@/components/Meet";
+import StoreCollection from "@/components/home/StoreCollection";
+import BlogComponent from "@/components/home/BlogComponent";
+import ImageCarousel from "@/components/home/ImageCarousel";
+import New from "@/components/home/New";
+import Style from "@/components/home/Style";
+import Meet from "@/components/home/Meet";
 import sim from "@/public/Rectangle 1.svg";
 import maleek from "@/public/home/WhatsApp_Image_2024-10-22_at_20.54.47-removebg-preview 1.svg";
 import Image from "next/image";
@@ -24,7 +24,7 @@ export default function Page() {
             <h1 className="text-5xl md:text-[72px] [@media(min-width:1230px)]:text-[95px] font-bold tracking-tight">
               EMBRACE TRADITION WITH
               <br />
-              <span className="text-gray-400 relative inline-flex items-center">
+              <span className="text-[#999999] relative inline-flex items-center">
                 CONFIDENCE
                 <div className="hidden [@media(min-width:1230px)]:block ml-12 max-w-sm">
                   <p className="text-sm tracking-tight text-gray-600">

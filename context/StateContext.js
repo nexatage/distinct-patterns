@@ -52,7 +52,14 @@ export const StateContext = ({ children }) => {
     }
     setCartItems([...cartItems, { ...product, quantity: 1 ,selectedColor}])
   };
-
+const handleSetColor = (id,selectedColor)=>{
+  setCartItems((prevItems) =>
+    prevItems.map((item) =>
+      item._id == id ? { ...item, selectedColor } : item
+    )
+  );
+  console.log("cartitem",cartItems)
+}
   // Remove product from cart
   const removeFromCart = (product) => {
     setCartItems(cartItems.filter((item) => item._id !== product._id));
@@ -77,6 +84,7 @@ export const StateContext = ({ children }) => {
     setQuantity,
     checkIfProductExists,
     totalcartQuantity,
+    handleSetColor
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

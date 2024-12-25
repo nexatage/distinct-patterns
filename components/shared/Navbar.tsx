@@ -4,8 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import Auth from "@/components/Auth";
-import { useCart } from "../context/StateContext.js";
+import Auth from "@/components/shared/Auth";
+import { useCart } from "../../context/StateContext.js";
 import shoppingcart from "@/public/shopping-cart-01.svg";
 import {
   Sheet,
@@ -44,9 +44,9 @@ const Navbar = () => {
                 href={href}
                 className={`${
                   isActive(href)
-                    ? "text-slate-500  p-2 rounded-lg"
-                    : "text-slate-400"
-                } hover:text-black transition font-semibold`}
+                    ? "text-black"
+                    : ""
+                } hover:text-black transition text-slate-500`}
               >
                 {name.toUpperCase()}
               </Link>
@@ -127,9 +127,9 @@ const Navbar = () => {
                     href={href}
                     className={`${
                       isActive(href)
-                        ? "text-slate-500  p-2 rounded-lg"
-                        : "text-slate-400"
-                    } hover:text-black transition font-semibold`}
+                        ? "text-black"
+                        : ""
+                    } hover:text-black transition text-slate-500`}
                   >
                     {name.toUpperCase()}
                   </Link>

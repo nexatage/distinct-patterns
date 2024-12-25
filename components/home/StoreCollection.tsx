@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Image } from "next/image";
-import Allproducts from "@/components/Product";
+import  Image  from "next/image";
+import Allproducts from "@/components/product/Product";
 import { getProducts } from "@/sanity/products";
 const StoreCollection = () => {
   const [allproducts, setAllProducts] = useState([]);

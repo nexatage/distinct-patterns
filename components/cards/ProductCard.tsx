@@ -25,7 +25,7 @@ const ProductCard = ({ product }) => {
       toast({
         description: "Added to Cart",
       });
-      addToCart(product);
+      addToCart(product,product?.variations[0]?.color);
     } else {
       toast({
         description: "Removed from Cart",
@@ -37,7 +37,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <div>
-      <div key={product.id} className="overflow-hidden border rounded-2xl">
+      <div key={product.id} className="overflow-hidden border rounded-md">
         {/* Product Image */}
         <div className="p-0 relative">
           <Image
@@ -45,7 +45,7 @@ const ProductCard = ({ product }) => {
             height={150}
             src={urlFor(product.images[0]).quality(100).url()}
             alt={product.name}
-            className="h-[300px] w-full object-cover  rounded-tr-2xl rounded-tl-2xl"
+            className="h-[300px] w-full object-cover  rounded-tr-md rounded-tl-md"
           />
           {/* Color Variants Overlay */}
           <div className="absolute bottom-2 left-2 flex gap-2 bg-white/90 p-2  rounded-2xl">

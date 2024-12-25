@@ -11,7 +11,9 @@ import icon from "@/public/Image.svg";
 import { useParams } from "next/navigation";
 import { getEachProducts } from "@/sanity/products";
 import { useCart } from "@/context/StateContext";
-import { SimilarProducts } from "@/components/SimilarProducts";
+import ItemSkeleton from "@/components/skeleton/ItemSkeleton"
+
+import { SimilarProducts } from "@/components/product/SimilarProducts";
 const ratingData = {
   average: 4.8,
   total: 43,
@@ -58,7 +60,6 @@ interface Product {
 const ProductPage = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [mainImage, setMainImage] = useState<string | null>(null);
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [isLiked, setIsLiked] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -67,11 +68,12 @@ const ProductPage = () => {
   const { cartItems } = useCart();
 
   // Helper function to find a product in the cart
-  const getProductInCart = (productId: string | undefined) => {
-    return cartItems.find((item) => item._id === productId) || null;
-  };
-
+ 
   useEffect(() => {
+    const getProductInCart = (productId: string | undefined) => {
+      return cartItems.find((item) => item._id === productId) || null;
+    };
+  
     const fetchAndSetProduct = async () => {
       try {
         const fetchedProduct = await getEachProducts(slug);
@@ -82,7 +84,7 @@ const ProductPage = () => {
         const finalProduct = productFromCart || fetchedProduct;
 
         setProduct(finalProduct);
-        setSelectedColor(finalProduct?.variations[0]?.color);
+        // setSelectedColor(product?.variations[0]?.color);
         // Set the main image if available
         if (finalProduct?.images?.length > 0) {
           setMainImage(urlFor(finalProduct.images[0].asset.url).url());
@@ -94,9 +96,8 @@ const ProductPage = () => {
 
     fetchAndSetProduct();
   }, [slug, cartItems]);
-  console.log(product);
   if (error) return <p>Error: {error}</p>;
-  if (!product) return <p>Loading...</p>;
+  if (!product) return <ItemSkeleton/>;
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -110,8 +111,6 @@ const ProductPage = () => {
           product={product}
           isLiked={isLiked}
           setIsLiked={setIsLiked}
-          selectedColor={selectedColor}
-          setSelectedColor={setSelectedColor}
           toggleLike={() => setIsLiked(!isLiked)}
         />
       </div>
@@ -124,22 +123,22 @@ const ProductPage = () => {
 export default ProductPage;
 
 const ProductDetails = ({
-  selectedColor,
-  setSelectedColor,
   product,
   isLiked,
   setIsLiked,
-  toggleLike,
 }: {
   product: Product;
-  selectedColor: string;
+  
   isLiked: boolean;
   setIsLiked: React.Dispatch<React.SetStateAction<boolean | null>>;
-  setSelectedColor: React.Dispatch<React.SetStateAction<string | null>>;
+  
   toggleLike: () => void;
 }) => {
-  const { addToCart, setQuantity, removeFromCart, checkIfProductExists } =
+  const [selectedColor, setSelectedColor] = useState<string | null>(product?.variations[0]?.color);
+
+  const { addToCart, setQuantity, removeFromCart, checkIfProductExists,handleSetColor } =
     useCart();
+
   // Memoized value for whether the product exists in the cart
   const showAddCart = React.useMemo(() => {
     return !checkIfProductExists(product._id);
@@ -151,6 +150,11 @@ const ProductDetails = ({
   const decreaseQty = (item) => {
     setQuantity(item._id, item.quantity - 1);
   };
+  const setColor = (color,item)=>{
+    setSelectedColor(color)
+    handleSetColor(product._id,color);
+
+  }
   const handleCartAction = () => {
     if (showAddCart) {
       addToCart(product, selectedColor);
@@ -165,7 +169,7 @@ const ProductDetails = ({
           <p className="text-[#C0C0C0] font-bold text-[18px]">
             Latest Collection
           </p>
-          <h1 className="text-[58px] font-semibold">{product.name}</h1>
+          <h1 className="sm:text-[58px] text-[40px] font-semibold">{product.name}</h1>
           <p className="text-[#8D8D8D] font-medium">{product.description}</p>
           <p className="text-[35px] text-[#8F8F8F] font-semibold">
             ₦ {product.price.toLocaleString()}
@@ -199,11 +203,10 @@ const ProductDetails = ({
                 key={`${color}-${index}`}
                 variant={selectedColor === color ? "default" : "outline"}
                 className="px-4"
-                onClick={() => {
-                  setSelectedColor(color);
-                }}
+                onClick={()=>setColor(color,product)}
+                disabled={showAddCart}
               >
-                {color}
+                {color.toUpperCase()}
               </Button>
             ))}
           </div>
@@ -226,7 +229,7 @@ const ProductDetails = ({
                 <Minus className="h-4 w-4" />
               </Button>
               <span className="w-12 text-center">
-                {!showAddCart ? product.quantity : "Add"}
+                {!showAddCart ? product.quantity : "0"}
               </span>
               <Button
                 variant="ghost"
@@ -276,14 +279,14 @@ const ProductDetails = ({
 const ProductTab = () => (
   <div className="mt-12">
     <Tabs defaultValue="reviews">
-      <TabsList className="-full justify-start rounded-none h-auto p-0 bg-transparent">
-        <TabsTrigger value="details" className="text-[1rem] ">
+      <TabsList className="full justify-start rounded-none h-auto p-0 bg-transparent">
+        <TabsTrigger value="details" className="text-[1.5rem] ">
           Details
         </TabsTrigger>
-        <TabsTrigger value="reviews" className="text-[1rem]">
+        <TabsTrigger value="reviews" className="text-[1.5rem]">
           Reviews
         </TabsTrigger>
-        <TabsTrigger value="size" className="text-[1rem]">
+        <TabsTrigger value="size" className="text-[1.5rem]">
           Size
         </TabsTrigger>
       </TabsList>
@@ -320,7 +323,7 @@ const ProductTab = () => (
                     </div>
                   </div>
                   <p>{review.comment}</p>
-                  <div className="flex items-center gap-4 text-sm text-gray-500">
+                  <div className="flex items-center gap-4 text-sm text-[#999999]]">
                     <button className="flex items-center gap-1">
                       <span>Helpful ({review.helpful})</span>
                     </button>
@@ -340,7 +343,7 @@ const ProductTab = () => (
               <span className="text-4xl font-bold">{ratingData.average}</span>
               <div>
                 <RatingStars rating={5} />
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-[#999999]]]]]]]]]]]">
                   {ratingData.total} Reviews
                 </p>
               </div>
@@ -357,7 +360,7 @@ const ProductTab = () => (
                       }}
                     />
                   </div>
-                  <span className="w-8 text-sm text-gray-500">
+                  <span className="w-8 text-sm text-[#999999]]]]]]">
                     {item.count}
                   </span>
                 </div>
@@ -387,7 +390,7 @@ const ProductImages = ({
         src={mainImage}
         alt={"Main product Image"}
         fill
-        className="object-cover rounded-lg"
+        className="w-full object-cover rounded-lg"
       />
     </div>
     <div className="grid grid-cols-4 gap-4">
