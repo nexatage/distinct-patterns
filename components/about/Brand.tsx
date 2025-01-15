@@ -30,12 +30,12 @@ const Brand = () => {
       </div>
 
       {/* Image Box */}
-      <div className="flex order-2 w-full img-box lg:w-1/2 lg:justify-center lg:order-1">
+      <div className="flex order-2 w-full img-box lg:w-1/2 lg:justify-center lg:order-1 absolute">
         <Image
         fill
           src="/assets/brand.jpg"
           alt="brand_story"
-          className="object-contain w-full h-auto lg:w-2/3"
+          className=" object-contain w-full h-auto lg:w-2/3"
         />
       </div>
     </div>

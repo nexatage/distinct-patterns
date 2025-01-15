@@ -48,7 +48,7 @@ const Page = () => {
                   src={maleek}
                   alt="Man in black outfit"
                   fill
-                  className="object-cover rounded-2xl"
+                  className="object-cover rounded-2xl "
                   priority
                 />
               </div>

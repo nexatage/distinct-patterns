@@ -26,12 +26,12 @@ export default function Footer() {
             <h4 className="font-semibold mb-4">SHOP</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">
+                <Link href="/blog" className="text-sm text-muted-foreground hover:text-foreground">
                   Men
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">
+                <Link href="/blog" className="text-sm text-muted-foreground hover:text-foreground">
                   Women
                 </Link>
               </li>
@@ -64,7 +64,7 @@ export default function Footer() {
             <ul className="space-y-2">
               {["Articles", "Blog", "Newsletter"].map((item) => (
                 <li key={item}>
-                  <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">
+                  <Link href="/blog" className="text-sm text-muted-foreground hover:text-foreground">
                     {item}
                   </Link>
                 </li>

@@ -6,7 +6,8 @@ export async function getBlogs() {
     title,
     "slug": slug.current,
     description,
-    
+    link,
+    time,
     category->{title, slug},
     image{
       asset->{
@@ -24,7 +25,8 @@ export async function getBlogsByCategory(category) {
     title,
     "slug": slug.current,
     description,
-    
+    link,
+    time,
     category->{title, slug},
     image{
       asset->{

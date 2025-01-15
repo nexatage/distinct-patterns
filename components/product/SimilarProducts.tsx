@@ -6,8 +6,10 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 export const SimilarProducts = ({
   category,
+  id
 }: {
   category: { title?: string };
+  id:string
 }) => {
   const [similarProducts, setSimilarProducts] = useState([]);
 
@@ -39,7 +41,8 @@ export const SimilarProducts = ({
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {similarProducts.map((product) => (
-          <ProductCard key={product._id} product={product} />
+          product._id !== id ? <ProductCard key={product._id} product={product} />: <div key={product._id} className="text-[1rem] text-center">No Similar Product Found</div> 
+          
         ))}
       </div>
     </section>

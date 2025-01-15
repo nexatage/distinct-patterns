@@ -1,7 +1,7 @@
 import sanityClient from "./sanityClient.js";
 
 export async function getProducts() {
-  const query = `*[_type == "product"]{
+  const query = `*[_type == "product"  ]{
      _id,
     name,
     "slug": slug.current,
@@ -24,6 +24,9 @@ export async function getProducts() {
 
   return await sanityClient.fetch(query);
 }
+
+
+
 export async function getProductsByCategory(category) {
   const query = ` *[_type == "product" && category->title == $category]{
             _id,
@@ -113,3 +116,29 @@ export async function getCategory() {
 
   return await sanityClient.fetch(query);
 }
+
+// Pagination 
+
+const fetchProductsQuery = `*[_type == "product"] | order(_createdAt desc) [$start...$end] {
+      _id,
+    name,
+    "slug": slug.current,
+    description,
+    price,
+    availablequantity,
+    category->{title, slug},
+    variations[]{
+      color 
+    },
+    images[]{
+      asset->{
+        url
+      }
+    },
+    ratings,
+    inStock
+}`;
+export const fetchPaginatedProducts = async (start, limit) => {
+  const end = start + limit;
+  return await sanityClient.fetch(fetchProductsQuery, { start, end });
+};

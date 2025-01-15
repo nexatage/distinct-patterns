@@ -191,7 +191,6 @@ export default function Page() {
             </dl>
             <div className="mt-6">
               <PaystackButton
-               
                 amount={totalPrice}
               />
             </div>

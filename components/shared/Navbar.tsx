@@ -25,9 +25,13 @@ const navigation = [
 const Navbar = () => {
   const pathname = usePathname();
   const { totalcartQuantity } = useCart();
-
+  
   const isActive = (path) => pathname === path;
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
+  const handleNavItemClick = () => {
+    setIsSheetOpen(false);
+  };
   return (
     <header className="sticky top-0 z-50 bg-white ">
       <nav className="container flex items-center justify-between px-4 py-4 mx-auto md:px-8">
@@ -77,8 +81,8 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Navigation */}
-        <Sheet>
-          <UserButton afterSignOutUrl="/" />
+        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+          <UserButton  />
           <div className="sm:hidden">
             <a href="/cart" className="relative">
               <Image
@@ -130,6 +134,7 @@ const Navbar = () => {
                         ? "text-black"
                         : ""
                     } hover:text-black transition text-slate-500`}
+                    onClick={handleNavItemClick} // Close the Sheet on click
                   >
                     {name.toUpperCase()}
                   </Link>

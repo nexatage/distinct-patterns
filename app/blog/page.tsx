@@ -11,6 +11,7 @@ import { urlFor } from "@/sanity/sanityImage";
 
 import { useQueryState } from "nuqs";
 import ItemSkeleton from "@/components/skeleton/ItemSkeleton"
+import { formatDate } from "@/constants";
 
 const Page = () => {
   const [allposts, setAllposts] = useState([]);
@@ -69,7 +70,7 @@ const Page = () => {
   console.log(posts)
   return (
     <div className="p-10 pt-0">
-      <h1 className="text-5xl md:text-[50px] [@media(min-width:1230px)]:text-[70px] font-bold tracking-tight mb-5">
+      <h1 className="text-5xl  [@media(min-width:1230px)]:text-[50px] font-bold tracking-tight mb-5">
         OUR
         <br />
         <span className="text-[#999999] relative inline-flex items-center">
@@ -81,7 +82,7 @@ const Page = () => {
         <Link href={"/blog"}  className="cursor-pointer hover:bg-black hover:text-white transition-color  border rounded-full p-3 ">ALL ARTICLES</Link>
         {getCategories.map((item, index) => (
           <div
-            className={`cursor-pointer hover:bg-black hover:text-white transition-color  border rounded-full p-3 ${item == categoryquery && "bg-black text-white"}`}
+            className={`cursor-pointer hover:bg-black transition-color duration-300 hover:text-white transition-color  border rounded-full p-3 ${item == categoryquery && "bg-black text-white"}`}
             key={`${item}-${index}`}
             onClick={()=>setCategoryQuery(item)}
           >
@@ -93,10 +94,10 @@ const Page = () => {
       {/* Blog Posts */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10  pt-8">
-        {posts.length > 0 ? posts.map(({publishedDate,title,description,image}, index) => (
+        {posts.length > 0 ? posts.map(({publishedDate,title,description,image,link}, index) => (
           <div
             key={`${publishedDate}-${index}`}
-            className="bg-white rounded-md overflow-hidden  max-md:w-full"
+            className="bg-white rounded-md overflow-hidden max-md:w-full w-[80%] m-auto"
           >
             <Image
               src={urlFor(image.asset.url).url()}
@@ -105,13 +106,13 @@ const Page = () => {
               alt="Modern Dresses"
               className="w-full h-[400px] object-cover rounded-md mb-2"
             />
-            <div className="">
+            <div className="flex flex-col gap-[1rem]">
               <p className="text-sm text-[#999999] mb-2">
-               {publishedDate}
+               {formatDate(publishedDate)}
               </p>
-              <h3 className="text-2xl font-semibold mb-2">
-               {title}
-              </h3>
+              <Link href={link} className="text-2xl font-semibold mb-2">
+               {title.toUpperCase()}
+              </Link>
               <p className="text-[#999999] text-md">
                {description}
               </p>

@@ -32,13 +32,17 @@ export default function ProductFilterSidebar({ allCategories, allColors }) {
   const toggleCategory = (category: string) => {
     setCategoryQuery(category);
   };
+  
 
+  const handleNavItemClick = () => {
+    setIsOpen(false);
+  };
   const toggleColor = (color: string) => {
     setColorQuery(color);
   };
 
   const FilterContent = React.forwardRef<HTMLDivElement>((props, ref) => (
-    <div ref={ref} className="space-y-10" {...props}>
+    <div ref={ref} className="space-y-10" {...props} >
       <div>
         <h3 className="text-base text-[1.2rem] mb-7">Filter by category</h3>
         <div className="flex gap-3 mb-7">
@@ -62,7 +66,7 @@ export default function ProductFilterSidebar({ allCategories, allColors }) {
         </div>
         <div className="space-y-5">
           {allCategories.map((category) => (
-            <div key={category} className="flex items-center">
+            <div key={category} className="flex items-center" onClick={handleNavItemClick}>
               <Checkbox
                 id={category}
                 checked={categoryquery === category}
@@ -90,7 +94,9 @@ export default function ProductFilterSidebar({ allCategories, allColors }) {
               style={{ backgroundColor: color, opacity:1 }}
               onClick={() => toggleColor(color)}
               aria-label={`Select ${color}`}
+              
             />
+           
           ))}
         </div>
       </div>

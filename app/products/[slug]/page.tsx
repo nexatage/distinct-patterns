@@ -114,8 +114,8 @@ const ProductPage = () => {
           toggleLike={() => setIsLiked(!isLiked)}
         />
       </div>
-      <ProductTab />
-      <SimilarProducts category={product.category} />
+      <ProductTab product={product}/>
+      <SimilarProducts category={product.category} id={product._id}/>
     </div>
   );
 };
@@ -276,26 +276,23 @@ const ProductDetails = ({
     </div>
   );
 };
-const ProductTab = () => (
+const ProductTab = ({product}) => (
   <div className="mt-12">
-    <Tabs defaultValue="reviews">
+    <Tabs defaultValue="details">
       <TabsList className="full justify-start rounded-none h-auto p-0 bg-transparent">
-        <TabsTrigger value="details" className="text-[1.5rem] ">
+        <TabsTrigger value="details" className="text-[1.5rem] border-none shadow-none font-bold">
           Details
         </TabsTrigger>
-        <TabsTrigger value="reviews" className="text-[1.5rem]">
+        {/* <TabsTrigger value="reviews" className="text-[1.5rem]">
           Reviews
-        </TabsTrigger>
-        <TabsTrigger value="size" className="text-[1.5rem]">
+        </TabsTrigger> */}
+        {/* <TabsTrigger value="size" className="text-[1.5rem]">
           Size
-        </TabsTrigger>
+        </TabsTrigger> */}
       </TabsList>
       <TabsContent value="details" className="mt-6">
         <p>
-          Create a bold and trendy t-shirt design that embodies confidence and
-          creativity. Incorporate vibrant colors, unique typography, or
-          eye-catching graphics. The theme should inspire self-expression and
-          positivity.
+        {product.description}
         </p>
       </TabsContent>
       <TabsContent value="reviews" className="mt-6">
