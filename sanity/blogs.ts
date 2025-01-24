@@ -1,4 +1,4 @@
-import sanityClient from "./sanityClient.js";
+import sanityClient from "@/sanity/sanityClient";
 
 export async function getBlogs() {
   const query = `*[_type == "blogPost"]{

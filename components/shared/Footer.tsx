@@ -91,16 +91,16 @@ export default function Footer() {
             © Copyright {date} Distinct Patterns
           </p>
           <div className="flex gap-4">
-            <Link href="#" className="text-muted-foreground hover:text-foreground">
+            <Link target="_blank" href="https://www.instagram.com/distinctpatterns?igsh=MWQ2am02ZDh4cXBtMg==" className="text-muted-foreground hover:text-foreground">
               <Instagram className="h-5 w-5" />
             </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">
-              <Facebook className="h-5 w-5" />
+            <Link target="_blank" href="https://x.com/distinctpattern?s=21&t=sGAjWo1-KupMU-OGe7cKLg" className="text-muted-foreground hover:text-foreground">
+              <Facebook  className="h-5 w-5" />
             </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">
+            <Link target="_blank" href="https://x.com/distinctpattern?s=21&t=sGAjWo1-KupMU-OGe7cKLg" className="text-muted-foreground hover:text-foreground">
               <Twitter className="h-5 w-5" />
             </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">
+            <Link target="_blank" href="#" className="text-muted-foreground hover:text-foreground">
               <Linkedin className="h-5 w-5" />
             </Link>
           </div>

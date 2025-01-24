@@ -1,17 +1,13 @@
 "use client";
-import React, { useState, useEffect,useRef  } from "react";
+import React, { useState, useEffect,  } from "react";
 import ProductFilterSidebar from "@/components/product/ProductSidebar";
 import Allproducts from "@/components/product/Product";
 import {
   fetchPaginatedProducts,
-  getProducts,
+  getFabrics,
   getProductsByCategory,
   getProductsByColor,
 } from "@/sanity/products";
-import Image from "next/image";
-import ScrollToTop from "react-scroll-up";
-import { useSearchParams } from "next/navigation";
-import icon from "@/public/Arrow 1.svg";
 import { BestSellers } from "@/components/product/BestSellers";
 
 import {
@@ -22,7 +18,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useQueryState } from "nuqs";
+import { useQueryState,parseAsBoolean } from "nuqs";
 import { parseAsInteger } from "nuqs";
 const Product = () => {
   const [allproducts, setAllProducts] = useState([]);
@@ -31,12 +27,23 @@ const Product = () => {
     "currentPage",
     parseAsInteger.withDefault(1)
   );
-  const itemsPerPage = 3;
+  const itemsPerPage = 7;
+   const [categoryquery, setCategoryQuery] = useQueryState("category", {
+    defaultValue: "",
+  });
+  const [colorquery, setColorQuery] = useQueryState("color", {
+    defaultValue: "",
+  });
+  const [isFabrics, setIsFabrics] = useQueryState("fabrics", parseAsBoolean.withDefault(false));
+  
   // Pagniations
   const handlePreviousPage = () => {
     if (currentPage > 1) {
       setCurrentPage((prev) => prev - 1);
     }
+    setCategoryQuery("");
+    setIsFabrics(false);
+    setColorQuery("");
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
@@ -46,16 +53,17 @@ const Product = () => {
     if (allproducts.length >= itemsPerPage || products.length >= itemsPerPage) {
       setCurrentPage((prev) => prev + 1);
     }
+    setCategoryQuery("");
+    setColorQuery("");
+    setIsFabrics(false);
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
   };
-  // Fetch query parameters
-  const searchParams = useSearchParams();
-  const categoryquery = searchParams.get("category") || "";
-  const colorquery = searchParams.get("color") || "";
 
+
+  
   // Extract categories and colors from products
   const getCategories = React.useMemo(() => {
     if (!allproducts.length) return [];
@@ -80,6 +88,7 @@ const Product = () => {
     }, []);
   }, [allproducts]);
 
+
   // Fetch all products on component mount
   useEffect(() => {
     (async () => {
@@ -97,20 +106,22 @@ const Product = () => {
   useEffect(() => {
     (async () => {
       try {
-        const decodedCategory = decodeURIComponent(categoryquery);
-        const decodedColor = decodeURIComponent(colorquery);
         let data;
 
-        if (!categoryquery && !colorquery) {
+        if (!categoryquery && !colorquery && !isFabrics) {
           const start = (currentPage - 1) * itemsPerPage;
           data = await fetchPaginatedProducts(start, itemsPerPage);
+
         } else if (categoryquery) {
-          data = await getProductsByCategory(decodedCategory);
+          data = await getProductsByCategory(categoryquery);
         } else if (colorquery) {
-          data = await getProductsByColor(decodedColor);
+          data = await getProductsByColor(colorquery);
+        } else if (isFabrics) {
+          data = await getFabrics();
         } else {
           const start = (currentPage - 1) * itemsPerPage;
           data = await fetchPaginatedProducts(start, itemsPerPage);
+          console.log(data)
         }
 
         setProducts(data);
@@ -118,7 +129,7 @@ const Product = () => {
         console.error("Failed to fetch filtered products:", error);
       }
     })();
-  }, [categoryquery, colorquery, currentPage]);
+  }, [categoryquery, colorquery, currentPage,isFabrics]);
 
   return (
     <div className="p-10 pt-0" >
@@ -139,7 +150,6 @@ const Product = () => {
         </div>
       </div>
       {/* Pagniation */}
-      <div>
         <Pagination>
           <PaginationContent>
             <PaginationItem>
@@ -164,7 +174,6 @@ const Product = () => {
             </PaginationItem>
           </PaginationContent>
         </Pagination>
-      </div>
       {/* Our Best Seller */}
 
       <BestSellers />

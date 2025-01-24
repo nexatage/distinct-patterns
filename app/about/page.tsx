@@ -16,7 +16,7 @@ const Page = () => {
       <div className="container mx-auto px-4">
         <div className="relative">
           {/* Background shape */}
-          {/* <div className="absolute top-0 right-0 w-3/4 h-full rounded-l-3xl z-0"> </div> */}
+         
           
           <div className="relative z-10 flex flex-col md:flex-row items-start">
             <div className="w-full md:w-1/2 pt-4">

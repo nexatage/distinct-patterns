@@ -2,7 +2,7 @@ import React from 'react';
 
 const ItemSkeleton = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-10 animate-pulse">
+    <div className="border grid grid-cols-1 md:grid-cols-2 gap-6 p-10 animate-pulse">
       {/* Left Section (Image Placeholder) */}
       <div className="bg-gray-300 h-96 rounded-md"></div>
 

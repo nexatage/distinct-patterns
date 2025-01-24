@@ -1,4 +1,4 @@
-import sanityClient from "./sanityClient.js";
+import sanityClient from "./sanityClient";
 
 export async function getProducts() {
   const query = `*[_type == "product"  ]{
@@ -18,14 +18,37 @@ export async function getProducts() {
       }
     },
     ratings,
-    inStock
+    isfabric
   
   }`;
 
   return await sanityClient.fetch(query);
 }
 
+export async function getisFabrics() {
+  const query = `*[_type == "product" && isfabric == true ]{
+     _id,
+    name,
+    "slug": slug.current,
+    description,
+    price,
+    availablequantity,
+    category->{title, slug},
+    variations[]{
+      color 
+    },
+    images[]{
+      asset->{
+        url
+      }
+    },
+    ratings,
+    isfabric
+  
+  }`;
 
+  return await sanityClient.fetch(query);
+}
 
 export async function getProductsByCategory(category) {
   const query = ` *[_type == "product" && category->title == $category]{
@@ -39,7 +62,7 @@ export async function getProductsByCategory(category) {
               quantity,
               color
             },
-            inStock,
+            isfabric,
             ratings,
             availablequantity,
             "categories": category->{
@@ -66,7 +89,7 @@ export async function getProductsByColor(color) {
         quantity,
         color
       },
-      inStock,
+      isfabric,
       ratings,
       availablequantity,
       "categories": category->{
@@ -97,7 +120,7 @@ export async function getEachProducts(slug) {
       }
     },
     ratings,
-    inStock
+    isfabric
   
   }`;
 
@@ -117,7 +140,7 @@ export async function getCategory() {
   return await sanityClient.fetch(query);
 }
 
-// Pagination 
+// Pagination
 
 const fetchProductsQuery = `*[_type == "product"] | order(_createdAt desc) [$start...$end] {
       _id,
@@ -136,7 +159,7 @@ const fetchProductsQuery = `*[_type == "product"] | order(_createdAt desc) [$sta
       }
     },
     ratings,
-    inStock
+    isfabric
 }`;
 export const fetchPaginatedProducts = async (start, limit) => {
   const end = start + limit;

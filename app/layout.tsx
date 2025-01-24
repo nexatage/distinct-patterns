@@ -30,7 +30,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
+    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY} appearance={{
+      layout: {
+        socialButtonsPlacement: 'bottom',
+        socialButtonsVariant: 'iconButton',
+        logoPlacement:"inside",
+      }
+    }}>
       <html lang="en" className={`${poppins.variable} ${gwendolyn.variable}`}>
         <body className="min-h-screen bg-white">
           <NuqsAdapter>

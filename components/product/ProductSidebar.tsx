@@ -12,13 +12,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { useQueryState } from "nuqs";
+import { parseAsBoolean, useQueryState,} from "nuqs";
 import { useRouter } from "next/navigation";
 export default function ProductFilterSidebar({ allCategories, allColors }) {
   const router = useRouter();
 
   const [selectedType, setSelectedType] = React.useState<string | null>(
-    "All Products"
+    ""
   );
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -28,7 +28,7 @@ export default function ProductFilterSidebar({ allCategories, allColors }) {
   const [colorquery, setColorQuery] = useQueryState("color", {
     defaultValue: "",
   });
-
+  const [isFabrics, setIsFabrics] = useQueryState("fabrics", parseAsBoolean.withDefault(false));
   const toggleCategory = (category: string) => {
     setCategoryQuery(category);
   };
@@ -44,12 +44,13 @@ export default function ProductFilterSidebar({ allCategories, allColors }) {
   const FilterContent = React.forwardRef<HTMLDivElement>((props, ref) => (
     <div ref={ref} className="space-y-10" {...props} >
       <div>
-        <h3 className="text-base text-[1.2rem] mb-7">Filter by category</h3>
+        <h3 className="text-base text-[1.2rem] mb-7">Filter Products</h3>
         <div className="flex gap-3 mb-7">
           <Button
             variant={selectedType === "All Products" ? "default" : "outline"}
             size="sm"
             onClick={() => {
+              setIsOpen(false);
               setSelectedType("All Products");
               router.push("/products");
             }}
@@ -57,11 +58,16 @@ export default function ProductFilterSidebar({ allCategories, allColors }) {
             All Products
           </Button>
           <Button
-            variant={selectedType === "Out of Stock" ? "default" : "outline"}
+            variant={isFabrics ? "default" : "outline"}
             size="sm"
-            onClick={() => router.push("/products")}
+            onClick={() => { 
+              setIsOpen(false);
+              setSelectedType("Fabrics");
+              setIsFabrics(true); 
+            }
+          }
           >
-            Out of Stock
+            Fabrics
           </Button>
         </div>
         <div className="space-y-5">
@@ -86,17 +92,22 @@ export default function ProductFilterSidebar({ allCategories, allColors }) {
         <h3 className="text-base font-semibold mb-4">Choose Color</h3>
         <div className="flex flex-col gap-2">
           {allColors.map((color) => (
-            <button
+            <div
               key={color}
+              className="flex gap-3 items-center cursor-pointer"
+              onClick={() => toggleColor(color)}
+            >
+            <button
               className={`w-4 h-8 rounded-2xl focus:outline-none  focus:ring-2 focus:ring-offset-2  ${
                 colorquery === color ? "ring-2 ring-black dark:ring-white" : ""
               }`}
               style={{ backgroundColor: color, opacity:1 }}
-              onClick={() => toggleColor(color)}
+            
               aria-label={`Select ${color}`}
               
-            />
-           
+            ></button>
+            {`${color.slice(0,1).toUpperCase()}${color.slice(1)}`}
+             </div>
           ))}
         </div>
       </div>

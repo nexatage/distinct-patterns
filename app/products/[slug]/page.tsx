@@ -12,7 +12,7 @@ import { useParams } from "next/navigation";
 import { getEachProducts } from "@/sanity/products";
 import { useCart } from "@/context/StateContext";
 import ItemSkeleton from "@/components/skeleton/ItemSkeleton"
-
+import Head from 'next/head';
 import { SimilarProducts } from "@/components/product/SimilarProducts";
 const ratingData = {
   average: 4.8,
@@ -100,6 +100,14 @@ const ProductPage = () => {
   if (!product) return <ItemSkeleton/>;
 
   return (
+    <>
+      <Head>
+        <title>{product.name} | Distinct</title>
+        <meta name="description" content={`Shop the best products in ${product.name}.`} />
+        <meta property="og:title" content={product.name} />
+        <meta property="og:description" content={`Explore our wide range of ${product.description}`} />
+        <link rel="canonical" href={`https://distinctpatterns.verce.app/products/${product.slug}`} />
+      </Head>
     <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <ProductImages
@@ -117,6 +125,7 @@ const ProductPage = () => {
       <ProductTab product={product}/>
       <SimilarProducts category={product.category} id={product._id}/>
     </div>
+    </>
   );
 };
 
