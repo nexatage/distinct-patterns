@@ -25,7 +25,7 @@ export async function getProducts() {
   return await sanityClient.fetch(query);
 }
 
-export async function getisFabrics() {
+export async function getFabrics() {
   const query = `*[_type == "product" && isfabric == true ]{
      _id,
     name,
