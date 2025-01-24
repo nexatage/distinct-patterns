@@ -7,8 +7,6 @@ import ImageCarousel from "@/components/home/ImageCarousel";
 import New from "@/components/home/New";
 import Style from "@/components/home/Style";
 import Meet from "@/components/home/Meet";
-import sim from "@/public/Rectangle 1.svg";
-import maleek from "@/public/home/WhatsApp_Image_2024-10-22_at_20.54.47-removebg-preview 1.svg";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -42,7 +40,7 @@ export default function Page() {
             <div className="absolute inset-0 -bottom-12 z-0">
               {/* Replace the src with your actual sim-card shaped background image path */}
               <Image
-                src={sim}
+                src={"/Rectangle 1.svg"}
                 alt="Sim-card shaped background"
                 className="w-full h-full object-cover rounded-3xl"
               />
@@ -54,7 +52,7 @@ export default function Page() {
             <div className="relative z-10">
               {/* Replace the src with your actual image path */}
               <Image
-                src={maleek}
+                src={"/home/maleek.svg"}
                 alt="Model wearing traditional fashion"
                 className="mr-3 md:mr-7 rounded-3xl w-full max-w-3xl mx-auto"
               />
