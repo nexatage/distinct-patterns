@@ -30,18 +30,16 @@ export default function VisionSection({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div className="relative aspect-[3/4] w-full h-[600px]">
-          <Image
+          <img
             src={leftImage}
             alt={leftImageAlt}
-            fill
             className="object-cover rounded-lg"
           />
         </div>
         <div className="relative aspect-[3/4] w-full h-[600px]">
-          <Image
+          <img
             src={rightImage}
             alt={rightImageAlt}
-            fill
             className="object-cover rounded-lg"
           />
         </div>
