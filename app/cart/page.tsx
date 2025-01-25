@@ -103,7 +103,7 @@ export default function Page() {
                       </div>
 
                       <p className="mt-4 flex items-center space-x-2 text-sm text-gray-700">
-                        {item.inStock ? (
+                        {item.isfabric ? (
                           <CheckIcon
                             aria-hidden="true"
                             className="size-5 shrink-0 text-green-500"
@@ -115,7 +115,7 @@ export default function Page() {
                           />
                         )}
                         <span>
-                          {item.inStock ? "In stock" : "Out of Stock"}
+                          {item.isfabric ? "Fabric" : "Wear"}
                         </span>
                       </p>
                     </div>

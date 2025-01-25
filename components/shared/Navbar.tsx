@@ -76,7 +76,7 @@ const Navbar = () => {
           </a>
           {/* Authentication Component */}
           <div className="">
-            <Auth />
+            <Auth handleNavClick={handleNavItemClick}/>
           </div>
         </div>
 
@@ -141,7 +141,7 @@ const Navbar = () => {
                 </li>
               ))}
               <div className="">
-                <Auth />
+                <Auth handleNavClick={handleNavItemClick}/>
               </div>
             </ul>
           </SheetContent>

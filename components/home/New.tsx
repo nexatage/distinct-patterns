@@ -16,7 +16,6 @@ const New = () => {
     (async () => {
       const data = await getProducts();
       setProducts(data);
-      console.log(data);
     })();
   }, []);
   return (

@@ -4,10 +4,15 @@ import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import PaystackPop from "@paystack/inline-js";
 import { useToast } from "@/hooks/use-toast";
+import { useRouter } from 'next/navigation'
+import { useCart } from "@/context/StateContext";
+import { createOrder } from "@/sanity/orders";
 const PaystackButton = ({ amount }) => {
   const { toast } = useToast();
   const { user } = useUser();
+  const router = useRouter();
   const email = user?.primaryEmailAddress?.emailAddress;
+  const { cartItems, setCartItems} = useCart();
   const payWithPaystack = () => {
     if (!user) {
       toast({
@@ -24,17 +29,21 @@ const PaystackButton = ({ amount }) => {
         email,
         amount: amount * 100, // Convert amount to kobo
         currency: "NGN", // Currency
-        onSuccess: (transaction) => {
-          toast({
-            title: "Transaction was Successful",
-          });
-          console.log(transaction);
+        onSuccess: async(transaction) => {
+         
+          try {
+            await createOrder(email,cartItems,amount);
+            setCartItems([]);
+            router.push('/orders')
+           } catch (error) {
+             console.log(error)
+           }
+
           // Post-payment logic, e.g., save the transaction to your backend
         },
-        onCancel: () => {
+        onCancel: async() => {
           toast({
-            title: "Payment was cancelled",
-            description: "please try again later",
+            title: "Transaction was Successful",
           });
         },
         onError: (error) => {

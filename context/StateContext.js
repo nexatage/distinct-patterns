@@ -84,7 +84,8 @@ const handleSetColor = (id,selectedColor)=>{
     setQuantity,
     checkIfProductExists,
     totalcartQuantity,
-    handleSetColor
+    handleSetColor,
+    setCartItems
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
