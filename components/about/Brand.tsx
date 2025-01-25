@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import  Image  from "next/image";
+import Image from "next/image";
 
 const Brand = () => {
   return (
@@ -18,13 +18,13 @@ const Brand = () => {
           redefine your casual style. The soft and breathable cotton material
           ensures maximum comfort.
         </p>
-        <Button 
-          variant="outline" 
+        <Button
+          variant="outline"
           className="group border-black hover:bg-black hover:text-white transition-colors"
         >
           <Link href="/products" className="flex">
-          SHOP NOW
-          <ArrowRight className="mt-[2px] ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            SHOP NOW
+            <ArrowRight className="mt-[2px] ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </Button>
       </div>
@@ -32,9 +32,11 @@ const Brand = () => {
       {/* Image Box */}
       <div className="flex order-2 w-full img-box lg:w-1/2 lg:justify-center lg:order-1 absolute">
         <Image
-        fill
+          fill
           src="/assets/brand.jpg"
           alt="brand_story"
+          width={600}
+          height={600}
           className=" object-contain w-full h-auto lg:w-2/3"
         />
       </div>
