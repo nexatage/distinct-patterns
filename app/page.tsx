@@ -41,6 +41,8 @@ export default function Page() {
               {/* Replace the src with your actual sim-card shaped background image path */}
               <Image
                 src={"/Rectangle 1.svg"}
+                width={200}
+                height={400}
                 alt="Sim-card shaped background"
                 className="w-full h-full object-cover rounded-3xl"
               />
@@ -53,6 +55,8 @@ export default function Page() {
               {/* Replace the src with your actual image path */}
               <Image
                 src={"/home/maleek.svg"}
+                width={200}
+                height={400}
                 alt="Model wearing traditional fashion"
                 className="mr-3 md:mr-7 rounded-3xl w-full max-w-3xl mx-auto"
               />

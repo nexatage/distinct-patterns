@@ -13,8 +13,8 @@ const Auth = ({handleNavClick}) => {
     <>
       <div className="w-full flex items-center max-md:flex-col  space-y-2">
         <SignedIn>
-        <Link onClick={handleNavClick} href="/orders" className="w-full text-left max-md:mb-2 mx-5 hover:text-black transition text-slate-500 border rounded-full p-[0.5rem]">
-              ORDERS
+        <Link onClick={handleNavClick} href="/orders" className="w-full text-left max-md:mb-2 mx-5 hover:text-black transition text-slate-500 border rounded-full p-[0.2rem_0.5rem]">
+              Orders
           </Link>
           <SignOutButton>
             <Button

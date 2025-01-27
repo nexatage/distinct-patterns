@@ -1,44 +1,5 @@
 "use client";
-const products = [
-  {
-    id: 1,
-    name: "Nomad Tumbler",
-    description:
-      "This durable and portable insulated tumbler will keep your beverage at the perfect temperature during your next adventure.",
-    href: "#",
-    price: "35.00",
-    status: "Preparing to ship",
-    step: 1,
-    date: "March 24, 2021",
-    datetime: "2021-03-24",
-    address: ["Floyd Miles", "7363 Cynthia Pass", "Toronto, ON N3Y 4H8"],
-    email: "f•••@example.com",
-    phone: "1•••••••••40",
-    imageSrc:
-      "https://tailwindui.com/plus/img/ecommerce-images/confirmation-page-03-product-01.jpg",
-    imageAlt: "Insulated bottle with white base and black snap lid.",
-  },
-  {
-    id: 2,
-    name: "Minimalist Wristwatch",
-    description:
-      "This contemporary wristwatch has a clean, minimalist look and high quality components.",
-    href: "#",
-    price: "149.00",
-    status: "Shipped",
-    step: 0,
-    date: "March 23, 2021",
-    datetime: "2021-03-23",
-    address: ["Floyd Miles", "7363 Cynthia Pass", "Toronto, ON N3Y 4H8"],
-    email: "f•••@example.com",
-    phone: "1•••••••••40",
-    imageSrc:
-      "https://tailwindui.com/plus/img/ecommerce-images/confirmation-page-03-product-02.jpg",
-    imageAlt:
-      "Arm modeling wristwatch with black leather band, white watch face, thin watch hands, and fine time markings.",
-  },
-  // More products...
-];
+
 import {
   Accordion,
   AccordionContent,
@@ -75,16 +36,18 @@ export default function Page() {
   }, [email]);
 
   if (loading) return <ItemSkeleton />;
-  if(orders.length < 0 ) return <div className="text-[10rem]">Nothing Here Yet</div>;
+  if(orders.length == 0 ) return <Image alt="nothing" src="/assets/nothin_here.svg"  width={400} height={400} className="m-auto my-[6rem]"/>;
   return (
+    <>
+    <div className="text-3xl  px-[1rem] sm:px-[4rem]">Your Recent Orders</div>
     <Accordion type="single" collapsible className="w-full space-y-4">
       {orders.map(({ _id, createdAt, orderItems, status }) => (
         <AccordionItem value={`item-${_id}`} key={_id}>
           <div className="mx-auto max-w-2xl sm:py-12 lg:max-w-7xl lg:px-8">
-            <AccordionTrigger className="space-y-2 px-4 sm:flex sm:items-center sm:justify-between sm:space-y-0 sm:px-0">
-              <div className="mt-2 border-b border-gray-200 pb-5 text-sm sm:flex sm:justify-between">
+            <AccordionTrigger className="text-xl space-y-2 px-4 sm:flex sm:items-center sm:justify-between sm:space-y-0 sm:px-0">
+              <div className="mt-2 border-b border-gray-200 pb-5  sm:flex sm:justify-between">
                 <dl className="flex">
-                  <dt className="text-gray-500">Order #{_id}</dt>
+                  <dt className="text-gray-500">Order #{_id.slice(0,5)}</dt>
                   <dt>
                     <span className="sr-only">Date</span>
                     <span aria-hidden="true" className="mx-2 text-gray-400">
@@ -121,10 +84,10 @@ export default function Page() {
                       />
                     </div>
                     <div className="mt-6 sm:col-span-7 sm:mt-0 md:row-end-1">
-                      <h3 className="text-lg font-medium text-gray-900">
+                      <h3 className="text-xl font-medium text-gray-900">
                         {product.name}
                       </h3>
-                      <p className="mt-1 font-medium text-gray-900">₦{price}</p>
+                      <p className="mt-1 text-lg font-medium text-gray-900">₦{price.toLocaleString()}</p>
                       <p className="mt-3 text-gray-500">
                         {product.description}
                       </p>
@@ -148,7 +111,7 @@ export default function Page() {
                           />
                           }
 
-                        </div>
+                        </div>}
                         <div className="mt-6 hidden grid-cols-4 font-medium text-gray-600 sm:grid">
                           <div className="">Order placed</div>
                           <div
@@ -183,5 +146,6 @@ export default function Page() {
         </AccordionItem>
       ))}
     </Accordion>
+    </>
   );
 }

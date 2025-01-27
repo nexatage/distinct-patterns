@@ -40,10 +40,9 @@ export const SimilarProducts = ({
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {similarProducts.map((product) => (
+        {similarProducts.length == 0 ? similarProducts.map((product) => (
           product._id !== id && <ProductCard key={product._id} product={product} />
-          
-        ))}
+        )) : <Image alt="nothing" src="/assets/nothin_here.svg"  width={400} height={400} className="m-auto w-full my-[6rem]"/>}
       </div>
     </section>
   );
