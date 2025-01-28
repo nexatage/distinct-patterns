@@ -97,7 +97,11 @@ export async function getProductsByColor(color) {
         title,
         description
       },
-      images
+       images[]{
+      asset->{
+        url
+      }
+    }
     }`;
 
   return await sanityClient.fetch(query, { color });
