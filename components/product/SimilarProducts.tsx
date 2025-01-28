@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 export const SimilarProducts = ({
   category,
-  id
+  id,
 }: {
   category: { title?: string };
-  id:string
+  id: string;
 }) => {
   const [similarProducts, setSimilarProducts] = useState([]);
 
@@ -20,6 +20,20 @@ export const SimilarProducts = ({
       setSimilarProducts(data);
     })();
   }, [category.title]);
+  console.log(similarProducts.length)
+  if (similarProducts.length == 1){
+    return (
+      <div className="w-full my-[6rem]">
+           <Image
+          alt="nothing"
+          src="/assets/nothin_here.svg"
+          width={400}
+          height={400}
+          className="m-auto mb-[3rem]"
+        />
+        <div className="font-semibold text-center">No Similar Product</div>{" "}
+      </div>
+    )};
   return (
     <section className="mt-20">
       <div className="flex flex-row justify-between items-start mt-28 mb-12">
@@ -39,10 +53,17 @@ export const SimilarProducts = ({
           <Image src={icon4} alt="arrow" />
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {similarProducts.length == 0 ? similarProducts.map((product) => (
-          product._id !== id && <ProductCard key={product._id} product={product} />
-        )) : <Image alt="nothing" src="/assets/nothin_here.svg"  width={400} height={400} className="m-auto w-full my-[6rem]"/>}
+      <div className="w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {similarProducts.slice(0, 5).map(
+            (product) =>
+              product._id !== id && (
+                <div key={product._id}>
+                  <ProductCard product={product} />
+                </div>
+             )
+          )}
+        </div>
       </div>
     </section>
   );

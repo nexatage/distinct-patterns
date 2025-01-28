@@ -27,7 +27,7 @@ const Product = () => {
     "currentPage",
     parseAsInteger.withDefault(1)
   );
-  const itemsPerPage = 7;
+  const itemsPerPage = 5;
    const [categoryquery, setCategoryQuery] = useQueryState("category", {
     defaultValue: "",
   });
@@ -134,7 +134,7 @@ const Product = () => {
   return (
     <div className="p-10 pt-0" >
       <h1 className="text-3xl sm:text-[clamp(50px,5vw,70px)] font-[600] m-2 mb-6">
-        ALL PRODUCTS
+      All Products
       </h1>
       <div className="flex">
         {/* Sidebar */}

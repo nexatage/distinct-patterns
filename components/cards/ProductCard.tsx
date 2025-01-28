@@ -37,15 +37,15 @@ const ProductCard = ({ product }) => {
 
   return (
     <div>
-      <div key={product.id} className="overflow-hidden border rounded-md">
+      <div key={product.id} className="overflow-hidden  rounded-md">
         {/* Product Image */}
         <div className="p-0 relative">
           <Image
-            width={150}
-            height={150}
+            width={100}
+            height={100}
             src={urlFor(product.images[0]).quality(100).url()}
             alt={product.name}
-            className="h-[300px] w-full object-cover  rounded-tr-md rounded-tl-md"
+            className="h-[300px] w-full object-cover "
           />
           {/* Color Variants Overlay */}
           <div className="absolute bottom-2 left-2 flex gap-2 bg-white/90 p-2  rounded-2xl">
@@ -65,12 +65,12 @@ const ProductCard = ({ product }) => {
         <div className="flex  flex-col items-start space-y-2 py-4 px-4">
           {/* Product Name */}
           <Link href={`/products/${product.slug}`}>
-            <h3 className="text-sm font-thin text-gray-700">{product.name}</h3>
+            <h3 className="text-lg font-thin text-gray-700">{product.name}</h3>
           </Link>
 
           {/* Pricing */}
           <div className="flex items-left gap-2">
-            <span className="text-lg font-thin text-gray-900">
+            <span className=" text-sm font-thin text-gray-900">
               ₦ {product.price.toLocaleString()}
             </span>
             {product.originalPrice && (

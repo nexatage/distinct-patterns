@@ -29,8 +29,8 @@ export default function Page() {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h1 className="text-3xl tracking-tight text-gray-900 sm:text-4xl">
-          Check your cart and checkout
+        <h1 className="text-3xl tracking-tight text-gray-900 font-semibold sm:text-4xl">
+        What’s in Your Bag?
         </h1>
         <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
           {/* Cart items section */}
@@ -122,20 +122,27 @@ export default function Page() {
                   </li>
                 ))
               ) : (
-                <div className="my-4 text-center">
-                  Nothing is here, your cart is empty
-                </div>
+                <div className="w-full my-[6rem]">
+                <Image
+               alt="nothing"
+               src="/assets/nothin_here.svg"
+               width={400}
+               height={400}
+               className="m-auto mb-[3rem]"
+              />
+              <div className="font-semibold text-center text-2xl">Nothing in your cart</div>{" "}
+              </div>
               )}
             </ul>
-            <div className="p-2 border rounded-full my-4 text-center">
-              <Link href="/products">All Products</Link>
+            <div className="p-2 border rounded-2xl my-4 text-center">
+              <Link href="/products">Shop More</Link>
             </div>
           </section>
 
           {/* Order summary */}
           <section
             aria-labelledby="summary-heading"
-            className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"
+            className="mt-16 rounded-lg bg-[#f8f8f8] px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"
           >
             <h2
               id="summary-heading"
@@ -147,8 +154,8 @@ export default function Page() {
               <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                 <dt className="flex items-center text-sm text-gray-600">
                   <span>Shipping estimate</span>
-                  <a
-                    href="#"
+                  <p
+                   
                     className="ml-2 shrink-0 text-gray-400 hover:text-[#999999]"
                   >
                     <span className="sr-only">
@@ -158,15 +165,15 @@ export default function Page() {
                       aria-hidden="true"
                       className="size-5"
                     />
-                  </a>
+                  </p>
                 </dt>
                 <dd className="text-sm font-medium text-gray-900">$0.00</dd>
               </div>
               <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                 <dt className="flex text-sm text-gray-600">
                   <span>Tax estimate</span>
-                  <a
-                    href="#"
+                  <p
+                    
                     className="ml-2 shrink-0 text-gray-400 hover:text-[#999999]"
                   >
                     <span className="sr-only">
@@ -176,7 +183,7 @@ export default function Page() {
                       aria-hidden="true"
                       className="size-5"
                     />
-                  </a>
+                  </p>
                 </dt>
                 <dd className="text-sm font-medium text-gray-900">$0.00</dd>
               </div>

@@ -35,8 +35,7 @@ const Brand = () => {
           fill
           src="/assets/brand.jpg"
           alt="brand_story"
-          width={600}
-          height={600}
+      
           className=" object-contain w-full h-auto lg:w-2/3"
         />
       </div>

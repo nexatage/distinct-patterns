@@ -36,32 +36,40 @@ export default function Page() {
   }, [email]);
 
   if (loading) return <ItemSkeleton />;
-  if(orders.length == 0 ) return <Image alt="nothing" src="/assets/nothin_here.svg"  width={400} height={400} className="m-auto my-[6rem]"/>;
+  if(orders.length == 0 ) return <div className="w-full my-[6rem]">
+  <Image
+ alt="nothing"
+ src="/assets/nothin_here.svg"
+ width={400}
+ height={400}
+ className="m-auto mb-[3rem]"
+/>
+<div className="font-semibold text-center text-2xl">No Orders yet</div>{" "}
+</div>;
   return (
     <>
-    <div className="text-3xl  px-[1rem] sm:px-[4rem]">Your Recent Orders</div>
-    <Accordion type="single" collapsible className="w-full space-y-4">
+    <div className="text-3xl  px-[1rem] sm:px-[4rem] font-semibold">Your Recent Orders</div>
+    <Accordion type="single" collapsible  defaultValue={`item-${orders[0]._id}`} className="w-full space-y-4">
       {orders.map(({ _id, createdAt, orderItems, status }) => (
         <AccordionItem value={`item-${_id}`} key={_id}>
           <div className="mx-auto max-w-2xl sm:py-12 lg:max-w-7xl lg:px-8">
-            <AccordionTrigger className="text-xl space-y-2 px-4 sm:flex sm:items-center sm:justify-between sm:space-y-0 sm:px-0">
+            <AccordionTrigger className="text-sm space-y-2 px-4 sm:flex sm:items-center sm:justify-between sm:space-y-0 sm:px-0">
               <div className="mt-2 border-b border-gray-200 pb-5  sm:flex sm:justify-between">
                 <dl className="flex">
-                  <dt className="text-gray-500">Order #{_id.slice(0,5)}</dt>
+                  <dt className="font-semibold text-gray-900">Order #{_id.slice(0,5)}</dt>
                   <dt>
                     <span className="sr-only">Date</span>
                     <span aria-hidden="true" className="mx-2 text-gray-400">
                       &middot;
                     </span>
                   </dt>
-                  <dd className="font-medium text-gray-900">
+                  <dd className="font-medium text-gray-500 text-sm">
                     <time dateTime={createdAt}>{formatDate(createdAt)}</time>
                   </dd>
                 </dl>
+                
               </div>
-              <div className="overflow-hidden rounded-full bg-gray-200">
-                <div className="h-2 rounded-full bg-black" />
-              </div>
+              
               {`${status.charAt(0).toUpperCase()}${status.slice(1)}`}
             </AccordionTrigger>
 
@@ -100,18 +108,17 @@ export default function Page() {
                       </p>
                       <div className="mt-6">
                         <div className="overflow-hidden rounded-full bg-gray-200">
-                          {status !== "completed" && <div
-                            className={`h-2 rounded-full bg-black ${
-                              status === "pending" ? "w-[250px]" : "w-[400px]"
-                            } }`}
-                          />}
-                          {
-                           status === "completed" && <div
-                            className={`h-2 rounded-full bg-black w-full }`}
-                          />
-                          }
-
-                        </div>}
+                          {status !== "completed" ? <div
+                            className={`h-2 rounded-full  ${
+                              status === "pending" ? "w-[250px] bg-yellow-400" : "w-[400px] bg-blue-500" }`}
+                          />:  <div
+                          className={`h-2 rounded-full bg-green-400 w-full`}
+                        />}
+                          
+                           
+                          
+                        </div>
+                
                         <div className="mt-6 hidden grid-cols-4 font-medium text-gray-600 sm:grid">
                           <div className="">Order placed</div>
                           <div
