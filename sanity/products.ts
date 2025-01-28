@@ -65,12 +65,12 @@ export async function getProductsByCategory(category) {
             isfabric,
             ratings,
             availablequantity,
-            "categories": category->{
-              _id,
-              title,
-              description
-            },
-            images
+           category->{title, slug},
+               images[]{
+      asset->{
+        url
+      }
+    }
           }`;
   const params = { category };
   const data = await sanityClient.fetch(query, params);
