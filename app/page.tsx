@@ -40,7 +40,7 @@ export default function Page() {
             <div className="absolute inset-0 -bottom-12 z-0">
               {/* Replace the src with your actual sim-card shaped background image path */}
               <Image
-                src={"/home/hero-image.png"}
+                src={"/Rectangle 1.svg"}
                 width={200}
                 height={400}
                 alt="Sim-card shaped background"
@@ -54,7 +54,7 @@ export default function Page() {
             <div className="relative z-10">
               {/* Replace the src with your actual image path */}
               <Image
-                src={"/home/maleek.svg"}
+                src={"/home/hero-image.png"}
                 width={200}
                 height={400}
                 alt="Model wearing traditional fashion"

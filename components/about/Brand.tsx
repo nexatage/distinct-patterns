@@ -30,7 +30,7 @@ const Brand = () => {
       </div>
 
       {/* Image Box */}
-      <div className="flex order-2 w-full img-box lg:w-1/2 lg:justify-center lg:order-1 absolute">
+      <div className="flex order-2 w-full img-box lg:w-1/2 lg:justify-center lg:order-1">
         <Image
           src="/about/brand-story.png"
           width={300}
