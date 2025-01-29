@@ -34,7 +34,7 @@ export default function InstagramSection() {
       <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-2">
         <div className="md:col-span-2 lg:col-span-2">
           <Image
-            src={"/images/Rectangle 13.svg"}
+            src={"/home/social-1.png"}
             alt="Featured fashion image"
             width={600}
             height={800}
@@ -42,10 +42,10 @@ export default function InstagramSection() {
           />
         </div>
         <div className="md:col-span-1 lg:col-span-3 grid grid-cols-2 gap-4">
-          {[12, 13, 14, 15].map((image, i) => (
+          {[2, 3, 4, 5].map((image, i) => (
             <Image
               key={i}
-              src={`/images/Rectangle ${image}.svg`}
+              src={`/home/social-${image}.png`}
               alt={`Fashion image ${i + 1}`}
               width={300}
               height={300}

@@ -45,7 +45,7 @@ const Page = () => {
             <div className="w-full md:w-1/2 mt-8 md:mt-0">
               <div className="relative aspect-[3/4] w-full max-w-md mx-auto">
                 <Image
-                  src={"/about/maleek-about.svg"}
+                  src={"/about/about-hero.png"}
                   alt="Man in black outfit"
                   fill
                   className="object-cover rounded-2xl "
@@ -59,13 +59,13 @@ const Page = () => {
 
       <Vision
         title="OUR VISION"
-        leftImage={"/missionandvision/v1.svg"}
-        rightImage={"/missionandvision/v2.svg"}
+        leftImage={"/about/vision-1.png"}
+        rightImage={"/about/vision-2.png"}
       />
       <Vision
         title="OUR MISSION"
-        leftImage={"/missionandvision/c5.svg"}
-        rightImage={"/missionandvision/c6.svg"}
+        leftImage={"/about/mission-1.png"}
+        rightImage={"/about/mission-2.png"}
         text1="Perfection Is Achieved, Not When There Is Nothing More To Add,"
         text2="But When There Is Nothing Left To Take Away."
       />

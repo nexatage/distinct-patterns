@@ -40,7 +40,7 @@ export default function Page() {
             <div className="absolute inset-0 -bottom-12 z-0">
               {/* Replace the src with your actual sim-card shaped background image path */}
               <Image
-                src={"/Rectangle 1.svg"}
+                src={"/home/hero-image.png"}
                 width={200}
                 height={400}
                 alt="Sim-card shaped background"
